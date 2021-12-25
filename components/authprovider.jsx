@@ -16,7 +16,7 @@ export function useAuth() {
 const API_URL = 'http://localhost:8080/';
 
 export function AuthProvider({ children }) {
-	const [ user, setUser ] = useState(store);
+	const [ user, setUser ] = useState();
 
 	const [ userToken, setUserToken, removeCookie ] = useCookies([ 'token' ]);
 	const tokenKey = 'token';
@@ -58,12 +58,13 @@ export function AuthProvider({ children }) {
 		if (!token) {
 			return;
 		}
+		console.log('token: ', token);
 		axios
 			.get(API_URL + 'api/auth/credentials', { headers: { Authorization: 'Bearer ' + token } })
 			.then((res) => {
 				let data = res.data;
 				let logged = {
-					email: data.username
+					email: data.email
 				};
 				setUser(logged);
 			})

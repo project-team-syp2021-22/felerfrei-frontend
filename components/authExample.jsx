@@ -11,7 +11,7 @@ export default function AuthExample() {
 
 	return (
 		<div>
-			{user && <h1>Welcome {user.email}</h1>}
+			{user && <h1>Welcome {user.username}</h1>}
 
 			{!user && (
 				<Button variant="primary" onClick={log}>

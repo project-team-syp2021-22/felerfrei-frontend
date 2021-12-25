@@ -1,4 +1,4 @@
-import { SET_USER } from "./userActions";
+import { SET_USER, LOGOUT } from "./userActions";
 
 
 const userReducer = (state = {}, action) => {

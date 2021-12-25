@@ -8,11 +8,6 @@ import { createStore } from 'redux';
 
 function MyApp({ Component, pageProps }) {
 
-  const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-
   return (
     <Provider store={store}>
       <AuthProvider>
