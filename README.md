@@ -19,8 +19,7 @@ function myLoginFunction() {
 
 return (
     <h1> Hello World! </h1>
-    
-    <button onClicke={myLoginFunction}>Login!</button>
+    <button onClick={myLoginFunction}>Login!</button>
 );
 ```
 
@@ -28,13 +27,12 @@ Example 2:
 ```javascript
 const {user} = useAuth();
 
-
-
 return (
-    <h1> {user!.email} </h1>
-    
     <div>
-        {user && <h3>you are logged in!</h3>}
+        <h1> {user!.email} </h1>
+        <div>
+            {user && <h3>you are logged in!</h3>}
+        </div>
     </div>
 );
 ```
