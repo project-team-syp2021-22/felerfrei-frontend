@@ -13,41 +13,44 @@ export function useAuth() {
 
 // TODO: redux store for storing user data
 
-const API_URL = 'http://localhost:8080/';
+const API_URL = 'http://localhost:8080';
 
 export function AuthProvider({ children }) {
-	const [ user, setUser ] = useState();
+	const [user, setUser] = useState();
 
-	const [ userToken, setUserToken, removeCookie ] = useCookies([ 'token' ]);
+	const [userToken, setUserToken, removeCookie] = useCookies(['token']);
 	const tokenKey = 'token';
 
 	const userSelector = useSelector(state => state.user)
 	const dispatch = useDispatch();
 
-	async function signup(email, password) {
+	async function signup(email, password, firstname, lastname) {
 		throw new Error('Not implemented');
 	}
 
 	async function login(email, password) {
-		const body = {
-			email,
-			password
-		};
-		await axios.post(API_URL + 'api/auth/signin', body).then((response) => {
-			let data = response.data;
-			let credentials = {
-				email: data.email
-			};
-			setUserToken(tokenKey, data.token);
-			setUser({ ...credentials });
-			dispatch({type: SET_USER, payload: credentials})
-		});
+		await axios.post(API_URL + '/auth/login', { email, password })
+			.then((response) => {
+				let data = response.data;
+				let credentials = {
+					email: data.email,
+					firstname: data.firstname,
+					lastname: data.lastname,
+				};
+				setUserToken(tokenKey, data.token);
+				setUser({ ...credentials });
+				dispatch({ type: SET_USER, payload: credentials })
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		console.log(userSelector)
 	}
 
 	async function logout() {
 		removeCookie(tokenKey);
 		setUser(null);
-		dispatch({type: LOGOUT})
+		dispatch({ type: LOGOUT })
 	}
 
 	useEffect(() => {
@@ -58,17 +61,8 @@ export function AuthProvider({ children }) {
 		if (!token) {
 			return;
 		}
-		console.log('token: ', token);
-		axios
-			.get(API_URL + 'api/auth/credentials', { headers: { Authorization: 'Bearer ' + token } })
-			.then((res) => {
-				let data = res.data;
-				let logged = {
-					email: data.email
-				};
-				setUser(logged);
-			})
-			.catch((err) => console.log(err));
+		console.log(userSelector);
+		setUser(userSelector);
 	}, []);
 
 	const value = {
