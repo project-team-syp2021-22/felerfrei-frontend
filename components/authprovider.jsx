@@ -2,11 +2,8 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import store from '../redux/store';
 import { LOGOUT, SET_USER } from '../redux/userActions';
-
 const AuthContext = React.createContext();
-
 export function useAuth() {
 	return useContext(AuthContext);
 }
@@ -16,12 +13,13 @@ export function useAuth() {
 const API_URL = 'http://localhost:8080';
 
 export function AuthProvider({ children }) {
-	const [user, setUser] = useState();
+	const [user, setUser] = useState(null);
 
 	const [userToken, setUserToken, removeCookie] = useCookies(['token']);
 	const tokenKey = 'token';
 
-	const userSelector = useSelector(state => state.user)
+	let userSelector = useSelector(state => state.user);
+
 	const dispatch = useDispatch();
 
 	async function signup(email, password, firstname, lastname) {
@@ -37,20 +35,21 @@ export function AuthProvider({ children }) {
 					firstname: data.firstname,
 					lastname: data.lastname,
 				};
-				setUserToken(tokenKey, data.token);
 				setUser({ ...credentials });
-				dispatch({ type: SET_USER, payload: credentials })
+				setUserToken(tokenKey, data.token);
+				// store.dispatch({ type: SET_USER, payload: credentials });
+				dispatch({ type: SET_USER, payload: { user: credentials } });
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-		console.log(userSelector)
 	}
 
 	async function logout() {
 		removeCookie(tokenKey);
 		setUser(null);
-		dispatch({ type: LOGOUT })
+		// store.dispatch({ type: LOGOUT });
+		dispatch({ type: LOGOUT });
 	}
 
 	useEffect(() => {
@@ -61,6 +60,7 @@ export function AuthProvider({ children }) {
 		if (!token) {
 			return;
 		}
+		// dispatch({ type: SET_USER, userSelector });
 		console.log(userSelector);
 		setUser(userSelector);
 	}, []);

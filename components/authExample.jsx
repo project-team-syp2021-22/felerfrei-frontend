@@ -3,9 +3,10 @@ import { useAuth } from './authprovider';
 import Button from 'react-bootstrap/Button';
 import { Container, Form } from 'react-bootstrap';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function AuthExample() {
-	const { user, login } = useAuth();
+	const { user, login, logout } = useAuth();
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
@@ -16,6 +17,8 @@ export default function AuthExample() {
 
 		login(email, password);
 	}
+
+
 
 	return (
 		<div>
@@ -34,6 +37,7 @@ export default function AuthExample() {
 					</Button>
 				</Container>
 			)}
+			<Button onClick={logout}>Logout</Button>
 		</div>
 	);
 }
