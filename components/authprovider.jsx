@@ -22,12 +22,18 @@ export function AuthProvider({ children }) {
 
 	const dispatch = useDispatch();
 
-	async function signup(email, password, firstname, lastname) {
-		throw new Error('Not implemented');
+	async function signup(email, password, firstname, lastname, telephonenumber) {
+		await axios.post(`${API_URL}/auth/signup`, { email, password, firstname, lastname, telephone: telephonenumber })
+			.then(res => {
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
 
 	async function login(email, password) {
-		await axios.post(API_URL + '/auth/login', { email, password })
+		await axios.post(`${API_URL}/auth/login`, { email, password })
 			.then((response) => {
 				let data = response.data;
 				let credentials = {
@@ -36,7 +42,11 @@ export function AuthProvider({ children }) {
 					lastname: data.lastname,
 				};
 				setUser({ ...credentials });
-				setUserToken(tokenKey, data.token);
+
+				let expireDate = new Date();
+				expireDate.setDate(expireDate.getDate() + 3);
+
+				setUserToken(tokenKey, data.token, { expires: expireDate });
 				// store.dispatch({ type: SET_USER, payload: credentials });
 				dispatch({ type: SET_USER, payload: { user: credentials } });
 			})
