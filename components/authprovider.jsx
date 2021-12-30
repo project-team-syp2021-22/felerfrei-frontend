@@ -63,16 +63,26 @@ export function AuthProvider({ children }) {
 		dispatch({ type: LOGOUT });
 	}
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (user) {
 			return;
 		}
+		// check here if user is still available on database
 		let token = userToken[tokenKey];
-		if (!token) {
-			return;
+		if (token) {
+			await axios.post(API_URL + '/auth/check', { token: token })
+				.then((response) => {
+					setUser(userSelector);
+				})
+				.catch((error) => {
+					logout();
+				});
 		}
+		// let token = userToken[tokenKey];
+		// if (!token) {
+		// 	return;
+		// }
 		// dispatch({ type: SET_USER, userSelector });
-		setUser(userSelector);
 	}, []);
 
 	const value = {
