@@ -40,6 +40,7 @@ export function AuthProvider({ children }) {
 					email: data.email,
 					firstname: data.firstname,
 					lastname: data.lastname,
+					telephone: data.telephone,
 				};
 				setUser({ ...credentials });
 

@@ -45,7 +45,18 @@ export default function AuthExample() {
 
 	return (
 		<div>
-			{user && <h1>Welcome {user.email}</h1>}
+			{user && (
+				<Container className="center mt-5">
+
+					<h1>Welcome {user.email}</h1>
+					<br />
+					<h3>Your name is: {user.firstname} {user.lastname}</h3>
+					<br />
+					<h4>We can reech you via: {user.telephone}</h4>
+
+				</Container>
+			)
+			}
 
 			{!user && (
 				<Container className="center mt-5" style={{ maxWidth: "400px" }}>
