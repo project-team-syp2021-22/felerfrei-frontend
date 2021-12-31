@@ -33,13 +33,16 @@ export function AuthProvider({ children }) {
 	}
 
 	async function login(email, password) {
-		await axios.post(API_URL + '/auth/login', { email, password })
+
+		await axios.post(API_URL + '/auth/login', { email: email, password: password })
+
 			.then((response) => {
 				let data = response.data;
 				let credentials = {
 					email: data.email,
 					firstname: data.firstname,
 					lastname: data.lastname,
+					telephone: data.telephone,
 				};
 				setUser({ ...credentials });
 
@@ -62,16 +65,21 @@ export function AuthProvider({ children }) {
 		dispatch({ type: LOGOUT });
 	}
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (user) {
 			return;
 		}
+		// check here if user is still available on database
 		let token = userToken[tokenKey];
-		if (!token) {
-			return;
+		if (token) {
+			await axios.post(API_URL + '/auth/check', { token: token })
+				.then((response) => {
+					setUser(userSelector);
+				})
+				.catch((error) => {
+					logout();
+				});
 		}
-		// dispatch({ type: SET_USER, userSelector });
-		setUser(userSelector);
 	}, []);
 
 	const value = {

@@ -8,11 +8,13 @@ const userReducer = (state = {}, action) => {
             if (action.payload === undefined) {
                 return { ...state };
             }
-            console.log(action.payload);
+
             const email = action.payload.user.email;
             const firstname = action.payload.user.firstname;
             const lastname = action.payload.user.lastname;
-            return { email, firstname, lastname };
+            const telephone = action.payload.user.telephone;
+            return { email, firstname, lastname, telephone };
+
         // return { ...state };
         case LOGOUT:
             return {};
