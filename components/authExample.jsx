@@ -46,6 +46,7 @@ export default function AuthExample() {
 	}
 
 
+
 	return (
 		<div>
 			{user && (
@@ -58,38 +59,7 @@ export default function AuthExample() {
 					<h4>We can reech you via: {user.telephone}</h4>
 
 				</Container>
-			)
-			}
-
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
-
-		login(email, password);
-	}
-
-
-	function sign() {
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
-		const passwordCheck = passwordCheckRef.current.value;
-		const firstname = firstnameRef.current.value;
-		const lastname = lastnameRef.current.value;
-		const telephonenumber = telephonenumberRef.current.value;
-
-		if (password !== passwordCheck) {
-			// bei der app bessere fehlermeldung als alert
-			alert('Passwords do not match');
-			return;
-		}
-
-		signup(email, password, firstname, lastname, telephonenumber);
-	}
-
-
-	return (
-		<div>
-			{user && <h1>Welcome {user.email}</h1>}
-
+			)}
 
 			{!user && (
 				<Container className="center mt-5" style={{ maxWidth: "400px" }}>
