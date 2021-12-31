@@ -33,7 +33,9 @@ export function AuthProvider({ children }) {
 	}
 
 	async function login(email, password) {
+
 		await axios.post(API_URL + '/auth/login', { email: email, password: password })
+
 			.then((response) => {
 				let data = response.data;
 				let credentials = {
@@ -78,11 +80,6 @@ export function AuthProvider({ children }) {
 					logout();
 				});
 		}
-		// let token = userToken[tokenKey];
-		// if (!token) {
-		// 	return;
-		// }
-		// dispatch({ type: SET_USER, userSelector });
 	}, []);
 
 	const value = {
