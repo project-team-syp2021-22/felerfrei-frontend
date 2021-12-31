@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT, SET_USER } from '../redux/userActions';
+// import { API_URL } from '../components/constants';
+import { API_URL } from './constans';
 const AuthContext = React.createContext();
 export function useAuth() {
 	return useContext(AuthContext);
@@ -10,7 +12,6 @@ export function useAuth() {
 
 // TODO: redux store for storing user data
 
-const API_URL = 'http://localhost:8080';
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState(null);
@@ -66,9 +67,7 @@ export function AuthProvider({ children }) {
 	}
 
 	useEffect(async () => {
-		if (user) {
-			return;
-		}
+
 		// check here if user is still available on database
 		let token = userToken[tokenKey];
 		if (token) {
