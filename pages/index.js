@@ -7,7 +7,7 @@ export default function Index() {
   return (
     <>
       <div>
-        <AuthExample />
+        <h1>Hello world</h1>
       </div>
     </>
   )
