@@ -29,15 +29,17 @@ export default function Sign_In() {
     }
 
     return (
-        <div style={{
-            width: '80vw',
-            margin: 'auto',
-            padding: '5vw',
-            border: 'black solid 3px',
-            borderRadius: '25px',
-            marginTop: '10vh',
-            outline: 'none'
-        }}>
+        <div
+        // style={{
+        //     width: '80vw',
+        //     margin: 'auto',
+        //     padding: '5vw',
+        //     border: 'black solid 3px',
+        //     borderRadius: '25px',
+        //     marginTop: '10vh',
+        //     outline: 'none'
+        // }}
+        >
             <Form onSubmit={checkInput}>
                 <Row>
                     <FormGroup as={Col}>

@@ -14,14 +14,16 @@ export default function Log_In(){
     }
 
     return (
-        <div style={{
-            width: '80vw',
-            margin: 'auto',
-            padding: '5vw',
-            border: 'black solid 3px',
-            borderRadius: '25px',
-            marginTop: '10vh'
-        }}>
+        <div
+        //     style={{
+        //     width: '80vw',
+        //     margin: 'auto',
+        //     padding: '5vw',
+        //     border: 'black solid 3px',
+        //     borderRadius: '25px',
+        //     marginTop: '10vh'
+        // }}
+        >
             <Form onSubmit={onSubmit}>
                 <FormGroup>
                     <Form.Label>E-Mail *</Form.Label>

@@ -18,3 +18,13 @@ a {
 .required{
   border-color: red;
 }
+
+form{
+  width: 80vw;
+  margin: auto;
+  padding: 5vw;
+  border: black solid 3px;
+  borderRadius: 25px;
+  marginTop: 10vh;
+  outline: none;
+}
