@@ -1,16 +1,16 @@
 import {FormGroup, Form, Row, Col, Button} from "react-bootstrap";
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 export default function Sign_In() {
     let sonderzeichen = "(°_^}"
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [password1, setPassword1] = useState('')
-    const [password2, setPassword2] = useState('')
+    const firstName = useRef();
+    const lastName = useRef();
+    const email = useRef();
+    const phone = useRef();
+    const password1 = useRef();
+    const password2 = useRef();
     const classRequired = "required"
 
     function checkInput(){
@@ -35,17 +35,18 @@ export default function Sign_In() {
             padding: '5vw',
             border: 'black solid 3px',
             borderRadius: '25px',
-            marginTop: '10vh'
+            marginTop: '10vh',
+            outline: 'none'
         }}>
             <Form onSubmit={checkInput}>
                 <Row>
                     <FormGroup as={Col}>
                         <Form.Label>Vorname *</Form.Label>
-                        <Form.Control type="text" placeholder="Max" id="FirstName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                        <Form.Control type="text" placeholder="Max" id="FirstName" itemRef={firstName}/>
                     </FormGroup>
                     <FormGroup as={Col}>
                         <Form.Label>Nachname *</Form.Label>
-                        <Form.Control type="text" placeholder="Musterman" id="Lastname" value={lastName} onChange={e => setLastName(e.target.value)}/>
+                        <Form.Control type="text" placeholder="Musterman" id="Lastname" itemRef={lastName}/>
                     </FormGroup>
                 </Row>
 
@@ -53,7 +54,7 @@ export default function Sign_In() {
 
                 <FormGroup>
                     <Form.Label>E-Mail *</Form.Label>
-                    <Form.Control type="email" id="Email" placeholder="max.musterman@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <Form.Control type="email" id="Email" placeholder="max.musterman@gmail.com" itemRef={email}/>
                 </FormGroup>
 
                 <br/>
@@ -66,9 +67,8 @@ export default function Sign_In() {
                             preferredCountries={['AT', 'DE']}
                             defaultCountry={'AT'}
                             paginate='30'
-                            value={phone}
-                            id="Phone"
-                            onChange={e => setPhone(e)}
+                            itemRef={phone}
+                            onChange={() => {}}
                         />
                     </Form.Control>
                 </FormGroup>
@@ -77,7 +77,7 @@ export default function Sign_In() {
 
                 <FormGroup>
                     <Form.Label>Passwort *</Form.Label>
-                    <Form.Control type="password" placeholder="passwort" id="Password1" value={password1} onChange={e => setPassword1(e.target.value)}/>
+                    <Form.Control type="password" placeholder="passwort" id="Password1" itemRef={password1}/>
                     <Form.Text className="text-muted">
                         Das Passwort muss mindestens 8 Zeichen lang sein und aus Buchstaben, Zahlen und Sonderzeichen
                         wie {sonderzeichen} bestehen!
@@ -86,7 +86,7 @@ export default function Sign_In() {
                 <br/>
                 <FormGroup>
                     <Form.Label>Passwort bestätigen *</Form.Label>
-                    <Form.Control type="password" placeholder="passwort" id="Password2" value={password2} onChange={e => setPassword2(e.target.value)}/>
+                    <Form.Control type="password" placeholder="passwort" id="Password2" itemRef={password2}/>
                 </FormGroup>
 
                 <br/>
