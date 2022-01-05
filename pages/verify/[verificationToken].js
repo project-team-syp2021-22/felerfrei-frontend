@@ -11,14 +11,19 @@ export default function Verify() {
     const [response, setResponse] = useState();
 
     useEffect(() => {
+        if(verificationToken === undefined)
+            return;
         axios.post(`${API_URL}/auth/verify`, { token: verificationToken })
             .then(res => {
+                console.log(res)
+
                 setResponse('Your account has been verified');
             })
             .catch(err => {
                 setResponse('Verification failed');
             });
-    }, []);
+    }, [verificationToken]);
+
 
     return (
         <div className='w-100'>
