@@ -19,7 +19,7 @@ export default function Verify() {
                 setResponse('Your account has been verified');
             })
             .catch(err => {
-                setResponse('Verification fail  ed');
+                setResponse('Verification failed');
             });
     }, [verificationToken]);
 
