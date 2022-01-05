@@ -2,7 +2,7 @@ import {Button, Form, FormGroup} from "react-bootstrap";
 import {useAuth} from "../components/authprovider";
 import {useState} from "react";
 
-export default function Log_In(){
+export default function Login(){
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
