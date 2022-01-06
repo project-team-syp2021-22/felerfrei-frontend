@@ -9,13 +9,27 @@ function MyApp({ Component, pageProps }) {
 
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <AuthProvider>
-          <Component {...pageProps} />
-        </AuthProvider>
-      </PersistGate>
-    </Provider>
+    <>
+      <link
+        rel="preload"
+        href="/fonts/electrica/Electrica-Regular.ttf"
+        as="font"
+        crossOrigin=""
+      />
+      <link
+        rel="preload"
+        href="/fonts/electrica/Electrica-Medium.ttf"
+        as="font"
+        crossOrigin=""
+      />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
+        </PersistGate>
+      </Provider>
+    </>
   )
 }
 
