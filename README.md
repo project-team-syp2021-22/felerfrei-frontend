@@ -1,16 +1,20 @@
-### To get started run 
+# Setup
+To get started run
 ```
 npm i
 ```
-this command installs all packages defined in package.json
+
+This command installs all packages defined in package.json
+
+After installing all packages, run
+```
+npm run dev
+```
+to start the development server.
 
 
-### To see the Sign-In page go to
-http://localhost:3000/Sign_In
 
-
-
-## Authprovider
+# Authprovider
 
 Example:
 ```javascript
@@ -40,3 +44,20 @@ return (
     </div>
 );
 ```
+
+# pages - directory
+Files in this directory will define different pages.
+## Example:
+`/pages/login.js` defines the look of the `/login` page.
+
+# public - direcotry
+All files in this directory will be served as static files.
+
+# redux - direcotry
+All files in this directory are used for redux.
+Redux is a library for managing state in javascript applications.
+If you want to know more about redux, check out the
+[docs](https://redux.js.org/tutorials/fundamentals/part-5-ui-react) for react.
+
+# components - direcotry
+All files in this directory define components or other objects like `constants.js`. If you want to create a new component, please use the `.jsx` file extension.
