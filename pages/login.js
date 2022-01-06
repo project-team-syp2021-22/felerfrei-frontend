@@ -9,7 +9,7 @@ export default function Login() {
     const { user, login } = useAuth();
 
     function onSubmit() {
-        login(email.current.value, password);
+        login(emailRef.current.value, passwordRef.current.value);
         //todo das muss mir der werte Herr Projektleiter zeigen was ich da machen soll
     }
 
@@ -34,6 +34,7 @@ export default function Login() {
                                 placeholder="Username"
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
+                                ref={emailRef}
                             />
                         </InputGroup>
                         <InputGroup className="mb-4">
@@ -43,9 +44,11 @@ export default function Login() {
                                 </svg>
                             </InputGroup.Text>
                             <FormControl
+                                type="password"
                                 placeholder="Password"
                                 aria-label="Password"
                                 aria-describedby="basic-addon2"
+                                ref={passwordRef}
                             />
                         </InputGroup>
 

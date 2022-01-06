@@ -20,6 +20,7 @@ export default function Sign_In() {
         checkForRequiredInput("Password1", password1);
         checkForRequiredInput("Password2", password2);
 
+        
     }
 
     function checkForRequiredInput(name, state){
