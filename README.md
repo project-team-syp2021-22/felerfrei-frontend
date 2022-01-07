@@ -44,20 +44,20 @@ return (
     </div>
 );
 ```
-
-# pages - directory
+# Directories
+## pages
 Files in this directory will define different pages.
-## Example:
+### Example:
 `/pages/login.js` defines the look of the `/login` page.
 
-# public - direcotry
+## public
 All files in this directory will be served as static files.
 
-# redux - direcotry
+## redux
 All files in this directory are used for redux.
 Redux is a library for managing state in javascript applications.
 If you want to know more about redux, check out the
 [docs](https://redux.js.org/tutorials/fundamentals/part-5-ui-react) for react.
 
-# components - direcotry
+## components
 All files in this directory define components or other objects like `constants.js`. If you want to create a new component, please use the `.jsx` file extension.
