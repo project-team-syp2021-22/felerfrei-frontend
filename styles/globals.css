@@ -38,9 +38,14 @@ a {
 }
 
 .form-control:focus {
+  border: none;
+  border-bottom: 1;
   border-color: #1b1b1b !important;
   box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0px 15px 10px -15px #111 !important;    
+
 }
+
 .custom-shape-divider-top-1641412148 {
   position: absolute;
   top: 0;
