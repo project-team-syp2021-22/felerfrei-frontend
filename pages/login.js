@@ -7,7 +7,7 @@ export default function Login(props) {
 
     const passwordVisibility = useRef();
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
-    const [loginError, setLoginError] = useState(false);
+    const [loginError, setLoginError] = useState();
     const passwordRef = useRef();
     const emailRef = useRef();
     const router = useRouter();
@@ -40,14 +40,14 @@ export default function Login(props) {
         let email = emailRef.current.value;
         let password = passwordRef.current.value;
         if (email === "" || password === "") {
-            return;
+            return setLoginError("Bitte füllen Sie alle Felder aus.");
         }
-        setLoginError(false);
+        setLoginError(null);
         try {
             await login(email, password);
         } catch (error) {
             // handle error
-            setLoginError(true);
+            setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
             return;
         }
         const route = props.to ? props.to : '/';
@@ -61,7 +61,7 @@ export default function Login(props) {
                     <h2 className="fw-bold">Felerfrei - Login</h2>
                     {loginError &&
                         <Alert variant={"danger"} className="rounded-0" style={{maxWidth: "500px"}}>
-                            Sie konnten nicht angemeldet werden. Bitte überprüfen Sie Ihre Eingaben.
+                            {loginError}
                         </Alert>
                     }
                     <Form style={{width: "500px"}}>
