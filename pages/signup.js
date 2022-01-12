@@ -51,8 +51,7 @@ export default function Sign_In() {
         handlePasswordVisibility(passwordConfirmVisibility, passwordConfirmIsHidden, setPasswordConfirmIsHidden, passwordConfirmRef);
     }
 
-
-    async function tryLogin() {
+    async function trySignUp() {
         let email = emailRef.current.value;
         let password = passwordRef.current.value;
         if (email === "" || password === "") {
@@ -207,7 +206,7 @@ export default function Sign_In() {
                         </Alert>
                     }
 
-                    <Button onClick={tryLogin}
+                    <Button onClick={trySignUp}
                             className="w-100 rounded-0 mt-4"
                             variant="outline-dark"
                             size={"md"}
