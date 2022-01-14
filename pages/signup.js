@@ -53,7 +53,7 @@ export default function Signup(props) {
         let lastname = lastNameRef.current.value;
         let telephone = phoneRef.current.value;
 
-        if(password !== passwordConfirm) {
+        if (password !== passwordConfirm) {
             return setLoginError("Passwords do not match");
         }
 
@@ -125,7 +125,7 @@ export default function Signup(props) {
                                 placeholder="Telephonnummer"
                                 aria-label="Telephonnummer"
                                 aria-describedby="basic-addon1"
-                                itemRef={phoneRef}
+                                ref={phoneRef}
                                 required
                                 inputComponent={Form.Control}
                             />

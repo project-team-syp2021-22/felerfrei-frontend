@@ -33,8 +33,8 @@ export function AuthProvider({ children }) {
 	}
 
 	async function login(email, password) {
-
 		await axios.post(API_URL + '/auth/login', { email: email, password: password })
+
 			.then((response) => {
 				let data = response.data;
 				let credentials = {
@@ -52,6 +52,9 @@ export function AuthProvider({ children }) {
 				// store.dispatch({ type: SET_USER, payload: credentials });
 				dispatch({ type: SET_USER, payload: { user: credentials } });
 			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	async function logout() {
