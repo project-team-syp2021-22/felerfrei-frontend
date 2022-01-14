@@ -1,8 +1,9 @@
 import PhoneInput from 'react-phone-number-input/input'
 import React, { useRef, useState } from 'react'
-import { Container, Form, InputGroup, FormControl, Button, Alert, Row, Col } from 'react-bootstrap'
+import { Container, Form, InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 
 export default function Signup(props) {
@@ -56,10 +57,14 @@ export default function Signup(props) {
         if (password !== passwordConfirm) {
             return setLoginError("Passwords do not match");
         }
-
-        if (email === "" || password === "") {
+        if (email === "" || password === "" || passwordConfirm === "") {
             return setLoginError("Bitte füllen Sie alle Felder aus.");
         }
+
+        if (password !== passwordConfirm) {
+            return setLoginError("Passwords do not match");
+        }
+
         setLoginError(null);
         try {
             await signup(email, password, firstname, lastname, telephone);
@@ -101,7 +106,18 @@ export default function Signup(props) {
                                 required
                             />
                         </InputGroup>
-
+                        <InputGroup className="mb-4 mt-4">
+                            <PhoneInput
+                                className="rounded-0 border-0 border-bottom border-dark"
+                                placeholder="Telephonnummer"
+                                aria-label="Telephonnummer"
+                                aria-describedby="basic-addon1"
+                                ref={phoneRef}
+                                required
+                                onChange={() => { }}
+                                inputComponent={Form.Control}
+                            />
+                        </InputGroup>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -129,7 +145,7 @@ export default function Signup(props) {
                                 required
                                 inputComponent={Form.Control}
                             />
-                        </InputGroup>
+                        </InputGroup >
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -177,7 +193,8 @@ export default function Signup(props) {
                             </div>
                         </InputGroup>
 
-                        {loginError &&
+                        {
+                            loginError &&
                             <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
                                 {loginError}
                             </Alert>
@@ -192,13 +209,13 @@ export default function Signup(props) {
                             Account anlegen
                         </Button>
 
-                    </Form>
+                    </Form >
                     <div className="mt-4">
-                        <a href="/login">Bereits ein Konto?</a>
+                        <Link href="/login">Bereits ein Konto?</Link>
                     </div>
-                </Container>
+                </Container >
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
