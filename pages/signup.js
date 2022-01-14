@@ -78,8 +78,6 @@ export default function Signup(props) {
     return (
         <div className="d-flex justify-content-center align-items-center" >
             <div className="w-100">
-
-
                 <Container style={{ maxWidth: "500px" }}>
                     <div className="justify-content-center">
                         <h2 className="fw-bold">Felerfrei - Signup</h2>
@@ -90,7 +88,6 @@ export default function Signup(props) {
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 placeholder="Vorname"
                                 aria-label="Vorname"
-                                aria-describedby="basic-addon1"
                                 ref={firstNameRef}
                                 required
                             />
@@ -101,7 +98,6 @@ export default function Signup(props) {
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 placeholder="Nachname"
                                 aria-label="Nachname"
-                                aria-describedby="basic-addon1"
                                 ref={lastNameRef}
                                 required
                             />
@@ -111,7 +107,6 @@ export default function Signup(props) {
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 placeholder="Telephonnummer"
                                 aria-label="Telephonnummer"
-                                aria-describedby="basic-addon1"
                                 ref={phoneRef}
                                 required
                                 onChange={() => { }}
@@ -135,17 +130,6 @@ export default function Signup(props) {
                                 </svg>
                             </div>
                         </InputGroup>
-                        <InputGroup className="mb-4 mt-4">
-                            <PhoneInput
-                                className="rounded-0 border-0 border-bottom border-dark"
-                                placeholder="Telephonnummer"
-                                aria-label="Telephonnummer"
-                                aria-describedby="basic-addon1"
-                                ref={phoneRef}
-                                required
-                                inputComponent={Form.Control}
-                            />
-                        </InputGroup >
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
