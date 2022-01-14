@@ -1,8 +1,9 @@
 import PhoneInput from 'react-phone-number-input/input'
 import React, { useRef, useState } from 'react'
-import { Container, Form, InputGroup, FormControl, Button, Alert, Row, Col } from 'react-bootstrap'
+import { Container, Form, InputGroup, FormControl, Button, Alert} from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 
 export default function Signup(props) {
@@ -194,7 +195,7 @@ export default function Signup(props) {
 
                     </Form>
                     <div className="mt-4">
-                        <a href="/login">Bereits ein Konto?</a>
+                        <Link href="/login">Bereits ein Konto?</Link>
                     </div>
                 </Container>
 
