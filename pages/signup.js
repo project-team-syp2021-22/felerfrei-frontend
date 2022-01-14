@@ -5,65 +5,66 @@ import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
 
 
-export default function Sign_In() {
+export default function Signup(props) {
     const passwordVisibility = useRef();
     const passwordConfirmVisibility = useRef();
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
-    const [passwordConfirmIsHidden, setPasswordConfirmIsHidden] = useState(true);
     const [loginError, setLoginError] = useState();
+
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-
     const emailRef = useRef();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const phoneRef = useRef();
     const router = useRouter();
 
-    let { login } = useAuth();
+    let { signup } = useAuth();
 
-    function handlePasswordVisibility(visibility, isHidden, setIsHidden, reference) {
-        let htmlTag = visibility.current;
-        if (isHidden) {
-            htmlTag.innerHTML = `
+    function handlePasswordVisibility() {
+        let passwordTag = passwordRef.current;
+        let passwordConfirmTag = passwordConfirmRef.current;
+        if (passwordIsHidden) {
+            passwordVisibility.current.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-slash" viewBox="0 0 16 16">
                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
                 <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
                 <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-            </svg >`
+            </svg >`;
         } else {
-            htmlTag.innerHTML = `
+            passwordVisibility.current.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye" viewBox="0 0 16 16">
                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
             </svg>
             `
         }
-        setIsHidden(!isHidden);
-        reference.current.type = isHidden ? "text" : "password";
-    }
-
-    function managePasswordVisibilitiyForFirstPassword() {
-        handlePasswordVisibility(passwordVisibility, passwordIsHidden, setPasswordIsHidden, passwordRef);
-    }
-
-    function managePasswordVisibilitiyForConfirmPassword() {
-        handlePasswordVisibility(passwordConfirmVisibility, passwordConfirmIsHidden, setPasswordConfirmIsHidden, passwordConfirmRef);
+        passwordConfirmVisibility.current.innerHTML = passwordVisibility.current.innerHTML;
+        setPasswordIsHidden(!passwordIsHidden);
+        passwordTag.type = passwordIsHidden ? "text" : "password";
+        passwordConfirmTag.type = passwordIsHidden ? "text" : "password";
     }
 
     async function trySignUp() {
         let email = emailRef.current.value;
         let password = passwordRef.current.value;
+        let passwordConfirm = passwordConfirmRef.current.value;
+        let firstname = firstNameRef.current.value;
+        let lastname = lastNameRef.current.value;
+        let telephone = phoneRef.current.value;
+
+        if(password !== passwordConfirm) {
+            return setLoginError("Passwords do not match");
+        }
+
         if (email === "" || password === "") {
             return setLoginError("Bitte füllen Sie alle Felder aus.");
         }
         setLoginError(null);
         try {
-            await login(email, password);
+            await signup(email, password, firstname, lastname, telephone);
         } catch (error) {
-            // handle error
-            setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
-            return;
+            return setLoginError("Sie konnten nicht regestriert werden.");
         }
         const route = props.to ? props.to : '/';
         router.push(route);
@@ -76,10 +77,9 @@ export default function Sign_In() {
 
                 <Container style={{ maxWidth: "500px" }}>
                     <div className="justify-content-center">
-                        <h2 className="fw-bold">Felerfrei - Account anlegen</h2>
+                        <h2 className="fw-bold">Felerfrei - Signup</h2>
                     </div>
                     <Form>
-
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -127,9 +127,6 @@ export default function Sign_In() {
                                 aria-describedby="basic-addon1"
                                 itemRef={phoneRef}
                                 required
-
-                                onChange={() => {
-                                }}
                                 inputComponent={Form.Control}
                             />
                         </InputGroup>
@@ -143,7 +140,7 @@ export default function Sign_In() {
                                 ref={passwordRef}
                                 required
                             />
-                            <div className="input-group-addon" onClick={managePasswordVisibilitiyForFirstPassword}
+                            <div className="input-group-addon" onClick={handlePasswordVisibility}
                                 ref={passwordVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -166,7 +163,7 @@ export default function Sign_In() {
                                 ref={passwordConfirmRef}
                                 required
                             />
-                            <div className="input-group-addon" onClick={managePasswordVisibilitiyForConfirmPassword}
+                            <div className="input-group-addon" onClick={handlePasswordVisibility}
                                 ref={passwordConfirmVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -179,10 +176,6 @@ export default function Sign_In() {
                                 </svg>
                             </div>
                         </InputGroup>
-                        <div className="w-100 d-flex justify-content-center align-items-center">
-                            <Form.Label>Das Passwort muss mindestens 8 Zeichen lang sein und Buchstaben, Zahlen und
-                                Sonderzeichen enthalten!</Form.Label>
-                        </div>
 
                         {loginError &&
                             <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
@@ -200,7 +193,11 @@ export default function Sign_In() {
                         </Button>
 
                     </Form>
+                    <div className="mt-4">
+                        <a href="/login">Bereits ein Konto?</a>
+                    </div>
                 </Container>
+
             </div>
         </div>
     )
