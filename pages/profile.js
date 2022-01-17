@@ -1,6 +1,7 @@
 import {Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row} from "react-bootstrap";
 import React, {useRef, useState} from "react";
 import PhoneInput from "react-phone-number-input";
+import 'react-phone-number-input/style.css'
 import {useRouter} from "next/router";
 
 function handlePasswordVisibility() {
@@ -59,7 +60,7 @@ function Profile() {
     let classRequired = "required"
     return (
         <div className="d-flex justify-content-center align-items-center">
-            <div style={{ maxWidth: "600px" }} >
+            <div style={{ maxWidth: "600px" }}  >
         <Container className="w-100">
             <h2 className="fw-bold">Felerfrei - Account Management</h2>
             <Form onSubmit={checkInput}>
@@ -76,20 +77,31 @@ function Profile() {
                     </FormGroup>
                     <FormGroup as={Col}>
                         <Form.Label>Nachname *</Form.Label>
-                        <Form.Control type="text" placeholder="Musterman" id="Lastname" itemRef={lastName}/>
+
+                        <InputGroup className="mb-4">
+                            <FormControl
+                                className="rounded-0 border-0 border-bottom border-dark"
+                                type="text"placeholder="Musterman" id="Lastname" itemRef={lastName}/>
+                        </InputGroup>
                     </FormGroup>
+
                 </Row>
 
-                <br/>
 
                 <FormGroup>
                     <Form.Label>E-Mail *</Form.Label>
-                    <Form.Control type="email" id="Email" placeholder="max.musterman@gmail.com" itemRef={email}/>
+
+                    <InputGroup className="mb-4">
+                        <FormControl
+                            className="rounded-0 border-0 border-bottom border-dark"
+                            type="email" id="Email" placeholder="max.musterman@gmail.com" itemRef={email}/>
+                    </InputGroup>
                 </FormGroup>
 
-                <br/>
+
+
                 <FormGroup>
-                    <Form.Label>Telefon-Nummer</Form.Label>
+                    <Form.Label>Telephon-Nummer</Form.Label>
                     <Form.Control as={"div"}>
                         <PhoneInput
                             placeholder="Enter phone number"
@@ -97,8 +109,7 @@ function Profile() {
                             defaultCountry={'AT'}
                             paginate='30'
                             itemRef={phone}
-                            onChange={() => {
-                            }}
+                            onChange={() => { }}
                         />
                     </Form.Control>
                 </FormGroup>
@@ -171,12 +182,21 @@ function Profile() {
                     </Form.Text>
                 </FormGroup>
 
-
+        <br/>
                 <div className="d-grid" style={{width: '50vw', display: 'flex', margin: 'auto'}}>
+                    <Row>
+                    <FormGroup as={Col}>
                     <Button variant="outline-dark" type="submit" size={"lg"} style={{transition: '0.5s'}}>
                         Account Speichern
                     </Button>
+                    </FormGroup>
+                        <FormGroup as={Col}>
+                    <Button   variant="outline-dark" type="submit" size={"lg"} style={{transition: '0.5s'}}>
+                        Account löschen
+                    </Button></FormGroup>
+                    </Row>
                 </div>
+
             </Form>
         </Container>
             </div></div>)
