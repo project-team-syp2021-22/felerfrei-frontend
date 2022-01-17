@@ -1,16 +1,19 @@
 import PhoneInput from 'react-phone-number-input/input'
 import React, { useRef, useState } from 'react'
-import { Container, Form, InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
+import { Container, Form, InputGroup, Row, FormControl, Button, Alert, Col } from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
 import Link from 'next/link'
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 
 export default function Signup(props) {
     const passwordVisibility = useRef();
     const passwordConfirmVisibility = useRef();
+
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
     const [loginError, setLoginError] = useState();
+    const [password, setPassword] = useState();
 
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
@@ -57,7 +60,7 @@ export default function Signup(props) {
         if (password !== passwordConfirm) {
             return setLoginError("Passwords do not match");
         }
-        if (email === "" || password === "" || passwordConfirm === "") {
+        if (email === "" || password === "" || passwordConfirm === "" || firstname === "" || lastname === "") {
             return setLoginError("Bitte füllen Sie alle Felder aus.");
         }
 
@@ -138,6 +141,7 @@ export default function Signup(props) {
                                 aria-label="Password"
                                 aria-describedby="input-group-addon"
                                 ref={passwordRef}
+                                onChange={() => { setPassword(passwordRef.current.value) }}
                                 required
                             />
                             <div className="input-group-addon" onClick={handlePasswordVisibility}
@@ -176,6 +180,9 @@ export default function Signup(props) {
                                 </svg>
                             </div>
                         </InputGroup>
+                        <InputGroup>
+                            <PasswordStrengthBar password={password} className="w-100" />
+                        </InputGroup>
 
                         {
                             loginError &&
@@ -197,8 +204,7 @@ export default function Signup(props) {
                     <div className="mt-4">
                         <Link href="/login">Bereits ein Konto?</Link>
                     </div>
-                </Container >
-
+                </Container>
             </div >
         </div >
     )
