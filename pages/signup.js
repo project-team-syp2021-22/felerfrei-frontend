@@ -72,7 +72,8 @@ export default function Signup(props) {
         try {
             await signup(email, password, firstname, lastname, telephone);
         } catch (error) {
-            return setLoginError("Sie konnten nicht regestriert werden.");
+            setLoginError(error.message);
+            return;
         }
         const route = props.to ? props.to : '/';
         router.push(route);
@@ -184,12 +185,7 @@ export default function Signup(props) {
                             <PasswordStrengthBar password={password} className="w-100" />
                         </InputGroup>
 
-                        {
-                            loginError &&
-                            <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
-                                {loginError}
-                            </Alert>
-                        }
+
 
                         <Button onClick={trySignUp}
                             className="w-100 rounded-0 mt-4"
@@ -204,6 +200,12 @@ export default function Signup(props) {
                     <div className="mt-4">
                         <Link href="/login">Bereits ein Konto?</Link>
                     </div>
+                    {
+                        loginError &&
+                        <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
+                            {loginError}
+                        </Alert>
+                    }
                 </Container>
             </div >
         </div >

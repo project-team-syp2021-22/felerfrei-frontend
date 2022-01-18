@@ -25,16 +25,16 @@ export function AuthProvider({ children }) {
 	async function signup(email, password, firstname, lastname, telephonenumber) {
 		await axios.post(`${API_URL}/auth/signup`, { email, password, firstname, lastname, telephone: telephonenumber })
 			.then(res => {
-				console.log(res);
+				if (res.status != 200)
+					throw new Error(res.data.message);
 			})
 			.catch(err => {
-				console.log(err);
+				throw new Error(err.response.data.message);
 			});
 	}
 
 	async function login(email, password) {
 		await axios.post(API_URL + '/auth/login', { email: email, password: password })
-
 			.then((response) => {
 				let data = response.data;
 				let credentials = {
