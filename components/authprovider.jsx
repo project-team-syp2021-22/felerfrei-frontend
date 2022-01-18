@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT, SET_USER } from '../redux/userActions';
-import { API_URL } from './constans';
+import { API_URL } from './constants';
 const AuthContext = React.createContext();
 export function useAuth() {
 	return useContext(AuthContext);
