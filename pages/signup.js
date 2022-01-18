@@ -126,7 +126,7 @@ export default function Signup(props) {
                                 ref={emailRef}
                                 required
                             />
-                            <div className="input-group-addon">
+                            <div className="input-group-addon border-bottom border-dark mt-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-at" viewBox="0 0 16 16">
                                     <path
@@ -145,7 +145,7 @@ export default function Signup(props) {
                                 onChange={() => { setPassword(passwordRef.current.value) }}
                                 required
                             />
-                            <div className="input-group-addon" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
                                 ref={passwordVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -168,7 +168,7 @@ export default function Signup(props) {
                                 ref={passwordConfirmRef}
                                 required
                             />
-                            <div className="input-group-addon" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
                                 ref={passwordConfirmVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
