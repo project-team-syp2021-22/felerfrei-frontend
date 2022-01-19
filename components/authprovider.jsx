@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT, SET_USER } from '../redux/userActions';
-import { API_URL } from './constans';
+import { API_URL } from './constants';
 const AuthContext = React.createContext();
 export function useAuth() {
 	return useContext(AuthContext);
@@ -25,15 +25,15 @@ export function AuthProvider({ children }) {
 	async function signup(email, password, firstname, lastname, telephonenumber) {
 		await axios.post(`${API_URL}/auth/signup`, { email, password, firstname, lastname, telephone: telephonenumber })
 			.then(res => {
-				console.log(res);
+				if (res.status != 200)
+					throw new Error(res.data.message);
 			})
 			.catch(err => {
-				console.log(err);
+				throw new Error(err.response.data.message);
 			});
 	}
 
 	async function login(email, password) {
-
 		await axios.post(API_URL + '/auth/login', { email: email, password: password })
 			.then((response) => {
 				let data = response.data;
@@ -52,6 +52,9 @@ export function AuthProvider({ children }) {
 				// store.dispatch({ type: SET_USER, payload: credentials });
 				dispatch({ type: SET_USER, payload: { user: credentials } });
 			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	async function logout() {
