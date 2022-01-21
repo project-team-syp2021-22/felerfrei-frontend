@@ -86,6 +86,7 @@ export default function Signup(props) {
                     <div className="justify-content-center">
                         <h2 className="fw-bold">Felerfrei - Signup</h2>
                     </div>
+
                     <Form>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
