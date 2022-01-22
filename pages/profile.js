@@ -28,7 +28,7 @@ export default function Profile() {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const emailRef = useRef();
-    const firstNameRef=useRef();
+    const firstNameRef = useRef();
     const lastNameRef = useRef();
     const phoneRef = useRef();
     const router = useRouter();
@@ -46,7 +46,7 @@ export default function Profile() {
         )
     }
 
-    function checkForRequiredInput (state) {
+    function checkForRequiredInput(state) {
         return !(state == null || state.current.value === "")
     }
 
@@ -71,11 +71,11 @@ export default function Profile() {
         passwordConfirmVisibility.current.innerHTML = passwordVisibility.current.innerHTML;
         setPasswordIsHidden(!passwordIsHidden);
         passwordTag.type = passwordIsHidden ? "text" : "password";
-         passwordConfirmTag.type = passwordIsHidden ? "text" : "password";
+        passwordConfirmTag.type = passwordIsHidden ? "text" : "password";
     }
 
     async function setNewValues() {
-        if(!inputExists()){
+        if (!inputExists()) {
             return setUpdateError("Bitte füllen Sie alle Felder aus.");
         }
 
@@ -92,8 +92,8 @@ export default function Profile() {
 
         setUpdateError(null);
         try {
-            alert(firstname + " " + lastname + " "+ email + " " + telephone + " " + password)
-           // await signup(email, password, firstname, lastname, telephone);
+            alert(firstname + " " + lastname + " " + email + " " + telephone + " " + password)
+            // await signup(email, password, firstname, lastname, telephone);
         } catch (error) {
             setUpdateError(error.message);
             return;
@@ -101,7 +101,6 @@ export default function Profile() {
         // const route = props.to ? props.to : '/';
         // router.push(route);
     }
-
 
 
     return (
@@ -130,7 +129,7 @@ export default function Profile() {
                                 placeholder="Nachname"
                                 aria-label="Nachname"
                                 ref={lastNameRef}
-                            required/>
+                                required/>
                         </InputGroup>
 
                         <InputGroup className="mb-4 mt-4">
@@ -143,7 +142,7 @@ export default function Profile() {
                                 onChange={() => {
                                 }}
                                 inputComponent={Form.Control}
-                          />
+                            />
                         </InputGroup>
 
                         <InputGroup className="mb-4 mt-4">
@@ -172,8 +171,10 @@ export default function Profile() {
                                 aria-label="Password"
                                 aria-describedby="input-group-addon"
                                 ref={passwordRef}
-                                onChange={() => { setPassword(passwordRef.current.value) }}
-                               // required
+                                onChange={() => {
+                                    setPassword(passwordRef.current.value)
+                                }}
+                                // required
                             />
                             <div className="input-group-addon border-bottom border-dark mt-1"
                                  onClick={handlePasswordVisibility}
@@ -200,7 +201,8 @@ export default function Profile() {
                                 aria-describedby="input-group-addon"
                                 ref={passwordConfirmRef}
                             />
-                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1"
+                                 onClick={handlePasswordVisibility}
                                  ref={passwordConfirmVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -218,8 +220,8 @@ export default function Profile() {
                             <PasswordStrengthBar password={password} className="w-100"/>
                         </InputGroup>
 
-                        <Button  onClick={setNewValues}
-                                 className="w-100 rounded-0 mt-4"
+                        <Button onClick={setNewValues}
+                                className="w-100 rounded-0 mt-4"
                                 variant="outline-dark"
                                 size={"md"}
 
@@ -228,17 +230,17 @@ export default function Profile() {
                         </Button>
                     </Form>
 
-                        <div className="mt-4">
-                            <Link href="/login">Account deaktivieren</Link>
-                            <br/>
-                            <Link href="/profile">Account löschen</Link>
-                        </div>
-                        {
-                            loginError &&
-                            <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
-                                {loginError}
-                            </Alert>
-                        }
+                    <div className="mt-4">
+                        <Link href="/login">Account deaktivieren</Link>
+                        <br/>
+                        <Link href="/profile">Account löschen</Link>
+                    </div>
+                    {
+                        loginError &&
+                        <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
+                            {loginError}
+                        </Alert>
+                    }
 
                 </Container>
             </div>
