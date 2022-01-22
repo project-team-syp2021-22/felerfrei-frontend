@@ -57,6 +57,7 @@ export default function Signup(props) {
         let lastname = lastNameRef.current.value;
         let telephone = phoneRef.current.value;
 
+
         if (password !== passwordConfirm) {
             return setLoginError("Passwords do not match");
         }

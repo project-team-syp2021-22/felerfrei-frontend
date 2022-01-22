@@ -1,13 +1,16 @@
 import {Alert, Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row} from "react-bootstrap";
 import React, {useRef, useState} from "react";
 import PhoneInput from "react-phone-number-input/input";
-
-
 import {useRouter} from "next/router";
 import Link from "next/link";
 import PasswordStrengthBar from 'react-password-strength-bar';
 import {useAuth} from "../components/authprovider";
 
+/*
+To do:
+die Updatefunktion machen
+
+ */
 
 function Profile() {
     let sonderzeichen = "(°_^}"
@@ -15,13 +18,13 @@ function Profile() {
     const passwordConfirmVisibility = useRef();
 
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
-    const [loginError, setLoginError] = useState();
+    const [loginError, setUpdateError] = useState();
     const [password, setPassword] = useState();
 
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const emailRef = useRef();
-    const firstNameRef = useRef();
+    const firstNameRef=useRef();
     const lastNameRef = useRef();
     const phoneRef = useRef();
     const router = useRouter();
@@ -32,19 +35,18 @@ function Profile() {
     let classRequired = "required"
 
 
-    function checkInput() {
-        checkForRequiredInput("FirstName", firstNameRef);
-        checkForRequiredInput("LastName", lastNameRef);
-        checkForRequiredInput("Email", emailRef);
-        checkForRequiredInput("Password1", passwordRef);
-        checkForRequiredInput("Password2", passwordConfirmRef);
-
+    function inputExists() {
+        return (checkForRequiredInput(firstNameRef)
+            && checkForRequiredInput(lastNameRef)
+            && checkForRequiredInput(emailRef)
+            && checkForRequiredInput(phoneRef)
+        )
     }
 
-    function checkForRequiredInput(name, state) {
-        if (state !== "") {
-            document.getElementById(name).classList.add(classRequired)
-        }
+    function checkForRequiredInput (state) {
+        return !(state == null || state.current.value === "")
+
+
     }
 
 
@@ -73,7 +75,10 @@ function Profile() {
     }
 
     async function setNewValues() {
-        alert(firstNameRef.toString())
+        if(!inputExists()){
+            return setUpdateError("Bitte füllen Sie alle Felder aus.");
+        }
+
         let email = emailRef.current.value;
         let password = passwordRef.current.value;
         let passwordConfirm = passwordConfirmRef.current.value;
@@ -82,25 +87,19 @@ function Profile() {
         let telephone = phoneRef.current.value;
 
         if (password !== passwordConfirm) {
-            return setLoginError("Passwords do not match");
-        }
-        if (email === "" || password === "" || passwordConfirm === "" || firstname === "" || lastname === "") {
-            return setLoginError("Bitte füllen Sie alle Felder aus.");
+            return setUpdateError("Passwörter ungleich!");
         }
 
-        if (password !== passwordConfirm) {
-            return setLoginError("Passwords do not match");
-        }
-
-        setLoginError(null);
+        setUpdateError(null);
         try {
-            await signup(email, password, firstname, lastname, telephone);
+            alert(firstname + " " + lastname + " "+ email + " " + telephone + " " + password)
+           // await signup(email, password, firstname, lastname, telephone);
         } catch (error) {
-            setLoginError(error.message);
+            setUpdateError(error.message);
             return;
         }
-        const route = props.to ? props.to : '/';
-        router.push(route);
+        // const route = props.to ? props.to : '/';
+        // router.push(route);
     }
 
 
@@ -119,8 +118,7 @@ function Profile() {
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 placeholder="Vorname"
                                 aria-label="Vorname"
-
-                                itemRef={firstNameRef}
+                                ref={firstNameRef}
                                 required
                             />
                         </InputGroup>
@@ -132,7 +130,7 @@ function Profile() {
                                 type="text"
                                 placeholder="Nachname"
                                 aria-label="Nachname"
-                                itemRef={lastNameRef}
+                                ref={lastNameRef}
                             required/>
                         </InputGroup>
 
@@ -154,10 +152,12 @@ function Profile() {
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
-                                type="email" id="Email"
-                                placeholder="Email eingeben!"
-                                itemRef={emailRef}
+
+                                placeholder="Email eingeben"
+                                aria-label="E-Mail"
+
                                 aria-describedby="basic-addon1"
+                                ref={emailRef}
                                 required/>
                             <div className="input-group-addon border-bottom border-dark mt-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -224,10 +224,11 @@ function Profile() {
                             <PasswordStrengthBar password={password} className="w-100"/>
                         </InputGroup>
 
-                        <Button  onClick={setNewValues} className="w-100 rounded-0 mt-4"
+                        <Button  onClick={setNewValues}
+                                 className="w-100 rounded-0 mt-4"
                                 variant="outline-dark"
-                                type="submit"
                                 size={"md"}
+
                                 style={{transition: '0.5s'}}>
                             Account Speichern
                         </Button>
