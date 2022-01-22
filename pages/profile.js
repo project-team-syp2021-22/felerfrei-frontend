@@ -8,11 +8,15 @@ import {useAuth} from "../components/authprovider";
 
 /*
 To do:
-die Updatefunktion machen
+senden an Server
+Werte vom Server
+anzeigen, dass Passwörter nicht geändert werden MÜSSEN
 
+kann man bei der Passwortstärke eine andere Sprache anzeigen?
+auch überprüfen, ob das Passwort gut genug ist?
  */
 
-function Profile() {
+export default function Profile() {
     let sonderzeichen = "(°_^}"
     const passwordVisibility = useRef();
     const passwordConfirmVisibility = useRef();
@@ -34,7 +38,6 @@ function Profile() {
 
     let classRequired = "required"
 
-
     function inputExists() {
         return (checkForRequiredInput(firstNameRef)
             && checkForRequiredInput(lastNameRef)
@@ -45,10 +48,7 @@ function Profile() {
 
     function checkForRequiredInput (state) {
         return !(state == null || state.current.value === "")
-
-
     }
-
 
     function handlePasswordVisibility() {
         let passwordTag = passwordRef.current;
@@ -123,7 +123,6 @@ function Profile() {
                             />
                         </InputGroup>
 
-
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -133,7 +132,6 @@ function Profile() {
                                 ref={lastNameRef}
                             required/>
                         </InputGroup>
-
 
                         <InputGroup className="mb-4 mt-4">
                             <PhoneInput
@@ -148,17 +146,15 @@ function Profile() {
                           />
                         </InputGroup>
 
-
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
-
                                 placeholder="Email eingeben"
                                 aria-label="E-Mail"
-
                                 aria-describedby="basic-addon1"
                                 ref={emailRef}
                                 required/>
+
                             <div className="input-group-addon border-bottom border-dark mt-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-at" viewBox="0 0 16 16">
@@ -167,7 +163,6 @@ function Profile() {
                                 </svg>
                             </div>
                         </InputGroup>
-
 
                         <InputGroup className="mb-4 mt-4">
                             <FormControl
@@ -195,7 +190,6 @@ function Profile() {
                             </div>
                         </InputGroup>
 
-
                         <InputGroup className="mb-4">
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -206,7 +200,7 @@ function Profile() {
                                 aria-describedby="input-group-addon"
                                 ref={passwordConfirmRef}
                             />
-                            <div className="input-group-addon" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
                                  ref={passwordConfirmVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -218,8 +212,8 @@ function Profile() {
                                         d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
                                 </svg>
                             </div>
-
                         </InputGroup>
+
                         <InputGroup>
                             <PasswordStrengthBar password={password} className="w-100"/>
                         </InputGroup>
@@ -240,22 +234,18 @@ function Profile() {
                             <Link href="/profile">Account löschen</Link>
                         </div>
                         {
-
                             loginError &&
                             <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4">
                                 {loginError}
                             </Alert>
-
-
                         }
-
 
                 </Container>
             </div>
         </div>)
 }
 
-export default Profile;
+
 //
 // Das Passwort muss mindestens 8 Zeichen lang sein und aus Buchstaben, Zahlen und
 // Sonderzeichen

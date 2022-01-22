@@ -4,7 +4,6 @@ import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
 
 export default function Login(props) {
-
     const passwordVisibility = useRef();
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
     const [loginError, setLoginError] = useState();
