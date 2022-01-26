@@ -15,6 +15,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [userToken, setUserToken, removeCookie] = useCookies(["token"]);
   const tokenKey = "token";
@@ -41,10 +42,10 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
-    setLoading(true);
     await axios
       .post(API_URL + "/auth/login", { email: email, password: password })
       .then((response) => {
+        setLoading(true);
         let data = response.data;
         let credentials = {
           email: data.email,
@@ -62,10 +63,6 @@ export function AuthProvider({ children }) {
         dispatch({ type: SET_USER, payload: { user: credentials } });
         setLoading(false);
       })
-      .catch((error) => {
-        setLoading(false);
-        throw new Error();
-      });
   }
 
   async function logout() {
@@ -105,7 +102,7 @@ export function AuthProvider({ children }) {
       await axios
         .post(API_URL + "/auth/check", { token: token })
         .then((response) => {
-          
+
         })
         .catch((error) => {
           logout();

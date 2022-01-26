@@ -47,7 +47,8 @@ export default function Login(props) {
         } catch (error) {
             // handle error
             console.log("here")
-            return setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
+            setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
+            return;
         }
         const route = props.to ? props.to : '/';
         router.push(route);
@@ -100,7 +101,7 @@ export default function Login(props) {
                             style={{ transition: '0.5s' }}>
                             Anmelden
                         </Button>
-                        {loginError && 
+                        {loginError &&
                             <Alert variant={"danger"} className="rounded-0 mt-3" style={{ maxWidth: "500px" }}>
                                 {loginError}
                             </Alert>
