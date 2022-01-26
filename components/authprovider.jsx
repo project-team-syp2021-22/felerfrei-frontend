@@ -14,6 +14,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	const [userToken, setUserToken, removeCookie] = useCookies(['token']);
 	const tokenKey = 'token';
@@ -34,6 +35,7 @@ export function AuthProvider({ children }) {
 	}
 
 	async function login(email, password) {
+		setLoading(true);
 		await axios.post(API_URL + '/auth/login', { email: email, password: password })
 			.then((response) => {
 				let data = response.data;
@@ -51,6 +53,7 @@ export function AuthProvider({ children }) {
 				setUserToken(tokenKey, data.token, { expires: expireDate });
 				// store.dispatch({ type: SET_USER, payload: credentials });
 				dispatch({ type: SET_USER, payload: { user: credentials } });
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -58,33 +61,52 @@ export function AuthProvider({ children }) {
 	}
 
 	async function logout() {
+		setLoading(true);
 		removeCookie(tokenKey);
 		setUser(null);
-		// store.dispatch({ type: LOGOUT });
 		dispatch({ type: LOGOUT });
+		setLoading(false);
+	}
+
+	async function changeCredentials(email, password, firstname, lastname, telephonenumber) {
+		setLoading(true);
+		await axios.post(API_URL + '/auth/changeCredentials', 
+		{ 
+			token: userToken[tokenKey],
+			email: email, 
+			password: password, 
+			firstname: firstname, 
+			lastname: lastname, 
+			telephone: telephonenumber 
+		});
+		login(email, password);
 	}
 
 	useEffect(async () => {
-
 		// check here if user is still available on database
+		setLoading(true);
+		setUser(null);
 		let token = userToken[tokenKey];
 		if (token) {
+			setUser(userSelector);
 			await axios.post(API_URL + '/auth/check', { token: token })
 				.then((response) => {
-					setUser(userSelector);
+
 				})
 				.catch((error) => {
 					logout();
 				});
 		}
+		setLoading(false);
 	}, []);
 
 	const value = {
 		user,
 		login,
 		signup,
-		logout
+		logout,
+		changeCredentials
 	};
 
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

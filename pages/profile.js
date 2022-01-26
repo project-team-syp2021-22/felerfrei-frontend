@@ -5,15 +5,24 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import PasswordStrengthBar from 'react-password-strength-bar';
 import {useAuth} from "../components/authprovider";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 /*
 To do:
 senden an Server
 Werte vom Server
-
  */
 
 export default function Profile() {
+
+    let {user, changeCredentials} = useAuth();
+    console.log(user);
+    let router = useRouter();
+    if(!user) {
+        router.push("/login");
+    }
+
     let sonderzeichen = "(°_^}"
     const passwordVisibility = useRef();
     // const passwordConfirmVisibility = useRef();
@@ -22,35 +31,20 @@ export default function Profile() {
     const [loginError, setUpdateError] = useState();
     const [password, setPassword] = useState();
 
+
     const passwordRef = useRef();
-    // const passwordConfirmRef = useRef();
+
     const emailRef = useRef();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const phoneRef = useRef();
-    const router = useRouter();
-    const [timesLoaded, setTimesLoaded] = useState(0)
-
-    let {signup} = useAuth();
-
-
-    let classRequired = "required"
-
 
     function inputExists() {
         return (checkForRequiredInput(firstNameRef)
             && checkForRequiredInput(lastNameRef)
             && checkForRequiredInput(emailRef)
-            && checkForRequiredInput(phoneRef)
             && checkForRequiredInput(passwordRef)
         )
-    }
-
-    function setInputs() {
-        firstNameRef.current.value = "Victoria"
-        lastNameRef.current.value = "Koller"
-        // emailRef.current.value = "htaskuf@asguis"
-        // phoneRef.current.value = "431717171771"
     }
 
     function checkForRequiredInput(state) {
@@ -81,7 +75,7 @@ export default function Profile() {
 
     async function setNewValues() {
         if (!inputExists()) {
-            return setUpdateError("Bitte füllen Sie alle Felder aus.");
+            return setUpdateError("Bitte füllen Sie alle Pflichtfelder aus.");
         }
 
         let email = emailRef.current.value;
@@ -92,18 +86,14 @@ export default function Profile() {
 
         setUpdateError(null);
         try {
-            alert(firstname + " " + lastname + " " + email + " " + telephone + " " + password)
-            //       await signup(email, password, firstname, lastname, telephone);
-
-            passwordRef.current.value = ""
+            await changeCredentials(email, password, firstname, lastname, telephone);
+            
+            //router.push("/profile");
         } catch (error) {
             setUpdateError(error.message);
             return;
         }
-        // const route = props.to ? props.to : '/';
-        // router.push(route);
     }
-
 
     return (
         <div className="d-flex justify-content-center align-items-center">
@@ -120,7 +110,7 @@ export default function Profile() {
                                 placeholder="Vorname"
                                 aria-label="Vorname"
                                 ref={firstNameRef}
-                                defaultValue="Vici"
+                                defaultValue={user.firstname}
                                 required
                             />
                         </InputGroup>
@@ -132,16 +122,17 @@ export default function Profile() {
                                 placeholder="Nachname"
                                 aria-label="Nachname"
                                 ref={lastNameRef}
+                                defaultValue={user.lastname}
                                 required/>
                         </InputGroup>
 
                         <InputGroup className="mb-4 mt-4">
                             <PhoneInput
                                 className="rounded-0 border-0 border-bottom border-dark"
-                                placeholder="Telefonnummer"
+                                placeholder="Telephonnummer"
                                 aria-label="Telephonnummer"
                                 ref={phoneRef}
-                                required
+                                value={user.telephone}
                                 onChange={() => {
                                 }}
                                 inputComponent={Form.Control}
@@ -154,6 +145,7 @@ export default function Profile() {
                                 placeholder="Email eingeben"
                                 aria-label="E-Mail"
                                 aria-describedby="basic-addon1"
+                                defaultValue={user.email}
                                 ref={emailRef}
                                 required/>
 
@@ -206,12 +198,9 @@ export default function Profile() {
                     </Form>
 
                     <div className="mt-4">
-                        <Link href="/login">Account deaktivieren</Link>
-                        <br/>
                         <Link href="/login">Account löschen</Link>
                         <br/>
                         <Link href="/login">Passwort vergessen</Link>
-
                     </div>
                     {
                         loginError &&
