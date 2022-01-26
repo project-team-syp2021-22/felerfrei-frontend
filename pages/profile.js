@@ -200,7 +200,7 @@ export default function Profile() {
                     <div className="mt-4">
                         <Link href="/login">Account löschen</Link>
                         <br/>
-                        <Link href="/login">Passwort vergessen</Link>
+                        <Link href="/reset">Passwort vergessen</Link>
                     </div>
                     {
                         loginError &&
