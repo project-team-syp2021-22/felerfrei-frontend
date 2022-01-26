@@ -67,7 +67,7 @@ export default function Reset() {
         <div className="d-flex justify-content-center align-items-center">
             <div style={{ maxWidth: "500px" }} >
                 <Container className="w-100">
-                    <h2 className="fw-bold">Felerfrei - Neues Passwort</h2>
+                    <h2 className="fw-bold">Neues Passwort</h2>
 
                     <Form style={{ width: "500px" }}>
 

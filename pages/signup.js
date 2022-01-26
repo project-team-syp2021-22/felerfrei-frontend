@@ -111,8 +111,8 @@ export default function Signup(props) {
                         <InputGroup className="mb-4 mt-4">
                             <PhoneInput
                                 className="rounded-0 border-0 border-bottom border-dark"
-                                placeholder="Telephonnummer"
-                                aria-label="Telephonnummer"
+                                placeholder="Telefonnummer"
+                                aria-label="Telefonnummer"
                                 ref={phoneRef}
                                 required
                                 onChange={() => { }}
@@ -140,8 +140,8 @@ export default function Signup(props) {
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 type="password"
-                                placeholder="Password"
-                                aria-label="Password"
+                                placeholder="Passwort"
+                                aria-label="Passwort"
                                 aria-describedby="input-group-addon"
                                 ref={passwordRef}
                                 onChange={() => { setPassword(passwordRef.current.value) }}
@@ -164,8 +164,8 @@ export default function Signup(props) {
                             <FormControl
                                 className="rounded-0 border-0 border-bottom border-dark"
                                 type="password"
-                                placeholder="Password bestätigen"
-                                aria-label="Password bestätigen"
+                                placeholder="Passwort bestätigen"
+                                aria-label="Passwort bestätigen"
                                 aria-describedby="input-group-addon"
                                 ref={passwordConfirmRef}
                                 required
@@ -184,7 +184,12 @@ export default function Signup(props) {
                             </div>
                         </InputGroup>
                         <InputGroup>
-                            <PasswordStrengthBar password={password} className="w-100" />
+                            <PasswordStrengthBar
+                            shortScoreWord='zu kurz'
+                            scoreWords={['sehr schwach', 'schwach', 'mittel', 'stark', 'sehr stark']}
+                            barColors={['#ddd', '#ef4836', '#f6b44d', '#75ff47', '#25c281']}
+                            password={password} 
+                            className="w-100" />
                         </InputGroup>
 
 

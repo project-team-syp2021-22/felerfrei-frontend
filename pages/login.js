@@ -46,8 +46,8 @@ export default function Login(props) {
             await login(email, password);
         } catch (error) {
             // handle error
-            setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
-            return;
+            console.log("here")
+            return setLoginError("Sie konnten nicht eingeloggt werden. Bitte überprüfen Sie Ihre Eingaben.");
         }
         const route = props.to ? props.to : '/';
         router.push(route);
@@ -58,11 +58,6 @@ export default function Login(props) {
             <div style={{ maxWidth: "500px" }} >
                 <Container className="w-100">
                     <h2 className="fw-bold">Felerfrei - Login</h2>
-                    {loginError &&
-                        <Alert variant={"danger"} className="rounded-0" style={{ maxWidth: "500px" }}>
-                            {loginError}
-                        </Alert>
-                    }
                     <Form style={{ width: "500px" }}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
@@ -105,6 +100,11 @@ export default function Login(props) {
                             style={{ transition: '0.5s' }}>
                             Anmelden
                         </Button>
+                        {loginError && 
+                            <Alert variant={"danger"} className="rounded-0 mt-3" style={{ maxWidth: "500px" }}>
+                                {loginError}
+                            </Alert>
+                        }
                     </Form>
 
                     <div className="mt-4">

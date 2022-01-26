@@ -9,6 +9,7 @@ export default function Verify() {
     const { verificationToken } = router.query;
 
     const [response, setResponse] = useState();
+    const [error, setError] = useState();
 
     useEffect(() => {
         if (verificationToken === undefined)
@@ -20,7 +21,7 @@ export default function Verify() {
                 setResponse('Your account has been verified');
             })
             .catch(err => {
-                setResponse('Verification failed');
+                setError('Verification failed');
             });
     }, [verificationToken]);
 
@@ -29,17 +30,19 @@ export default function Verify() {
         <div className='w-100'>
 
             <Container className="center mt-5 text-center">
-                {!response &&
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                }
+                {!response && !error && <Spinner animation="border" variant="primary" />}
+                
                 {response &&
                     <>
                         <h1>Thank you for your registration!</h1>
                         <div>
                             <p>{response}</p>
                         </div>
+                    </>
+                }
+                {error && 
+                    <>
+                        <h1>{error}</h1>
                     </>
                 }
             </Container>

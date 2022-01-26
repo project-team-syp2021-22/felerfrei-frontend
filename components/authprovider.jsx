@@ -60,11 +60,12 @@ export function AuthProvider({ children }) {
         setUserToken(tokenKey, data.token, { expires: expireDate });
         // store.dispatch({ type: SET_USER, payload: credentials });
         dispatch({ type: SET_USER, payload: { user: credentials } });
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+		setLoading(false);
+	})
+	.catch((error) => {
+		setLoading(false);
+		throw new Error();
+	});
   }
 
   async function logout() {
@@ -96,10 +97,12 @@ export function AuthProvider({ children }) {
 
   useEffect(async () => {
     // check here if user is still available on database
+	let mounted = true;
     setLoading(true);
     setUser(null);
     let token = userToken[tokenKey];
-    if (token) {
+    if (token && mounted) {
+	
       setUser(userSelector);
       await axios
         .post(API_URL + "/auth/check", { token: token })
@@ -109,6 +112,7 @@ export function AuthProvider({ children }) {
         });
     }
     setLoading(false);
+	return () => {mounted = false}
   }, []);
 
   const value = {
