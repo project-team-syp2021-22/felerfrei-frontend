@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Container, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import { API_URL } from '../../components/constans';
+import { API_URL } from '../../components/constants';
 
 export default function Verify() {
     let router = useRouter();
