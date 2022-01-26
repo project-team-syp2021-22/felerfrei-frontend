@@ -60,12 +60,12 @@ export function AuthProvider({ children }) {
         setUserToken(tokenKey, data.token, { expires: expireDate });
         // store.dispatch({ type: SET_USER, payload: credentials });
         dispatch({ type: SET_USER, payload: { user: credentials } });
-		setLoading(false);
-	})
-	.catch((error) => {
-		setLoading(false);
-		throw new Error();
-	});
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        throw new Error();
+      });
   }
 
   async function logout() {
@@ -97,22 +97,21 @@ export function AuthProvider({ children }) {
 
   useEffect(async () => {
     // check here if user is still available on database
-	let mounted = true;
     setLoading(true);
     setUser(null);
     let token = userToken[tokenKey];
-    if (token && mounted) {
-	
+    if (token) {
       setUser(userSelector);
       await axios
         .post(API_URL + "/auth/check", { token: token })
-        .then((response) => {})
+        .then((response) => {
+          
+        })
         .catch((error) => {
           logout();
         });
     }
-    setLoading(false);
-	return () => {mounted = false}
+    return setLoading(false);
   }, []);
 
   const value = {
@@ -126,7 +125,10 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider value={value}>
       {loading && (
-        <Container className="d-flex justify-content-center" style={{height: "100%"}}>
+        <Container
+          className="d-flex justify-content-center"
+          style={{ height: "100%" }}
+        >
           <Spinner className="align-self-center" animation="border" />
         </Container>
       )}
