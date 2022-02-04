@@ -3,8 +3,8 @@ import { Navbar, Container, NavDropdown, Nav } from 'react-bootstrap';
 
 function NavigationBar() {
     return (
-        <div>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-3" >
+        <div className="">
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-3 border-bottom" >
                 <Container>
                     <Navbar.Brand href="/">
                         <span style={{ fontSize: "20pt" }}>
