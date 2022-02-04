@@ -93,7 +93,6 @@ export default function Login(props) {
                                 </svg>
                             </div>
                         </InputGroup>
-
                         <Button onClick={tryLogin}
                             className="w-100 rounded-0"
                             variant="outline-dark"
