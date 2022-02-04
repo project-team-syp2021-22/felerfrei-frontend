@@ -1,18 +1,10 @@
-import { Alert, Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row } from "react-bootstrap";
+import { Alert, Button, Container, Form, FormControl, FormGroup, InputGroup, Row } from "react-bootstrap";
 import React, { useRef, useState } from "react";
 import PhoneInput from "react-phone-number-input/input";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import PasswordStrengthBar from 'react-password-strength-bar';
 import { useAuth } from "../components/authprovider";
-import axios from "axios";
-import { useDispatch } from "react-redux";
 
-/*
-To do:
-senden an Server
-Werte vom Server
- */
 
 export default function Profile() {
 
@@ -24,9 +16,7 @@ export default function Profile() {
         return <></>;
     }
 
-    let sonderzeichen = "(°_^}"
     const passwordVisibility = useRef();
-    // const passwordConfirmVisibility = useRef();
 
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
     const [loginError, setUpdateError] = useState();
