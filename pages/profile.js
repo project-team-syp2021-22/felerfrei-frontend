@@ -8,7 +8,7 @@ import { useAuth } from "../components/authprovider";
 
 export default function Profile() {
 
-    let { user, changeCredentials } = useAuth();
+    let { user, changeCredentials, logout } = useAuth();
     console.log(user);
     let router = useRouter();
     if (!user) {
@@ -84,6 +84,15 @@ export default function Profile() {
             setUpdateError(error.message);
             return;
         }
+    }
+
+    async function tryLogout() {
+        try {
+            await logout();
+        } catch (error) {
+            
+        }
+        router.push("/login");
     }
 
     return (
@@ -192,6 +201,8 @@ export default function Profile() {
                         <Link href="/login">Account löschen</Link>
                         <br />
                         <Link href="/reset">Passwort vergessen</Link>
+                        <br />
+                        <div onClick={tryLogout} role="button">Abmelden</div>
                     </div>
                     {
                         loginError &&
@@ -204,9 +215,3 @@ export default function Profile() {
             </div>
         </div>)
 }
-
-
-//
-// Das Passwort muss mindestens 8 Zeichen lang sein und aus Buchstaben, Zahlen und
-// Sonderzeichen
-// wie {sonderzeichen} bestehen!
