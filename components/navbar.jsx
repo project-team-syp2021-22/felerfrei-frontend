@@ -12,7 +12,7 @@ function NavigationBar() {
         expand="lg"
         bg="light"
         variant="light"
-        className="mb-3 border-bottom"
+        className="border-bottom"
       >
         <Container>
           <Navbar.Brand href="/">
