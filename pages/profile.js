@@ -90,14 +90,15 @@ export default function Profile() {
         try {
             await logout();
         } catch (error) {
-            
+
         }
         router.push("/login");
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center">
-            <div className="w-100">
+        <div className="d-flex justify-content-center align-items-center"
+            style={{ display: "table", height: "calc(100vh - 134px)" }}>
+            <div className="w-100" style={{ display: "table-cell", verticalAlign: "middle" }}>
                 <Container style={{ maxWidth: "500px" }}>
                     <div className="justify-content-center">
                         <h2 className="fw-bold">Account Management</h2>

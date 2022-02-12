@@ -81,8 +81,9 @@ export default function Signup(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center" >
-            <div className="w-100">
+        <div className="d-flex justify-content-center align-items-center"
+            style={{ display: "table", height: "calc(100vh - 134px)" }}>
+            <div className="w-100" style={{ display: "table-cell", verticalAlign: "middle" }}>
                 <Container style={{ maxWidth: "500px" }}>
                     <div className="justify-content-center">
                         <h2 className="fw-bold">Felerfrei - Signup</h2>
@@ -115,7 +116,8 @@ export default function Signup(props) {
                                 aria-label="Telefonnummer"
                                 ref={phoneRef}
                                 required
-                                onChange={() => { }}
+                                onChange={() => {
+                                }}
                                 inputComponent={Form.Control}
                             />
                         </InputGroup>
@@ -144,10 +146,13 @@ export default function Signup(props) {
                                 aria-label="Passwort"
                                 aria-describedby="input-group-addon"
                                 ref={passwordRef}
-                                onChange={() => { setPassword(passwordRef.current.value) }}
+                                onChange={() => {
+                                    setPassword(passwordRef.current.value)
+                                }}
                                 required
                             />
-                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1"
+                                onClick={handlePasswordVisibility}
                                 ref={passwordVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -170,7 +175,8 @@ export default function Signup(props) {
                                 ref={passwordConfirmRef}
                                 required
                             />
-                            <div className="input-group-addon border-bottom border-dark mt-1" onClick={handlePasswordVisibility}
+                            <div className="input-group-addon border-bottom border-dark mt-1"
+                                onClick={handlePasswordVisibility}
                                 ref={passwordConfirmVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -185,13 +191,12 @@ export default function Signup(props) {
                         </InputGroup>
                         <InputGroup>
                             <PasswordStrengthBar
-                            shortScoreWord='zu kurz'
-                            scoreWords={['sehr schwach', 'schwach', 'mittel', 'stark', 'sehr stark']}
-                            barColors={['#ddd', '#ef4836', '#f6b44d', '#75ff47', '#25c281']}
-                            password={password} 
-                            className="w-100" />
+                                shortScoreWord='zu kurz'
+                                scoreWords={['sehr schwach', 'schwach', 'mittel', 'stark', 'sehr stark']}
+                                barColors={['#ddd', '#ef4836', '#f6b44d', '#75ff47', '#25c281']}
+                                password={password}
+                                className="w-100" />
                         </InputGroup>
-
 
 
                         <Button onClick={trySignUp}
@@ -203,7 +208,7 @@ export default function Signup(props) {
                             Account anlegen
                         </Button>
 
-                    </Form >
+                    </Form>
                     <div className="mt-4">
                         <Link href="/login">Bereits ein Konto?</Link>
                     </div>
@@ -214,7 +219,7 @@ export default function Signup(props) {
                         </Alert>
                     }
                 </Container>
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
