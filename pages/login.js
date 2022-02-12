@@ -56,11 +56,12 @@ export default function Login(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center">
-            <div style={{ maxWidth: "500px" }} >
+        <div className="d-flex justify-content-center align-items-center m-auto"
+             style={{display: "table", height: "calc(100vh - 67px)"}}>
+            <div style={{maxWidth: "500px", display: "table-cell", verticalAlign: "middle"}}>
                 <Container className="w-100">
                     <h2 className="fw-bold">Login</h2>
-                    <Form style={{ width: "500px" }}>
+                    <Form style={{width: "500px"}}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
