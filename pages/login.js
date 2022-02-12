@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Container, Form, InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Login(props) {
     const passwordVisibility = useRef();
@@ -107,10 +108,10 @@ export default function Login(props) {
                     </Form>
 
                     <div className="mt-4">
-                        <a href="/signup">Noch kein Konto?</a>
+                        <Link href="/signup">Noch kein Konto?</Link>
                     </div>
                     <div >
-                        <a href="/reset">Passwort vergessen?</a>
+                        <Link href="/reset">Passwort vergessen?</Link>
                     </div>
                 </Container>
             </div>
