@@ -58,10 +58,15 @@ export default function Login(props) {
     return (
         <div className="d-flex justify-content-center align-items-center m-auto"
             style={{ display: "table", height: "calc(100vh - 134px)" }}>
-            <div style={{ maxWidth: "500px", display: "table-cell", verticalAlign: "middle" }}>
+            <div style={{
+                maxWidth: "500px",
+                display: "table-cell",
+                verticalAlign: "middle",
+                marginBottom: loginError ? "0" : "calc(9vh + 16px)"
+            }}>
                 <Container className="w-100">
                     <h2 className="fw-bold">Login</h2>
-                    <Form style={{ width: "500px" }}>
+                    <Form style={{width: "500px"}}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -102,8 +107,12 @@ export default function Login(props) {
                             Anmelden
                         </Button>
                         {loginError &&
-                            <Alert variant={"danger"} className="rounded-0 mt-3" style={{ maxWidth: "500px" }}>
-                                {loginError}
+                            <Alert variant={"danger"} className="rounded-0 mt-3"
+                                   style={{maxWidth: "500px", height: "9vh"}}>
+                                <div className="d-flex justify-content-center align-items-center m-auto"
+                                     style={{textAlign: "center", verticalAlign: "middle", height: "100%"}}>
+                                    {loginError}
+                                </div>
                             </Alert>
                         }
                     </Form>

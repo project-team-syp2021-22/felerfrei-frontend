@@ -12,8 +12,8 @@ export default function Profile() {
     console.log(user);
     let router = useRouter();
     if (!user) {
-        router.push("/login");
-        return <></>;
+        //router.push("/login");
+        //return <></>;
     }
 
     const passwordVisibility = useRef();
@@ -111,7 +111,7 @@ export default function Profile() {
                                 placeholder="Vorname"
                                 aria-label="Vorname"
                                 ref={firstNameRef}
-                                defaultValue={user.firstname}
+                                //defaultValue={user.firstname}
                                 required
                             />
                         </InputGroup>
@@ -123,7 +123,7 @@ export default function Profile() {
                                 placeholder="Nachname"
                                 aria-label="Nachname"
                                 ref={lastNameRef}
-                                defaultValue={user.lastname}
+                                //defaultValue={user.lastname}
                                 required />
                         </InputGroup>
 
@@ -133,7 +133,7 @@ export default function Profile() {
                                 placeholder="Telephonnummer"
                                 aria-label="Telephonnummer"
                                 ref={phoneRef}
-                                value={user.telephone}
+                                //value={user.telephone}
                                 onChange={() => {
                                 }}
                                 inputComponent={Form.Control}
@@ -146,7 +146,7 @@ export default function Profile() {
                                 placeholder="Email eingeben"
                                 aria-label="E-Mail"
                                 aria-describedby="basic-addon1"
-                                defaultValue={user.email}
+                                //defaultValue={user.email}
                                 ref={emailRef}
                                 required />
 
