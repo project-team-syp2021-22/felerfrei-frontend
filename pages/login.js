@@ -56,17 +56,17 @@ export default function Login(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center m-auto"
+        <div className="d-flex justify-content-center align-items-center "
             style={{ display: "table", height: "calc(100vh - 134px)" }}>
             <div style={{
                 maxWidth: "500px",
                 display: "table-cell",
                 verticalAlign: "middle",
-                marginBottom: loginError ? "0" : "calc(9vh + 16px)"
+                marginBottom: loginError ? "0" : "calc(6vh + 60px)"
             }}>
                 <Container className="w-100">
                     <h2 className="fw-bold">Login</h2>
-                    <Form style={{width: "500px"}}>
+                    <Form style={{ width: "500px" }}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -93,15 +93,15 @@ export default function Login(props) {
                                 required
                             />
                             <div className="input-group-addon border-bottom border-dark mt-1"
-                                 onClick={handlePasswordVisibility} ref={passwordVisibility}>
+                                onClick={handlePasswordVisibility} ref={passwordVisibility}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     className="bi bi-eye-slash" viewBox="0 0 16 16">
+                                    className="bi bi-eye-slash" viewBox="0 0 16 16">
                                     <path
-                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
                                     <path
-                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
                                     <path
-                                        d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                                        d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
                                 </svg>
                             </div>
                         </InputGroup>
@@ -112,15 +112,7 @@ export default function Login(props) {
                             style={{ transition: '0.5s' }}>
                             Anmelden
                         </Button>
-                        {loginError &&
-                            <Alert variant={"danger"} className="rounded-0 mt-3"
-                                   style={{maxWidth: "500px", height: "9vh"}}>
-                                <div className="d-flex justify-content-center align-items-center m-auto"
-                                     style={{textAlign: "center", verticalAlign: "middle", height: "100%"}}>
-                                    {loginError}
-                                </div>
-                            </Alert>
-                        }
+
                     </Form>
 
                     <div className="mt-4">
@@ -129,6 +121,15 @@ export default function Login(props) {
                     <div >
                         <Link href="/reset">Passwort vergessen?</Link>
                     </div>
+                    {loginError &&
+                        <Alert variant={"danger"} className="rounded-0 mt-3"
+                            style={{ maxWidth: "500px", width: "500px", height: "9vh" }}>
+                            <div className="d-flex justify-content-center align-items-center m-auto h-100"
+                                style={{ textAlign: "center", verticalAlign: "middle" }}>
+                                {loginError}
+                            </div>
+                        </Alert>
+                    }
                 </Container>
             </div>
         </div>
