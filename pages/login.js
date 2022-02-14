@@ -56,14 +56,8 @@ export default function Login(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center "
-            style={{ display: "table", height: "calc(100vh - 134px)" }}>
-            <div style={{
-                maxWidth: "500px",
-                display: "table-cell",
-                verticalAlign: "middle",
-                marginBottom: loginError ? "0" : "calc(6vh + 60px)"
-            }}>
+        <div className="d-flex d-table justify-content-center align-items-center h-100 mt-5">
+            <div style={{ maxWidth: "500px" }} className="mt-3 align-middle d-table-cell">
                 <Container className="w-100">
                     <h2 className="fw-bold">Login</h2>
                     <Form style={{ width: "500px" }}>

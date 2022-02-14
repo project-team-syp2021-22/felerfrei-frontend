@@ -81,19 +81,18 @@ export default function Signup(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center"
-             style={{display: "table", height: "calc(100vh - 134px)"}}>
-            <div className="w-100" style={{
+        <div className="d-flex justify-content-center align-items-center h-100 d-table mt-5">
+            <div className="d-table-cell align-middle" style={{
                 display: "table-cell",
                 verticalAlign: "middle",
                 marginBottom: loginError ? "0" : "calc(6vh + 40px)"
             }}>
-                <Container style={{maxWidth: "500px"}}>
+                <Container className="w-100">
                     <div className="justify-content-center">
-                        <h2 className="fw-bold">Felerfrei - Signup</h2>
+                        <h2 className="fw-bold">Signup</h2>
                     </div>
 
-                    <Form>
+                    <Form style={{width: "500px"}}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom border-dark"
@@ -216,11 +215,13 @@ export default function Signup(props) {
                     <div className="mt-4">
                         <Link href="/login">Bereits ein Konto?</Link>
                     </div>
-                    {
-                        loginError &&
-                        <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4"
-                               style={{height: "6vh"}}>
-                            {loginError}
+                    {loginError &&
+                        <Alert variant={"danger"} className="rounded-0 mt-3"
+                            style={{ maxWidth: "500px", width: "500px", height: "9vh" }}>
+                            <div className="d-flex justify-content-center align-items-center m-auto h-100"
+                                style={{ textAlign: "center", verticalAlign: "middle" }}>
+                                {loginError}
+                            </div>
                         </Alert>
                     }
                 </Container>
