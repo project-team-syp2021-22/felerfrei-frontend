@@ -80,7 +80,6 @@ export function AuthProvider({ children }) {
     lastname,
     telephonenumber
   ) {
-    setLoading(true);
     await axios.post(API_URL + "/auth/changeCredentials", {
       token: userToken[tokenKey],
       email: email,
@@ -91,8 +90,7 @@ export function AuthProvider({ children }) {
     }).then((res) => {
       login(email, password);
     }).catch((err) => {
-      setLoading(false);
-      throw new Error(err.response);
+      throw new Error(err.response.data);
     });
   }
 

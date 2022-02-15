@@ -79,7 +79,7 @@ export default function Profile() {
 
             router.push("/profile");
         } catch (error) {
-            setUpdateError(error.data); // show error if email is already in use
+            setUpdateError(error.message);
             return;
         }
     }
