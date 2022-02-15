@@ -88,8 +88,12 @@ export function AuthProvider({ children }) {
       firstname: firstname,
       lastname: lastname,
       telephone: telephonenumber,
+    }).then((res) => {
+      login(email, password);
+    }).catch((err) => {
+      setLoading(false);
+      throw new Error(err.response);
     });
-    login(email, password);
   }
 
   useEffect(async () => {
