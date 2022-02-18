@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import styles from "../styles/index.module.css";
 import background from '../public/start.svg';
 import Image from "next/image";
+import Divider from "../components/divider";
 
 export default function Index() {
 
@@ -28,8 +29,8 @@ export default function Index() {
           </div>
         </div>
       </div>
-
-      <div className="d-flex justify-content-center align-content-center mt-5 w-100 mb-5">
+      <Divider />
+      <div className="d-flex justify-content-center align-content-center mt-3 w-100 mb-5">
         <div className="w-75 d-flex justify-content-center mt-5">
           <div className="d-flex flex-row">
             <div className="d-flex align-items-center h-100 me-5">
