@@ -2,13 +2,14 @@ import { Container, Card } from "react-bootstrap";
 import Quote from "../components/quote";
 import Footer from "../components/footer";
 import styles from "../styles/index.module.css";
+import background from '../public/start.svg';
+import Image from "next/image";
 
 export default function Index() {
 
   return (
     <>
-      <img src="/start.svg" alt="start" />
-
+      <Image src={background} alt="background" />
       <div className="d-flex justify-content-center align-content-center mt-5 w-100 mb-5">
         <div className="w-75 d-flex justify-content-center mt-5">
           <div className="d-flex flex-column align-items-center h-100 me-5 w-50">
