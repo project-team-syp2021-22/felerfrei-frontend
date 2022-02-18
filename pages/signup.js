@@ -240,7 +240,7 @@ export default function Signup(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Erfolgreich regeitriert!</Modal.Title>
+                    <Modal.Title>Erfolgreich registriert!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Sie haben sich erfolgreich registriert. Bitte überprüfen Sie Ihre E-Mails und bestätigen Sie Ihr Konto.

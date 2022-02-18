@@ -29,7 +29,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.column} style={{ width: "300px" }}>
+                <div className={`${styles.column} ${styles.rightBorder}`} style={{ width: "300px" }}>
                     <span className={styles.heading}>
                         LINKS
                     </span>
@@ -39,6 +39,16 @@ function Footer() {
                         Instagram
                         <br />
                         Twitter
+                    </div>
+                </div>
+                <div className={styles.column} style={{ width: "300px" }}>
+                    <span className={styles.heading}>
+                        Login
+                    </span>
+                    <div className={styles.text}>
+                        Login
+                        <br />
+                        Sign Up
                     </div>
                 </div>
             </div>
