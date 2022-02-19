@@ -9,11 +9,16 @@
 }
 
 .text {
-    font-size: 24pt;
+    font-size: 13pt;
     text-align: center;
 }
 
 .subheading {
-    font-size: 1.4em;
+    font-size: 24pt;
     text-align: center;
+}
+
+.imageMd {
+    width: "350px";
+    max-width: "350px";
 }
