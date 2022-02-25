@@ -22,9 +22,7 @@ function ProjectList() {
 
     return (
         <div>
-            <h1>Projects</h1>
-            <div className="d-flex w-100 justify-content-center">
-
+            <div className="d-flex w-100 justify-content-center mt-5">
                 <div className="w-50">
                     {projects.map((project, index) => {
                         return (
