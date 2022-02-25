@@ -1,41 +1,40 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { API_URL } from '../components/constants';
+import Project from '../components/project';
 
-function Projects() {
+function ProjectList() {
 
     const [pageIndex, setPageIndex] = useState(0);
+    const [projects, setProjects] = useState([]);
 
     async function loadProjects() {
-        await axios.get(API_URL + '/api/projects?size=10&page=' + pageIndex)
+        await axios.get(API_URL + '/api/projects?size=3&page=' + pageIndex)
             .then(res => {
-                console.log(res.data);
+                setProjects([...projects, ...res.data.content]);
             })
-
-
     }
-    loadProjects();
+
+    useEffect(() => {
+        loadProjects();
+    }, []);
 
     return (
         <div>
             <h1>Projects</h1>
-            <div className="w-50">
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            src="http://localhost:8080/api/image/136"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            src="http://localhost:8080/api/image/136"
-                        />
-                    </Carousel.Item>
-                </Carousel>
+            <div className="d-flex w-100 justify-content-center">
+
+                <div className="w-50">
+                    {projects.map((project, index) => {
+                        return (
+                            <Project key={index} project={project} />
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
 }
 
-export default Projects;
+export default ProjectList;
