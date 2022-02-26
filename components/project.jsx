@@ -5,7 +5,7 @@ import { API_URL } from './constants'
 function Project(props) {
 
     return (
-        <div className="mt-5">
+        <div className="w-50">
             <div>
                 <Carousel>
                     {props.project.images.map((image, index) => {
