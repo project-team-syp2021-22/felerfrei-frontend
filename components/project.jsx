@@ -4,6 +4,9 @@ import { API_URL } from './constants'
 
 function Project(props) {
 
+    function formatDate(date) {
+    }
+
     return (
         <div className="w-50">
             <div>
@@ -24,6 +27,9 @@ function Project(props) {
                 </Carousel>
             </div>
             <div>
+                <div>
+                    {new Date(props.project.date).toLocaleDateString()}
+                </div>
                 <div className="mt-3" style={{ fontSize: "15pt" }}>
                     <p>{props.project.description}</p>
                 </div>
