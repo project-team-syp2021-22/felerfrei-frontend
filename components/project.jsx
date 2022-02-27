@@ -4,9 +4,6 @@ import { API_URL } from './constants'
 
 function Project(props) {
 
-    function formatDate(date) {
-    }
-
     return (
         <div className="w-50">
             <div>
