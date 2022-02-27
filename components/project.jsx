@@ -7,6 +7,9 @@ function Project(props) {
     return (
         <div className="w-50">
             <div>
+                <h3>{props.project.title}</h3>
+            </div>
+            <div>
                 <Carousel>
                     {props.project.images.map((image, index) => {
                         return (
@@ -21,10 +24,7 @@ function Project(props) {
                 </Carousel>
             </div>
             <div>
-                <div className="mt-3">
-                    <h3>{props.project.title}</h3>
-                </div>
-                <div>
+                <div className="mt-3" style={{ fontSize: "15pt" }}>
                     <p>{props.project.description}</p>
                 </div>
             </div>

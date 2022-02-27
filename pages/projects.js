@@ -5,7 +5,7 @@ import { API_URL } from '../components/constants';
 import Project from '../components/project';
 import Divider from '../components/divider';
 import Footer from '../components/footer';
-// TODO: remove clear parameter
+
 function ProjectList() {
 
     let pageIndex = 0;
@@ -44,7 +44,7 @@ function ProjectList() {
     return (
         <div>
             <div className="w-100 d-flex justify-content-center">
-                <div className="d-flex flex-column w-100 mt-5">
+                <div className="d-flex flex-column w-100">
                     <div className="d-flex flex-column w-100 justify-content-center">
                         {projects.map((project, index) => {
                             return (
