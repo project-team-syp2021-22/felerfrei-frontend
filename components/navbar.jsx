@@ -38,6 +38,9 @@ function NavigationBar() {
                                 <Nav.Link href="/" className="ms-5" style={{ fontSize: "15pt" }}>
                                     Impressum
                                 </Nav.Link>
+                                <Nav.Link href="/projects" className="ms-5" style={{ fontSize: "15pt" }}>
+                                    Referenzen
+                                </Nav.Link>
                             </Nav>
                             <Nav className="mt-1">
                                 {user && (

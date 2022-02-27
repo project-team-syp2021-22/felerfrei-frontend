@@ -6,6 +6,7 @@ import background from '../public/start.svg';
 import Image from "next/image";
 import Divider from "../components/divider";
 import TwoContents from "../components/twocontents";
+import HeadingAndContent from "../components/headingAndContent";
 
 export default function Index() {
 
@@ -14,24 +15,12 @@ export default function Index() {
       <div style={{ zIndex: "-10" }}>
         <Image src={background} alt="background" />
       </div>
-      <div className="d-flex justify-content-center align-content-center mt-5 w-100 mb-5">
-        <div className="w-75 d-flex justify-content-center mt-5">
-          <div className="d-flex flex-column align-items-center h-100 me-5 w-50">
-            <div className={styles.heading}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-
-            <div className={`${styles.subheading} mt-3 mb-3`} >
-              Unterüberschrift
-            </div>
-
-            <div>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-              At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeadingAndContent
+        heading="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        subheading="Unterüberschrift"
+        content=" Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+      />
       <Divider />
       <div className="d-flex justify-content-center align-content-center mt-3 w-100 mb-5">
         <div className="w-75 d-flex justify-content-center mt-5">
