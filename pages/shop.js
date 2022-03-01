@@ -121,7 +121,6 @@ export default function ProductList() {
     }, []);
 
     return <div style={{
-        border: "black solid 1px", borderRadius: "10px",
         margin: "min(30px, 5vw)",
         justifyContent: "center",
         padding: "10px",
