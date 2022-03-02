@@ -1,10 +1,35 @@
 import React, {useEffect, useState} from "react";
 import ProductItem from "../components/productItem";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from "axios";
+import {API_URL} from "../components/constants";
+import {Button} from "react-bootstrap";
 
 
 export default function ProductList() {
+    const [loading, setLoading] = useState(true);
+    const [last, setLast] = useState(false);
     const [products, setProducts] = useState([]);
+    let pageIndex = 0;
+
+    async function loadProducts(index) {
+        if (last) {
+            return;
+        }
+        setLoading(true);
+        await axios.get(API_URL + '/api/projects?size=3&page=' + index)
+            .then(res => {
+                if (res.data.last) {
+                    setLast(true);
+                }
+                console.log(res.data.content, pageIndex);
+                setProducts([...products, ...res.data.content]);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        setLoading(false);
+    }
 
     function init() {
         setProducts([
@@ -13,7 +38,7 @@ export default function ProductList() {
                 "name": "Sessel",
                 "description": "Holzsessel aus Holz",
                 "published": true,
-                "price": 10.0,
+                "price": 1799.99,
                 "images": [
                     "https://www.gizzwood.de/wp-content/uploads/2019/12/Tisch-Max-1-1024x683.jpg",
                     "https://image.schoener-wohnen.de/12607432/t/s7/v7/w960/r1.5/-/sw-kollektion-extend-tisch-moebel-jpg--64243-.jpg",
@@ -116,6 +141,11 @@ export default function ProductList() {
         ])
     }
 
+    function showMore() {
+        loadProducts(pageIndex += 1);
+        console.log(pageIndex);
+    }
+
     useEffect(() => {
         init();
     }, []);
@@ -133,5 +163,14 @@ export default function ProductList() {
                     <ProductItem key={product.id} product={product}/>
                 )
             )}
+        {!last &&
+            <Button
+                disabled={loading}
+                variant="outline-dark"
+                className="w-100 rounded-0"
+                size={"md"}
+                style={{transition: '0.5s'}}
+                onClick={showMore}>Mehr Anzeigen</Button>
+        }
     </div>
 }

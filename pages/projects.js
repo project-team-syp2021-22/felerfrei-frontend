@@ -34,6 +34,7 @@ function ProjectList() {
 
     function showMore() {
         loadProjects(pageIndex += 1);
+        console.log(pageIndex);
     }
 
 
