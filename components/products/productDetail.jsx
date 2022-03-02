@@ -29,9 +29,9 @@ export default function ProductDetail({productID}) {
     return <div> {!loading &&
         <div className="productDetailBox">
 
-            {/*<div className="productDetailImages">
+            <div className="productDetailImages">
                 <ImageSlider images={product.images} className="productDetailImages"/>
-            </div>*/}
+            </div>
             <div className="productDetailContent">
                 <h1 className="productDetailHeader">{product.name}</h1>
                 <p className="productDetailDescription">{product.description}</p>
