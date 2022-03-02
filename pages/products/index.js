@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import ProductItem from "../components/productItem";
+import ProductItem from "../../components/products/productItem";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "axios";
-import {API_URL} from "../components/constants";
+import {API_URL} from "../../components/constants";
 import {Button} from "react-bootstrap";
 
 
@@ -17,7 +17,7 @@ export default function ProductList() {
             return;
         }
         setLoading(true);
-        await axios.get(API_URL + '/api/projects?size=3&page=' + index)
+        await axios.get(API_URL + '/api/products?size=3&page=' + index)
             .then(res => {
                 if (res.data.last) {
                     setLast(true);
@@ -139,6 +139,7 @@ export default function ProductList() {
             },
 
         ])
+        setLoading(false)
     }
 
     function showMore() {
@@ -147,7 +148,7 @@ export default function ProductList() {
     }
 
     useEffect(() => {
-        init();
+        loadProducts(pageIndex);
     }, []);
 
     return <div style={{

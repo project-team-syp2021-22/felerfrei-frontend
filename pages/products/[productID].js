@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import ProductDetail from "../../components/productDetail";
+import ProductDetail from "../../components/products/productDetail";
 import {useEffect, useState} from "react";
 
 const ProductID = () => {
@@ -11,8 +11,6 @@ const ProductID = () => {
         console.log(productID);
         setLoading(false);
     })
-
-    //return <ProductDetail productID={pid}/>
 
     return <div> {!loading && <ProductDetail productID={productID}/>}</div>
 }

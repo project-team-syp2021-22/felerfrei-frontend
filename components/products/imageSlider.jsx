@@ -1,6 +1,8 @@
 import React from "react";
 import {Carousel} from "react-bootstrap"
 
+//images sind die komplette URL
+
 export default function ImageSlider({images}) {
 
     return <Carousel className="imageSlider" interval={30000}>

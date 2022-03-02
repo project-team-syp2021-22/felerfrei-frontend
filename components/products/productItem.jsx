@@ -13,7 +13,7 @@ export default function ProductItem({product}) {
         transitionDuration: "0.5s",
 
     }
-    }><Link href={`/product/${product.id}`}>
+    }><Link href={`/products/${product.id}`}>
         <Card>
             <Card.Img variant="top" style={{
                 height: "200px",
