@@ -4,13 +4,11 @@ import ImageSlider from "./imageSlider";
 // import styles from '../../styles/productListStyles.module.css';
 import styles from '../../styles/productListStyles.module.css';
 //todo kannst du die productListStyles einbinden? ich schaff das irgendwie nd
-
 export default function ProductDetail({ product }) {
 
     return (
         <div>
             <div className={styles.productDetailBox}>
-
                 <div className={styles.productDetailImages}>
                     <ImageSlider images={product.images} className={styles.productDetailImages} />
                 </div>
@@ -27,5 +25,6 @@ export default function ProductDetail({ product }) {
                 </div>
             </div>
         </div>
+
     );
 }
