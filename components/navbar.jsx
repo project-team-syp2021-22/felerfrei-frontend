@@ -23,7 +23,7 @@ function NavigationBar() {
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link
-                                    href="/products"
+                                    href="/shop"
                                     className="ms-5"
                                     style={{ fontSize: "15pt" }}
                                 >
