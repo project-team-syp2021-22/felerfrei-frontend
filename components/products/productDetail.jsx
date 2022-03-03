@@ -30,7 +30,7 @@ export default function ProductDetail({productID}) {
         setLoading(false);
     }
 
-    return <div> {loading &&
+    return <div> {!loading &&
         <div className="productDetailBox">
 
             <div className="productDetailImages">
