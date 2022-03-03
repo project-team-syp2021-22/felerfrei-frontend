@@ -2,8 +2,11 @@ import { Card } from "react-bootstrap";
 import React from "react";
 import Link from 'next/link'
 import API_URL from '../constants.js';
+import { useRouter } from 'next/router'
 
 export default function ProductItem({ product }) {
+    let router = useRouter();
+
     return (
         <div style={{
             margin: "10px",
@@ -13,8 +16,11 @@ export default function ProductItem({ product }) {
             borderRadius: "3px",
             display: "flex",
             transitionDuration: "0.5s",
-        }}>
-            {/* <Link href={`/products/${product.id}`}> */}
+            cursor: "pointer"
+        }}
+            onClick={() => router.push(`/shop/${product.id}`)}
+        >
+            {/* <div style={{ cursor: "pointer" }} onClick={() => router.push(`/shop/${product.id}`)}> */}
             <Card>
                 <Card.Img variant="top" style={{
                     height: "200px",
@@ -40,7 +46,7 @@ export default function ProductItem({ product }) {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            {/* </Link> */}
         </div>
+        // </div>
     );
 }

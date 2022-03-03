@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ProductItem from "../../components/products/productItem";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "axios";
-import {API_URL} from "../../components/constants";
-import {Button} from "react-bootstrap";
+import { API_URL } from "../../components/constants";
+import { Button } from "react-bootstrap";
 
 
 export default function ProductList() {
@@ -17,7 +17,7 @@ export default function ProductList() {
             return;
         }
         setLoading(true);
-        await axios.get(API_URL + '/api/products?size=3&page=' + index)
+        await axios.get(API_URL + '/api/products?size=10&page=' + index)
             .then(res => {
                 if (res.data.last) {
                     setLast(true);
@@ -50,8 +50,8 @@ export default function ProductList() {
     }}>
         {products.filter((product) => product.published)
             .map((product) => (
-                    <ProductItem key={product.id} product={product}/>
-                )
+                <ProductItem key={product.id} product={product} />
+            )
             )}
         {!last &&
             <Button
@@ -59,7 +59,7 @@ export default function ProductList() {
                 variant="outline-dark"
                 className="w-100 rounded-0"
                 size={"md"}
-                style={{transition: '0.5s'}}
+                style={{ transition: '0.5s' }}
                 onClick={showMore}>Mehr Anzeigen</Button>
         }
     </div>
