@@ -4,18 +4,22 @@ import ImageSlider from "./imageSlider";
 import axios from "axios";
 import {API_URL} from "../constants";
 
+//todo kannst du die productListStyles einbinden? ich schaff das irgendwie nd
+
 export default function ProductDetail({productID}) {
 
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState()
 
     useEffect(() => {
-        loadProduct(productID);
+        loadProduct(productID)
     }, []);
+
+    //ich hatte da das problem das teilweise der index bzw das product undefined war
 
     async function loadProduct(index) {
         setLoading(true);
-        await axios.get(API_URL + '/api/products/' + index)
+        await axios.get(API_URL + '/api/product/' + index)
             .then(res => {
                 console.log(res.data.content, index);
                 setProduct(res.data.content);
@@ -26,7 +30,7 @@ export default function ProductDetail({productID}) {
         setLoading(false);
     }
 
-    return <div> {!loading &&
+    return <div> {loading &&
         <div className="productDetailBox">
 
             <div className="productDetailImages">

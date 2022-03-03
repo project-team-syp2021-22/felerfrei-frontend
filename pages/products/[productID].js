@@ -8,7 +8,6 @@ const ProductID = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        console.log(productID);
         setLoading(false);
     })
 

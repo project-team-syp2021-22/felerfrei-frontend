@@ -22,7 +22,8 @@ export default function ProductList() {
                 if (res.data.last) {
                     setLast(true);
                 }
-                console.log(res.data.content, pageIndex);
+                //todo
+                //console.log(res.data.content, pageIndex);
                 setProducts([...products, ...res.data.content]);
             })
             .catch(err => {
@@ -33,7 +34,6 @@ export default function ProductList() {
 
     function showMore() {
         loadProducts(pageIndex += 1);
-        console.log(pageIndex);
     }
 
     useEffect(() => {
