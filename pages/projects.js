@@ -5,7 +5,9 @@ import { API_URL } from '../components/constants';
 import Project from '../components/project';
 import Divider from '../components/divider';
 import Footer from '../components/footer';
-// TODO: remove clear parameter
+import styles from '../styles/projects.module.css';
+import HeadingAndContent from '../components/headingAndContent';
+
 function ProjectList() {
 
     let pageIndex = 0;
@@ -44,8 +46,15 @@ function ProjectList() {
 
     return (
         <div>
+            <HeadingAndContent
+                heading="Lorem ipsum"
+                subheading="Unterüberschrift"
+                content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+            />
+            <Divider />
             <div className="w-100 d-flex justify-content-center">
-                <div className="d-flex flex-column w-100 mt-5">
+                <div className="d-flex flex-column w-100">
                     <div className="d-flex flex-column w-100 justify-content-center">
                         {projects.map((project, index) => {
                             return (

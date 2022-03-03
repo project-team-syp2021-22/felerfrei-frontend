@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { useAuth } from "./authprovider";
+import styles from "../styles/navbar.module.css";
 
 function NavigationBar() {
     let { user } = useAuth();
@@ -17,7 +18,7 @@ function NavigationBar() {
                 >
                     <Container>
                         <Navbar.Brand href="/">
-                            <span style={{ fontSize: "20pt" }}>Felerfrei</span>
+                            <span className={styles.hoverUnderlineAnimation} style={{ fontSize: "20pt" }}>Felerfrei</span>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
@@ -27,16 +28,29 @@ function NavigationBar() {
                                     className="ms-5"
                                     style={{ fontSize: "15pt" }}
                                 >
-                                    Shop
+                                    <span className={styles.hoverUnderlineAnimation}>
+                                        Shop
+                                    </span>
                                 </Nav.Link>
                                 <Nav.Link href="/" className="ms-5" style={{ fontSize: "15pt" }}>
-                                    Was?
+                                    <span className={styles.hoverUnderlineAnimation}>
+                                        Was?
+                                    </span>
                                 </Nav.Link>
                                 <Nav.Link href="/" className="ms-5" style={{ fontSize: "15pt" }}>
-                                    Wer?
+                                    <span className={styles.hoverUnderlineAnimation}>
+                                        Wer?
+                                    </span>
                                 </Nav.Link>
                                 <Nav.Link href="/" className="ms-5" style={{ fontSize: "15pt" }}>
-                                    Impressum
+                                    <span className={styles.hoverUnderlineAnimation}>
+                                        Impressum
+                                    </span>
+                                </Nav.Link>
+                                <Nav.Link href="/projects" className="ms-5" style={{ fontSize: "15pt" }}>
+                                    <span className={styles.hoverUnderlineAnimation}>
+                                        Referenzen
+                                    </span>
                                 </Nav.Link>
                             </Nav>
                             <Nav className="mt-1">
@@ -57,12 +71,18 @@ function NavigationBar() {
                                             <path
                                                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                         </svg>
-                                        <span className="mt-0" style={{ fontSize: "11pt" }}>
+                                        <span className={`mt-0 ${styles.hoverUnderlineAnimation}`} style={{ fontSize: "11pt" }}>
                                             {user.firstname}
                                         </span>
                                     </Nav.Link>
                                 )}
-                                {!user && <Nav.Link href="/login">Login</Nav.Link>}
+                                {!user &&
+                                    <Nav.Link href="/login">
+                                        <span className={styles.hoverUnderlineAnimation}>
+                                            Login
+                                        </span>
+                                    </Nav.Link>
+                                }
                                 <Nav.Link href="/">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
