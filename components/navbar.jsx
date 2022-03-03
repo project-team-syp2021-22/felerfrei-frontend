@@ -18,7 +18,7 @@ function NavigationBar() {
                 >
                     <Container>
                         <Navbar.Brand href="/">
-                            <span style={{ fontSize: "20pt" }}>Felerfrei</span>
+                            <span className={styles.hoverUnderlineAnimation} style={{ fontSize: "20pt" }}>Felerfrei</span>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
