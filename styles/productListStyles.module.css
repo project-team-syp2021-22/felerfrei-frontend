@@ -54,6 +54,7 @@ h2, h3, p {
     height: 100%;
     padding: max(3vh, 70px) 3vw 2vh 3vw;
     justify-content: center;
+    display: flex;
 }
 
 .productDetailContent {

@@ -7,21 +7,27 @@ import styles from '../../styles/productListStyles.module.css';
 export default function ProductDetail({ product }) {
 
     return (
-        <div>
-            <div className={styles.productDetailBox}>
-                <div className={styles.productDetailImages}>
-                    <ImageSlider images={product.images} className={styles.productDetailImages} />
-                </div>
-                <div className={styles.productDetailContent}>
-                    <h1 className={styles.productDetailHeader}>{product.name}</h1>
-                    <p className={styles.productDetailDescription}>{product.description}</p>
-                </div>
+        <div className="w-100 d-flex justify-content-center">
+            <div className="m-5 w-100">
+                <div className="d-flex justify-content-center">
+                    <div className="w-50">
+                        <ImageSlider images={product.images} className={styles.productDetailImages} />
+                    </div>
 
-                <div className={`d-flex justify-content-between ${styles.productDetailBottomBox}`}>
-                    <Container className={`${styles.productDetailBottomContainer} ps-4`}>
-                        <h1 className={`${styles.productDetailBottomPrice} m-0`}>{product.price.toFixed(2)} €</h1>
-                        <Button variant={"outline-dark"} className={styles.productDetailBottomButton}>in den Warenkorb</Button>
-                    </Container>
+                    <div className="ms-4 d-flex w-25 flex-column justify-content-between">
+                        <div className="">
+                            <h1>{product.name}</h1>
+                            <p >{product.description}</p>
+                        </div>
+
+                        <div className="d-flex flex-row">
+                            <h1 className="m-0">€ {product.price.toFixed(2)}</h1>
+                            <Button variant={"outline-dark"} className="rounded-0 ms-5"
+                                style={{ transitionDuration: "0.5s" }}>
+                                in den Warenkorb
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
