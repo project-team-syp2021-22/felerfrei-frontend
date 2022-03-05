@@ -21,7 +21,7 @@ export default function ProductDetail({ product }) {
 
                         <div className="d-flex flex-row">
                             <h1 className="m-0 text-nowrap">€ {product.price.toFixed(2)}</h1>
-                            <Button variant={"outline-dark"} className="rounded-0 ms-5"
+                            <Button variant={"dark"} className="rounded-0 ms-5"
                                 style={{ transitionDuration: "0.5s" }}>
                                 in den Warenkorb
                             </Button>

@@ -1,9 +1,6 @@
-import { useRouter } from 'next/router'
 import ProductDetail from "../../components/products/productDetail";
-import { useEffect, useState } from "react";
 import axios from 'axios';
 import { API_URL } from '../../components/constants';
-import Footer from '../../components/footer';
 
 function ProductID({ product }) {
     if (product == null) {
@@ -13,7 +10,7 @@ function ProductID({ product }) {
     return (
         <div>
             <ProductDetail product={product} />
-
+            <Footer />
         </div>
     );
 }

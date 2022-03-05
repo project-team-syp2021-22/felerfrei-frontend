@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "axios";
 import { API_URL } from "../../components/constants";
 import { Button } from "react-bootstrap";
-
+import Footer from "../../components/footer";
 
 export default function ProductList() {
     const [loading, setLoading] = useState(true);
@@ -40,27 +40,31 @@ export default function ProductList() {
         loadProducts(pageIndex);
     }, []);
 
-    return <div style={{
-        margin: "min(30px, 5vw)",
-        justifyContent: "center",
-        padding: "10px",
-        display: "flex",
-        flexWrap: "wrap",
-        zIndex: "1"
-    }}>
-        {products.filter((product) => product.published)
-            .map((product) => (
-                <ProductItem key={product.id} product={product} />
-            )
-            )}
-        {!last &&
-            <Button
-                disabled={loading}
-                variant="outline-dark"
-                className="w-100 rounded-0"
-                size={"md"}
-                style={{ transition: '0.5s' }}
-                onClick={showMore}>Mehr Anzeigen</Button>
-        }
-    </div>
+    return (
+        <>
+            <div style={{
+                margin: "min(30px, 5vw)",
+                justifyContent: "center",
+                padding: "10px",
+                display: "flex",
+                flexWrap: "wrap",
+                zIndex: "1"
+            }}>
+                {products.filter((product) => product.published)
+                    .map((product) => (
+                        <ProductItem key={product.id} product={product} />
+                    )
+                    )}
+                {!last &&
+                    <Button
+                        disabled={loading}
+                        variant="outline-dark"
+                        className="w-100 rounded-0"
+                        size={"md"}
+                        style={{ transition: '0.5s' }}
+                        onClick={showMore}>Mehr Anzeigen</Button>
+                }
+            </div>
+        </>
+    );
 }

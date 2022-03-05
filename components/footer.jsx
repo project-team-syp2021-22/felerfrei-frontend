@@ -3,7 +3,7 @@ import styles from '../styles/footer.module.css';
 
 function Footer() {
     return (
-        <div className="w-100 text-light" style={{ backgroundColor: '#000' }}>
+        <div className={`w-100 text-light ${styles.footer}`} style={{ backgroundColor: '#000' }}>
             <div className="d-flex flex-row justify-content-center pb-5 pt-3">
                 <div className={`${styles.column} ${styles.rightBorder}`} style={{ width: "300px" }}>
                     <span className={styles.heading}>
