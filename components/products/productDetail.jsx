@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import ImageSlider from "./imageSlider";
 // import styles from '../../styles/productListStyles.module.css';
-import styles from '../../styles/productListStyles.module.css';
-//todo kannst du die productListStyles einbinden? ich schaff das irgendwie nd
+import styles from '../../styles/products/productListStyles.module.css';
 export default function ProductDetail({ product }) {
 
     return (
@@ -21,7 +20,7 @@ export default function ProductDetail({ product }) {
                         </div>
 
                         <div className="d-flex flex-row">
-                            <h1 className="m-0">€ {product.price.toFixed(2)}</h1>
+                            <h1 className="m-0 text-nowrap">€ {product.price.toFixed(2)}</h1>
                             <Button variant={"outline-dark"} className="rounded-0 ms-5"
                                 style={{ transitionDuration: "0.5s" }}>
                                 in den Warenkorb

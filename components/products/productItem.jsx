@@ -1,52 +1,29 @@
 import { Card } from "react-bootstrap";
 import React from "react";
-import Link from 'next/link'
 import API_URL from '../constants.js';
 import { useRouter } from 'next/router'
+import styles from '../../styles/products/productItem.module.css'
 
 export default function ProductItem({ product }) {
     let router = useRouter();
 
     return (
-        <div style={{
-            margin: "10px",
-            width: "320px",
-            height: "400px",
-            padding: "8px",
-            borderRadius: "3px",
-            display: "flex",
-            transitionDuration: "0.5s",
-            cursor: "pointer"
-        }}
+        <div className={styles.item}
             onClick={() => router.push(`/shop/${product.id}`)}
         >
-            {/* <div style={{ cursor: "pointer" }} onClick={() => router.push(`/shop/${product.id}`)}> */}
-            <Card>
-                <Card.Img variant="top" style={{
-                    height: "200px",
-                    width: "301px",
-                    objectFit: "cover"
-                }} src={`http://localhost:8080/api/image/${product.images[0].id}`} alt="Bild von ProductID" />
+            <Card className="rounded-0">
+                <Card.Img variant="top" className={styles.cardImage}
+                    src={`http://localhost:8080/api/image/${product.images[0].id}`} alt="Produkt Bild" />
                 <Card.Body className="d-flex flex-column">
-                    <div className="d-flex flex-row">
-                        <Card.Title style={{ display: "inline", fontSize: "xx-large" }}
-                            className="m-0"><b>{product.name}</b></Card.Title>
-                        <Card.Subtitle className={`ms-auto m-0`}
-                            style={{ fontSize: "x-large" }}>{Number(product.price).toFixed(2)} €</Card.Subtitle>
+                    <Card.Title className={`m-0 ${styles.cardTitle}`}><b>{product.name}</b></Card.Title>
+                    <div className="d-flex justify-content-start">
+                        <Card.Text className={`ms-auto m-0 ${styles.cardSubtitle}`}>{Number(product.price).toFixed(2)} €</Card.Text>
                     </div>
-                    <Card.Text style={{
-                        textAlign: "justify",
-                        display: ['-webkit-box'],
-                        WebkitLineClamp: 5,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                        transitionDelay: "200ms",
-                    }}>
+                    <Card.Text className={styles.cardText}>
                         {product.description}
                     </Card.Text>
                 </Card.Body>
             </Card>
         </div>
-        // </div>
     );
 }

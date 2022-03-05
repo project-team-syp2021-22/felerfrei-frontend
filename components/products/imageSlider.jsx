@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap"
 import { API_URL } from "../constants";
-import styles from '../../styles/productListStyles.module.css';
+import styles from '../../styles/products/productListStyles.module.css';
 
 // images sind ein Array von den IDs
 export default function ImageSlider({ images }) {

@@ -1,0 +1,40 @@
+.item {
+    margin: 10px;
+    width: 320px;
+    height:450px;
+    padding: 0;
+    border-radius: 3px;
+    display: flex;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.item:hover {
+    box-shadow: 0 3px 11px rgba(33,33,33,0.4);
+}
+
+.cardImage {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 ;
+}
+
+.cardTitle {
+    display: inline; 
+    font-size: xx-large;
+}
+
+.cardSubtitle {
+    font-size: x-large;
+    width: 100%;
+    justify-self: start;
+}
+
+.cardText {
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+     -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition-delay: 200ms;
+}
