@@ -20,7 +20,8 @@ function NavigationBar() {
                     transition: {
                         duration: 0.7,
                         delay: 0,
-                        ease: 'easeInOut'
+                        ease: 'easeInOut',
+                        type: 'spring'
                     }
                 }}
 

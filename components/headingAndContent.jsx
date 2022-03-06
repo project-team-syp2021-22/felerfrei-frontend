@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from '../styles/headingAndContent.module.css';
 
+
 function HeadingAndContent(props) {
+
     return (
         <div className="d-flex justify-content-center align-content-center w-100 mb-5">
             <div className="w-75 d-flex justify-content-center mt-5">
