@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 
 export default function ProductDetail({ product }) {
 
+    console.log(product);
+
     return (
         <div className="w-100 d-flex justify-content-center">
             <div className="m-5 w-100">
@@ -47,6 +49,7 @@ export default function ProductDetail({ product }) {
                         >
                             <h1>{product.name}</h1>
                             <p >{product.description}</p>
+                            <p><b>Material:</b> {product.material}</p>
                         </motion.div>
 
                         <motion.div
