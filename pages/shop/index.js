@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 let pageIndex = 1;
 export default function ProductList({ serverProducts }) {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [last, setLast] = useState(serverProducts.last);
     const [products, setProducts] = useState(serverProducts.products);
 
