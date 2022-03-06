@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "axios";
 import { API_URL } from "../../components/constants";
 import { Button } from "react-bootstrap";
-import Footer from "../../components/footer";
+import { motion } from "framer-motion";
 
-export default function ProductList() {
+let pageIndex = 1;
+export default function ProductList({ serverProducts }) {
     const [loading, setLoading] = useState(true);
-    const [last, setLast] = useState(false);
-    const [products, setProducts] = useState([]);
-    let pageIndex = 0;
+    const [last, setLast] = useState(serverProducts.last);
+    const [products, setProducts] = useState(serverProducts.products);
 
     async function loadProducts(index) {
         if (last) {
@@ -36,10 +36,6 @@ export default function ProductList() {
         loadProducts(pageIndex += 1);
     }
 
-    useEffect(() => {
-        loadProducts(pageIndex);
-    }, []);
-
     return (
         <>
             <div style={{
@@ -50,21 +46,51 @@ export default function ProductList() {
                 flexWrap: "wrap",
                 zIndex: "1"
             }}>
-                {products.filter((product) => product.published)
+                {products
                     .map((product) => (
                         <ProductItem key={product.id} product={product} />
                     )
                     )}
                 {!last &&
-                    <Button
-                        disabled={loading}
-                        variant="outline-dark"
-                        className="w-100 rounded-0"
-                        size={"md"}
-                        style={{ transition: '0.5s' }}
-                        onClick={showMore}>Mehr Anzeigen</Button>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { duration: 1 } }}
+                    >
+                        <Button
+                            disabled={loading}
+                            variant="outline-dark"
+                            className="w-100 rounded-0"
+                            size={"md"}
+                            style={{ transition: '0.5s' }}
+                            onClick={showMore}>Mehr Anzeigen</Button>
+                    </motion.div>
                 }
             </div>
         </>
     );
+}
+
+export async function getServerSideProps(context) {
+    let products = [];
+    let last = false;
+    await axios.get(API_URL + '/api/products?size=10&page=0')
+        .then(res => {
+            if (res.data.last) {
+                last = true;
+            }
+            //todo
+            //console.log(res.data.content, pageIndex);
+            products = res.data.content;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    return {
+        props: {
+            'serverProducts': {
+                products,
+                last
+            }
+        }
+    };
 }
