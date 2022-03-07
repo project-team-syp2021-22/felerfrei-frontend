@@ -10,7 +10,6 @@ function ProductID({ product }) {
     return (
         <div>
             <ProductDetail product={product} />
-            <Footer />
         </div>
     );
 }

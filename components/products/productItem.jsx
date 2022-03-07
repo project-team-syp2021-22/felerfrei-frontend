@@ -2,13 +2,29 @@ import React from 'react'
 import API_URL from '../constants.js';
 import { useRouter } from 'next/router'
 import styles from '../../styles/products/productItem.module.css'
+import { motion } from 'framer-motion';
 
 function ProductItem({ product }) {
 
     let router = useRouter();
 
     return (
-        <div>
+        <motion.div
+            initial={{
+                y: 300,
+                scale: 0.7,
+                opacity: 0.0,
+            }}
+            animate={{
+                x: 0,
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                transition: {
+                    duration: 1,
+                }
+            }}
+        >
             <div className={styles.item}>
                 <img className={styles.cardImage} onClick={() => { router.push("/shop/" + product.id) }}
                     src={`http://localhost:8080/api/image/${product.images[0].id}`} />
@@ -21,7 +37,7 @@ function ProductItem({ product }) {
                     </div>
                 </div>
             </ div>
-        </div>
+        </motion.div>
     );
 }
 

@@ -123,14 +123,14 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {loading && (
+      {/* {loading && (
         <Container
           className="d-flex justify-content-center"
           style={{ height: "100%" }}
         >
           <Spinner className="align-self-center" animation="border" />
         </Container>
-      )}
+      )} */}
       {!loading && children}
     </AuthContext.Provider>
   );

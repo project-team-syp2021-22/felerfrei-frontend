@@ -2,13 +2,31 @@ import React from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { useAuth } from "./authprovider";
 import styles from "../styles/navbar.module.css";
+import { motion } from "framer-motion";
 
 function NavigationBar() {
     let { user } = useAuth();
 
     return (
         <>
-            <div className="" style={{ position: "fixed", width: "100vw", zIndex: "10" }}>
+            <motion.div
+                initial={{
+                    y: -100,
+                    opacity: 0,
+                }}
+                animate={{
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                        duration: 0.7,
+                        delay: 0,
+                        ease: 'easeInOut',
+                        type: 'spring'
+                    }
+                }}
+
+                className="" style={{ position: "fixed", width: "100vw", zIndex: "10" }}
+            >
                 <Navbar
                     collapseOnSelect
                     expand="lg"
@@ -100,7 +118,7 @@ function NavigationBar() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-            </div>
+            </motion.div>
             <div style={{ height: "50pt" }} />
         </>
     );
