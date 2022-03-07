@@ -1,0 +1,24 @@
+.babyshore {
+    font-family: 'Bayshore', monospace !important;
+    font-size: 36pt;
+}
+
+.heading {
+    font-size: 26pt;
+    text-align: center;
+}
+
+.text {
+    font-size: 13pt;
+    text-align: center;
+}
+
+.subheading {
+    font-size: 24pt;
+    text-align: center;
+}
+
+.imageMd {
+    width: "350px";
+    max-width: "350px";
+}

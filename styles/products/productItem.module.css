@@ -1,0 +1,25 @@
+.item {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.cardImage {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 ;
+    transition-duration: 0.5s;
+}
+
+.cardImage:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.badge {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    padding: 1px 10px;
+}
