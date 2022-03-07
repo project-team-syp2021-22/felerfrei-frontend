@@ -7,10 +7,8 @@ import { motion } from "framer-motion";
 
 export default function ProductDetail({ product }) {
 
-    console.log(product);
-
     return (
-        <div className="w-100 d-flex justify-content-center">
+        <div className="w-100 d-flex justify-content-center mb-5" style={{height: "90vh"}}>
             <div className="m-5 w-100">
                 <div className="d-flex justify-content-center">
                     <motion.div
