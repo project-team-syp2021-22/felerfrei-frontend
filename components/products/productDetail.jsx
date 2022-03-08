@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Container } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import ImageSlider from "./imageSlider";
 // import styles from '../../styles/productListStyles.module.css';
 import styles from '../../styles/products/productListStyles.module.css';
