@@ -7,6 +7,7 @@ import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
 import Divider from '../components/divider';
 import Link from 'next/link';
+import { isMetaProperty } from 'typescript';
 
 export default function ShoppingCart() {
 
@@ -70,11 +71,13 @@ export default function ShoppingCart() {
                                 {order && !order.empty && order.order.orderContents.map((item, index) => {
                                     return (
                                         <ShoppingCartItem
+                                            key={item.id}
                                             name={item.product.name}
                                             quantity={item.amount}
                                             extra={item.extrawurscht}
                                             image={item.product.images[0].id}
                                             price={item.product.price}
+                                            id={item.id}
                                         />
                                     );
                                 })}
