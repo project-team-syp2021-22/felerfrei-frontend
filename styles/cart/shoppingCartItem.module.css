@@ -1,0 +1,10 @@
+.extra {
+    overflow: hidden;
+    max-width: 500px;
+    max-height: 160px;
+    width: 500px;
+}
+
+.delete:hover {
+    cursor: pointer;
+}

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Container, Spinner, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
-import { useRouter } from 'next/router';
 import ShoppingCartItem from "../components/shoppingCartItem.jsx";
 import axios from 'axios';
 import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
+import Divider from '../components/divider';
+import Link from 'next/link';
 
 export default function ShoppingCart() {
 
@@ -15,7 +16,19 @@ export default function ShoppingCart() {
     const [loading, setLoading] = useState();
 
 
-    useEffect(async () => {
+    async function deleteAll() {
+        await axios.put(`${API_URL}/api/clearCart`, {
+            headers: {
+                'Authorization': `Bearer ${userToken.token}`,
+            },
+        }).then(res => {
+            loadCart();
+        }).catch(err => {
+            setError("Wir konnten deinen Warenkorb nicht leeren. Bitte versuche es später noch einmal.");
+        });
+    }
+
+    async function loadCart() {
         setLoading(true);
         await axios.get(`${API_URL}/api/cart`, {
             headers: {
@@ -28,6 +41,10 @@ export default function ShoppingCart() {
             setError("Ihr Warenkorb konnte nicht geladen werden.");
         });
         setLoading(false);
+    }
+
+    useEffect(async () => {
+        await loadCart();
     }, []);
 
     return (
@@ -47,52 +64,59 @@ export default function ShoppingCart() {
                             verticalAlign: "middle",
                         }}>
                             <Container>
-                                <div className="justify-content-center">
+                                <div className="justify-content-center border-bottom border-dark mb-3">
                                     <h2 className="fw-bold">Warenkorb</h2>
                                 </div>
+                                {order && !order.empty && order.order.orderContents.map((item, index) => {
+                                    return (
+                                        <ShoppingCartItem
+                                            name={item.product.name}
+                                            quantity={item.amount}
+                                            extra={item.extrawurscht}
+                                            image={item.product.images[0].id}
+                                            price={item.product.price}
+                                        />
+                                    );
+                                })}
+                                {
+                                    order && order.empty &&
+                                    <>
+                                        <div className="w-100 d-flex flex-column justify-content-center">
 
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th width={"200px"} > Bild</th>
-                                            <th width={"200px"} >Produkt</th>
-                                            <th width={"300px"} >Wunsch</th>
-                                            <th width={"50px"} > Stückanzahl</th>
-                                            <th width={"20px"} > Löschen</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {order && order.order.orderContents.map((item, index) => {
-                                            return (
-                                                <ShoppingCartItem
-                                                    name={item.product.name}
-                                                    quantity={item.amount}
-                                                    extra={item.extrawurscht}
-                                                    image={item.product.images[0].id} />
-                                            );
-                                        })}
-                                        {/* <ShoppingCartItem name="Erstes Produkt" image="1" quantity={"2"} change={"Link"}
+                                            <Alert variant="warning" className="w-75 rounded-0">
+                                                Dein Warenkorb ist leer.
+                                            </Alert>
+                                            <div>
+                                                <Link href="/shop">
+                                                    Besuche unseren Shop.
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </>
+                                }
+                                {/* <ShoppingCartItem name="Erstes Produkt" image="1" quantity={"2"} change={"Link"}
                                 extra="das extrawürstel" />
                             <ShoppingCartItem name="Zweites Produkt" image="2" quantity={"5"} change={"Link"}
                                 extra="das extradgsadg adga dg  adawürstel" /> */}
-                                    </tbody>
-                                </table>
+                                {order && !order.empty &&
+                                    <>
+                                        <div className="w-100 d-flex justify-content-center">
 
-                                <div className="w-100 d-flex justify-content-center">
+                                            <Button onClick={alert}
+                                                className="w-50 rounded-0 mt-4"
+                                                variant="dark"
+                                                size={"md"}
 
-                                    <Button onClick={alert}
-                                        className="w-50 rounded-0 mt-4"
-                                        variant="dark"
-                                        size={"md"}
+                                                style={{ transition: '0.5s' }}>
+                                                Bestellen
+                                            </Button>
+                                        </div>
 
-                                        style={{ transition: '0.5s' }}>
-                                        Bestellen
-                                    </Button>
-                                </div>
-
-                                <div className="mt-4">
-                                    <div onClick={alert} role="button">Alle Einträge löschen</div>
-                                </div>
+                                        <div className="mt-4">
+                                            <div onClick={deleteAll} role="button">Alle Artikel löschen</div>
+                                        </div>
+                                    </>
+                                }
                             </Container>
                         </div>
                     </div>
