@@ -131,6 +131,9 @@ export default function ProductDetail({ product }) {
                     {success ?? error}
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="dark" onClick={() => {handleClose(); router.push("/cart")}}>
+                        Warenkorb
+                    </Button>
                     <Button variant="dark" onClick={() => { handleClose(); router.push("/shop") }}>
                         Zurück zum Shop
                     </Button>

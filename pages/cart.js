@@ -18,12 +18,12 @@ export default function ShoppingCart() {
 
 
     async function deleteAll() {
-        await axios.put(`${API_URL}/api/clearCart`, {
+        axios.put(`${API_URL}/api/clearCart`,{}, {
             headers: {
                 'Authorization': `Bearer ${userToken.token}`,
             },
-        }).then(res => {
-            loadCart();
+        }).then(async (res) => {
+            await loadCart();
         }).catch(err => {
             setError("Wir konnten deinen Warenkorb nicht leeren. Bitte versuche es später noch einmal.");
         });
@@ -31,12 +31,11 @@ export default function ShoppingCart() {
 
     async function loadCart() {
         setLoading(true);
-        await axios.get(`${API_URL}/api/cart`, {
+        axios.get(`${API_URL}/api/cart`, {
             headers: {
                 'Authorization': `Bearer ${userToken.token}`,
             },
         }).then(res => {
-            console.log(res.data)
             setOrder(res.data);
         }).catch(err => {
             setError("Ihr Warenkorb konnte nicht geladen werden.");

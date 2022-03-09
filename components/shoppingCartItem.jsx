@@ -4,10 +4,12 @@ import Divider from "./divider";
 import styles from '../styles/cart/shoppingCartItem.module.css';
 import axios from "axios";
 import { useAuth } from "./authprovider";
+import { useRouter } from "next/router";
 
 export default function ShoppingCartItem(props) {
 
     const { userToken } = useAuth();
+    const router = useRouter();
 
     useEffect(() => {
         // update product
@@ -21,7 +23,8 @@ export default function ShoppingCartItem(props) {
             headers: {
                 'Authorization': `Bearer ${userToken.token}`,
             }
-        });
+        })
+        .then(res => {router.reload()})
     }
 
     console.log(props);
