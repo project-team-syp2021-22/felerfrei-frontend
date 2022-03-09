@@ -29,7 +29,7 @@ export default function ShoppingCartItem(props) {
     }
 
     async function handleDelete() {
-        await axios
+        axios
             .put(
                 `http://localhost:8080/api/deleteFromCart`,
                 {
@@ -44,7 +44,8 @@ export default function ShoppingCartItem(props) {
             )
             .then((res) => {
                 router.reload();
-            });
+            })
+            .catch((err) => { });
     }
 
     console.log(props);
