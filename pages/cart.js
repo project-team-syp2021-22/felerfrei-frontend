@@ -36,6 +36,7 @@ export default function ShoppingCart() {
                 'Authorization': `Bearer ${userToken.token}`,
             },
         }).then(res => {
+            console.log(res.data);
             setOrder(res.data);
         }).catch(err => {
             setError("Ihr Warenkorb konnte nicht geladen werden.");

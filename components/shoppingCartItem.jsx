@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { API_URL } from "constants";
 import Divider from "./divider";
 import styles from "../styles/cart/shoppingCartItem.module.css";
 import axios from "axios";
 import { useAuth } from "./authprovider";
 import { useRouter } from "next/router";
-import { isFunctionTypeNode } from "typescript";
+import { Dropdown } from "react-bootstrap";
 
 export default function ShoppingCartItem(props) {
   const { userToken } = useAuth();
   const router = useRouter();
-  const quantityRef = useRef();
+  const [quantity, setQuantity] = useState(props.quantity);
 
   useEffect(() => {
     // update product
@@ -22,7 +22,7 @@ export default function ShoppingCartItem(props) {
         `http://localhost:8080/api/deleteFromCart`,
         {
           orderContentId: props.id,
-          amount: quantityRef.current.value,
+          amount: quantity,
         },
         {
           headers: {
@@ -80,7 +80,21 @@ export default function ShoppingCartItem(props) {
                   }}
                 />
                 <span className="mt-1">Stk.</span>*/}
-                {props.quantity} Stk.
+                <Dropdown>
+                  <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                    {quantity}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu variant="light">
+                    {
+                      [...Array(10).keys()].map((i) => (
+                        <Dropdown.Item key={`item${i}`} onClick={() => setQuantity(i+1)}>
+                          {i+1}
+                      </Dropdown.Item>
+                      ))
+                    }
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
               <div className="ms-3 me-3 d-flex justify-content-center">
                 <div onClick={handleDelete} className={styles.delete}>
