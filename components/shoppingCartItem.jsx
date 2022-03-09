@@ -81,9 +81,9 @@ export default function ShoppingCartItem(props) {
                             <div className="me-3 ms-3">
                                 <h5>{Number(props.price).toFixed(2)} € </h5>
                             </div>
-                            <div className="w-100 d-flex justify-content-center">
+                            <div className="w-100 d-flex justify-content-center border-0">
                                 <Dropdown>
-                                    <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                                    <Dropdown.Toggle className="bg-white border-0" variant="light" id="dropdown-basic">
                                         {quantity}
                                     </Dropdown.Toggle>
 
@@ -97,6 +97,9 @@ export default function ShoppingCartItem(props) {
                                         }
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                <span className="mt-2 ms-1">
+                                    Stk.
+                                </span>
                             </div>
                             <div className="ms-3 me-3 d-flex justify-content-center">
                                 <div onClick={handleDelete} className={styles.delete}>

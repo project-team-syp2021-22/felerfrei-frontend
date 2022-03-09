@@ -12,13 +12,13 @@ import { isMetaProperty } from 'typescript';
 export default function ShoppingCart() {
 
     const [order, setOrder] = useState();
-    const { user, userToken } = useAuth();
+    const { userToken } = useAuth();
     const [error, setError] = useState();
     const [loading, setLoading] = useState();
 
 
     async function deleteAll() {
-        axios.put(`${API_URL}/api/clearCart`,{}, {
+        axios.put(`${API_URL}/api/clearCart`, {}, {
             headers: {
                 'Authorization': `Bearer ${userToken.token}`,
             },
@@ -117,7 +117,7 @@ export default function ShoppingCart() {
                                         </div>
 
                                         <div className="mt-4">
-                                            <div onClick={deleteAll} role="button">Alle Artikel löschen</div>
+                                            <div onClick={deleteAll} role="button">Warenkorb leeren</div>
                                         </div>
                                     </>
                                 }
