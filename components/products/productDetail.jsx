@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Modal } from "react-bootstrap";
 import ImageSlider from "./imageSlider";
 // import styles from '../../styles/productListStyles.module.css';
@@ -17,6 +17,8 @@ export default function ProductDetail({ product }) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
 
+    const extraRef = useRef();
+
     function handleClose() {
         setShowModal(false);
     }
@@ -28,7 +30,7 @@ export default function ProductDetail({ product }) {
         axios.put(`${API_URL}/api/addTooCart`, {
             productId: product.id,
             amount: 1,
-            extra: null,
+            extra: extraRef.current.value,
         }, {
             headers: {
                 'Authorization': `Bearer ${userToken.token}`
@@ -86,7 +88,6 @@ export default function ProductDetail({ product }) {
                                 <p >{product.description}</p>
                                 <p><b>Material:</b> {product.material}</p>
                             </motion.div>
-
                             <motion.div
 
                                 initial={{
@@ -104,6 +105,7 @@ export default function ProductDetail({ product }) {
                                 }}
                                 className="d-flex flex-column"
                             >
+                                <textarea ref={extraRef} className={styles.extra} placeholder="Personalisierung" />
                                 <h1 className="m-0 text-nowrap">€ {product.price.toFixed(2)}</h1>
                                 <Button
                                     variant={"dark"}

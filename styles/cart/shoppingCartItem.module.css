@@ -8,3 +8,7 @@
 .delete:hover {
     cursor: pointer;
 }
+
+.name:hover {
+    cursor: pointer;
+}

@@ -71,6 +71,7 @@ export default function ShoppingCart() {
                                     return (
                                         <ShoppingCartItem
                                             key={item.id}
+                                            productId={item.product.id}
                                             name={item.product.name}
                                             quantity={item.amount}
                                             extra={item.extrawurscht}
