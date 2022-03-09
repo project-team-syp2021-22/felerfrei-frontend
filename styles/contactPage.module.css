@@ -1,0 +1,38 @@
+.linking {
+    font-weight: bold;
+    outline-color: black;
+    text-align: center;
+}
+
+.linking a {
+    color: black;
+}
+
+.textCentering {
+    text-align: center;
+}
+
+
+.hoverUnderlineAnimation {
+    display: inline-block;
+    position: relative;
+}
+
+.hoverUnderlineAnimation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #999;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hoverUnderlineAnimation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
