@@ -89,7 +89,7 @@ export default function ShoppingCartItem(props) {
 
                                     <Dropdown.Menu variant="light">
                                         {
-                                            [...Array(5).keys()].map((i) => (
+                                            [...Array(10).keys()].map((i) => (
                                                 <Dropdown.Item key={`item${i}`} onClick={() => changeQuantity(i + 1)}>
                                                     {i + 1}
                                                 </Dropdown.Item>

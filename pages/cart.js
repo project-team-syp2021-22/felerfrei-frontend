@@ -98,10 +98,7 @@ export default function ShoppingCart() {
                                         </div>
                                     </>
                                 }
-                                {/* <ShoppingCartItem name="Erstes Produkt" image="1" quantity={"2"} change={"Link"}
-                                extra="das extrawürstel" />
-                            <ShoppingCartItem name="Zweites Produkt" image="2" quantity={"5"} change={"Link"}
-                                extra="das extradgsadg adga dg  adawürstel" /> */}
+
                                 {order && !order.empty &&
                                     <>
                                         <div className="w-100 d-flex justify-content-center">
