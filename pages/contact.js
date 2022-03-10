@@ -40,15 +40,16 @@ export default function Contacts() {
                                 <h3 className={styles.textCentering}><b>FELERFREI</b></h3>
                                 <h3 className={styles.textCentering}>Unterm Tisch 3</h3>
                                 <h3 className={styles.textCentering}>1234 Irgendwo</h3>
-                                <h3 className={styles.linking}>T:<span><Link className={styles.hoverUnderlineAnimation}
-                                                                             href="tel:0664 1234567">0664 1234567 </Link></span>
+                                //todo
+                                <h3 className={styles.linking}>T:<Link className={styles.hoverUnderlineAnimation}
+                                                                       href="tel:0664 1234567">0664 1234567 </Link>
                                 </h3>
                                 <h3 className={styles.linking}>E:<Link className={styles.hoverUnderlineAnimation}
                                                                        href="mailto:office@felerfrei.at">office@felerfrei.at </Link>
                                 </h3>
                             </div>
                         </div>
-                        <img width={550}
+                        <img width={550} alt="Bild"
                              src="https://images.unsplash.com/photo-1599651993975-30a482e26467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"/>
                     </div>
                 </div>
