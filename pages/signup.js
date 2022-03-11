@@ -248,7 +248,7 @@ export default function Signup(props) {
                         Sie haben sich erfolgreich registriert. Bitte überprüfen Sie Ihre E-Mails und bestätigen Sie Ihr Konto.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="dark" onClick={handleClose}>
+                        <Button variant="dark" onClick={() => { handleClose(); router.push("/") }}>
                             Ok
                         </Button>
                     </Modal.Footer>

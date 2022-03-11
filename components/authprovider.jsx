@@ -119,6 +119,7 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     changeCredentials,
+    userToken
   };
 
   return (
