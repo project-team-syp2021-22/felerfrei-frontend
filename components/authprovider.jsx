@@ -42,10 +42,10 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
+    setLoading(true);
     await axios
       .post(API_URL + "/auth/login", { email: email, password: password })
       .then((response) => {
-        setLoading(true);
         let data = response.data;
         let credentials = {
           email: data.email,
@@ -61,8 +61,8 @@ export function AuthProvider({ children }) {
         setUserToken(tokenKey, data.token, { expires: expireDate });
         // store.dispatch({ type: SET_USER, payload: credentials });
         dispatch({ type: SET_USER, payload: { user: credentials } });
-        setLoading(false);
       })
+    setLoading(false);
   }
 
   async function logout() {

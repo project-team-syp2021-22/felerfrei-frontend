@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useAuth } from "./authprovider";
-import { API_URL } from "./constants";
+import { useAuth } from "../authprovider";
+import { API_URL } from "../constants";
 
-function AdminPage({children}) {
+function AdminPage({ children }) {
   const { userToken } = useAuth();
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +29,8 @@ function AdminPage({children}) {
 
   return (
     <div>
-        {!loading && children}
+      {loading && (<>Loading...</>)}
+      {!loading && children}
     </div>
   );
 }
