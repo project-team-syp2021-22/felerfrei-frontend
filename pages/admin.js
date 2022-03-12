@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Tab, Tabs } from 'react-bootstrap';
 import AdminPage from '../components/admin/adminPage';
+import AdminProductList from '../components/admin/adminProductList';
 
 function Admin() {
 
@@ -8,7 +9,7 @@ function Admin() {
 
   return (
     <AdminPage>
-      <div className="mt-5">
+      <div className="mt-5 ms-5">
         <div>
           <h1>Admin - Dashboard</h1>
         </div>
@@ -20,7 +21,7 @@ function Admin() {
             onSelect={(k) => setKey(k)}
           >
             <Tab eventKey="products" title="Manage Products">
-              Content Products
+              <AdminProductList />
             </Tab>
             <Tab eventKey="home" title="home">
               Content 2
