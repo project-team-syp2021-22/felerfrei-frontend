@@ -4,7 +4,7 @@ import AdminPage from './adminPage';
 import { API_URL } from '../constants';
 import { useAuth } from '../authprovider';
 import AdminProduct from './adminProduct';
-import { Table, Button, Modal } from 'react-bootstrap';
+import { Table, Button, Modal, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 
 let pageIndex = 0;
@@ -14,6 +14,7 @@ function AdminProductList() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [last, setLast] = useState(false);
+    const [showAddModal, setShowAddModal] = useState(false);
 
     async function loadProjects(index) {
         if (last) {
@@ -46,11 +47,16 @@ function AdminProductList() {
     }, []);
 
     function handleClose() {
-        setShowModal(false);
+        setShowAddModal(false);
     }
 
     return (
         <AdminPage>
+            <div className="w-100 d-flex justify-content-center mt-3 mb-3">
+                <Button variant="dark" onClick={() => setShowAddModal(true)}>
+                    Neues Produkt
+                </Button>
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -83,6 +89,32 @@ function AdminProductList() {
                     {loading ? 'Lade...' : 'Mehr laden'}
                 </Button>
             }
+
+            <Modal
+                show={showAddModal}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Neues Produkt
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Group>
+                        <Form.Control className="rounded-0 border-0 border-bottom" type="text" placeholder="Name" />
+                        <Form.Control className="rounded-0 border-0 border-bottom mt-3" type="textarea" placeholder="description" />
+                        <Form.Control className="rounded-0 border-0 border-bottom mt-3" type="number" placeholder="Price" />
+                        <Form.Control className="rounded-0 border-0 border-bottom mt-3" type="text" placeholder="Material" />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="dark">
+                        Hinzufügen
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </AdminPage>
     )
 }
