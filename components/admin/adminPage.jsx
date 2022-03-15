@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAuth } from "../authprovider";
 import { API_URL } from "../constants";
 
-function AdminPage({ children }) {
+function AdminPage({ t, children }) {
   const { userToken } = useAuth();
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +29,7 @@ function AdminPage({ children }) {
 
   return (
     <div>
-      {loading && (<>Loading...</>)}
+      {loading && (<div className="mt-5">Loading...</div>)}
       {!loading && children}
     </div>
   );

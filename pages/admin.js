@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Tab, Tabs } from 'react-bootstrap';
 import AdminPage from '../components/admin/adminPage';
 import AdminProductList from '../components/admin/adminProductList';
+import axios from 'axios';
+import { API_URL } from '../components/constants';
 
 function Admin() {
 
@@ -31,6 +33,41 @@ function Admin() {
       </div>
     </AdminPage>
   )
+}
+
+export async function getServerSideProps(context) {
+  let token = context.req.cookies.token;
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      },
+      props: {
+
+      },
+    };
+  }
+  return await axios.get(`${API_URL}/auth/isAdmin`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then(_ => {
+      return {
+        props: {
+        },
+      };
+    })
+    .catch(_ => {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/'
+        },
+        props: {
+
+        },
+      };
+    });
 }
 
 export default Admin;
