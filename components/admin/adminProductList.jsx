@@ -5,6 +5,7 @@ import { API_URL } from '../constants';
 import { useAuth } from '../authprovider';
 import AdminProduct from './adminProduct';
 import { Table, Button, Modal, Form, Alert } from 'react-bootstrap';
+import UploadService from './uploadService.js';
 
 let pageIndex = 0;
 function AdminProductList() {
@@ -24,12 +25,14 @@ function AdminProductList() {
     let priceRef = useRef();
     let descriptionRef = useRef();
     let materialRef = useRef();
+    let imageRef = useRef();
+
+    let uploadService = new UploadService();
 
     useEffect(() => {
         if (showAddModal == true) {
             return;
         }
-        console.log("here")
         pageIndex = 0;
         last.current = false;
         loadProducts(pageIndex, true);
@@ -46,12 +49,10 @@ function AdminProductList() {
             }
         })
             .then((res) => {
-                console.log(res.data)
                 // setProducts(res.data);
                 if (res.data.last) {
                     last.current = true;
                 }
-                console.log(res.data.content, pageIndex);
                 if (reload) {
                     setProducts([...res.data.content]);
                 } else {
@@ -75,6 +76,7 @@ function AdminProductList() {
         let description = descriptionRef.current.value;
         let material = materialRef.current.value;
 
+
         setAddError(null);
 
         if (!name || !price || !description || !material) {
@@ -93,6 +95,9 @@ function AdminProductList() {
             }
         })
             .then(res => {
+                let id = res.data;
+                uploadService.uploadImages(imageRef.current.files, userToken.token, id);
+
                 setShowAddModal(false);
             })
             .catch(err => {
@@ -105,6 +110,7 @@ function AdminProductList() {
         <AdminPage>
             <div className="w-100 d-flex justify-content-center mt-3 mb-3">
                 <Button variant="dark"
+                    className="rounded-0"
                     onClick={() => {
                         setShowAddModal(true);
                         setAddError(null);
@@ -162,6 +168,10 @@ function AdminProductList() {
                         <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={descriptionRef} as="textarea" rows={3} placeholder="description" />
                         <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={priceRef} type="number" placeholder="Price" />
                         <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={materialRef} type="text" placeholder="Material" />
+                    </Form.Group>
+                    <Form.Group controlId="formFileMultiple" className="mb-3 mt-3">
+                        <Form.Label>Bilder</Form.Label>
+                        <Form.Control type="file" accept="image/*" className="rounded-0" multiple ref={imageRef} />
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
