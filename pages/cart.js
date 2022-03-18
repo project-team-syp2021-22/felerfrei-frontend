@@ -5,9 +5,8 @@ import ShoppingCartItem from "../components/shoppingCartItem.jsx";
 import axios from 'axios';
 import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
-import Divider from '../components/divider';
 import Link from 'next/link';
-import { isMetaProperty } from 'typescript';
+import styles from '../styles/cart/cart.module.css';
 
 export default function ShoppingCart() {
 
@@ -113,7 +112,7 @@ export default function ShoppingCart() {
                                             </Button>
                                         </div>
 
-                                        <div className="mt-4">
+                                        <div className={`mt-4 ${styles.fitContent}`}>
                                             <div onClick={deleteAll} role="button">Warenkorb leeren</div>
                                         </div>
                                     </>

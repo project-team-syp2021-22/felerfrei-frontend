@@ -8,7 +8,8 @@ import Footer from '../components/footer';
 import HeadingAndContent from '../components/headingAndContent';
 import FadeInView from '../components/animation/inview';
 
-let pageIndex = 0;
+let pageIndex = 1;
+const pageSize = 3;
 function ProjectList({ serverProjects }) {
 
     const [projects, setProjects] = useState(serverProjects.projects);
@@ -20,7 +21,7 @@ function ProjectList({ serverProjects }) {
             return;
         }
         setLoading(true);
-        await axios.get(API_URL + '/api/projects?size=3&page=' + index)
+        await axios.get(`${API_URL}/api/projects?size=${pageSize}&page=${index}`)
             .then(res => {
                 if (res.data.last) {
                     setLast(true);
@@ -90,7 +91,7 @@ function ProjectList({ serverProjects }) {
 export async function getServerSideProps(context) {
     let projects = [];
     let last = false;
-    await axios.get(API_URL + '/api/projects?size=3&page=0')
+    await axios.get(`${API_URL}/api/projects?size=${pageSize}&page=0`)
         .then(res => {
             if (res.data.last) {
                 last = true;

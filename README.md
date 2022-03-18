@@ -44,6 +44,20 @@ return (
     </div>
 );
 ```
+
+# AdminPage
+
+Exmaple:
+```javascript
+    ...
+    return (
+        <AdminPage>
+            <h1>Admin Page <h1>
+        </AdminPage>
+    );
+
+```
+
 # Directories
 ## pages
 Files in this directory will define different pages.
