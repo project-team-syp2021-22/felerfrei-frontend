@@ -14,9 +14,6 @@ export default function ResetRequest() {
         let email = emailRef.current.value;
         if (email === '')
             return;
-        if(!validateEmail(email)){
-            return setError("Bitte korrekte Email eingeben")
-        }
 
         setError(null);
         setSuccess(null);
@@ -26,7 +23,7 @@ export default function ResetRequest() {
                 setSuccess('Wir haben eine E-Mail mit einem Link zum Zurücksetzen deines Passworts an ' + email + ' gesendet.');
             })
             .catch(err => {
-                setError(err.response.data.message);
+                setError(err.response.data);
             });
         setLoading(false);
     }
@@ -49,7 +46,6 @@ export default function ResetRequest() {
                                 aria-describedby="basic-addon1"
                                 ref={emailRef}
                                 required
-                                onChange={() => validateInput(validateEmail, emailRef)}
                             />
                             <div className="input-group-addon border-bottom border-dark mt-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -87,21 +83,4 @@ export default function ResetRequest() {
             </div>
         </div>
     )
-
-    //todo biedde hilf mir. Ich weiß nicht wie ich die Funktion einfach aus dem File /components/imputValidation bekomme
-    function validateEmail(ref) {
-        if (ref.current == null || ref.current === "") {
-            return false;
-        }
-        const exp = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-        return !exp.test(ref.current.value.trim().toLowerCase());
-    }
-
-    function validateInput(validation, ref) {
-        if (validation(ref)) {
-            ref.current.style.backgroundColor = "rgba(255, 52, 52, 0.2"
-        } else {
-            ref.current.style.backgroundColor = "white"
-        }
-    }
 }

@@ -48,27 +48,26 @@ export default function Reset() {
         let passwordConfirm = passwordConfirmRef.current.value;
         setError(null);
         if (password === "" || passwordConfirm === "") {
-            setError("Please fill in all fields");
+            setError("Bitte füllen sie alle Felder aus!");
             return;
         }
         if (password !== passwordConfirm) {
-            setError("Passwords do not match");
+            setError("Passwörter stimmen nicht überein!");
             return;
         }
 
-        await axios.post(`${API_URL}/auth/resetPassword`, {
+        axios.post(`${API_URL}/auth/resetPassword`, {
             token: resetToken,
             newPassword: password
         }).then(res => {
             router.push("/login");
         }).catch(err => {
-            console.log(err.response)
             setError(err.response.data.message);
         });
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex justify-content-center align-items-center mt-5">
             <div style={{ maxWidth: "500px" }} >
                 <Container className="w-100">
                     <h2 className="fw-bold">Neues Passwort</h2>

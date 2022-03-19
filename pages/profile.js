@@ -111,7 +111,7 @@ export default function Profile() {
                             <InputGroup className="mb-4 mt-4">
                                 <FormControl
                                     className="rounded-0 border-0 border-bottom border-dark"
-                                    placeholder="Vorname"
+                                    placeholder="Vorname*"
                                     aria-label="Vorname"
                                     ref={firstNameRef}
                                     defaultValue={user.firstname}
@@ -123,7 +123,7 @@ export default function Profile() {
                                 <FormControl
                                     className="rounded-0 border-0 border-bottom border-dark"
                                     type="text"
-                                    placeholder="Nachname"
+                                    placeholder="Nachname*"
                                     aria-label="Nachname"
                                     ref={lastNameRef}
                                     defaultValue={user.lastname}
@@ -146,7 +146,7 @@ export default function Profile() {
                             <InputGroup className="mb-4 mt-4">
                                 <FormControl
                                     className="rounded-0 border-0 border-bottom border-dark"
-                                    placeholder="Email eingeben"
+                                    placeholder="E-Mail*"
                                     aria-label="E-Mail"
                                     aria-describedby="basic-addon1"
                                     defaultValue={user.email}
@@ -166,7 +166,7 @@ export default function Profile() {
                                 <FormControl
                                     className="rounded-0 border-0 border-bottom border-dark"
                                     type="password"
-                                    placeholder="Passwort"
+                                    placeholder="Passwort*"
                                     aria-label="Password"
                                     aria-describedby="input-group-addon"
                                     ref={passwordRef}
@@ -199,8 +199,6 @@ export default function Profile() {
                         </Form>
 
                         <div className="mt-4">
-                            <Link href="/login">Account löschen</Link>
-                            <br />
                             <Link href="/reset">Passwort vergessen</Link>
                             <br />
                             <div onClick={tryLogout} role="button">Abmelden</div>
