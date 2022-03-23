@@ -4,6 +4,7 @@ import AdminPage from '../components/admin/adminPage';
 import AdminProductList from '../components/admin/adminProductList';
 import axios from 'axios';
 import { API_URL } from '../components/constants';
+import AdminOrderList from '../components/admin/adminOrderList';
 
 function Admin() {
 
@@ -25,8 +26,8 @@ function Admin() {
             <Tab eventKey="products" title="Manage Products">
               <AdminProductList />
             </Tab>
-            <Tab eventKey="home" title="home">
-              Content 2
+            <Tab eventKey="orders" title="Bestellungen">
+              <AdminOrderList />
             </Tab>
           </Tabs>
         </div>
