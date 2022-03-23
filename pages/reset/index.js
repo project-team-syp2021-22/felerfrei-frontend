@@ -23,7 +23,7 @@ export default function ResetRequest() {
                 setSuccess('Wir haben eine E-Mail mit einem Link zum Zurücksetzen deines Passworts an ' + email + ' gesendet.');
             })
             .catch(err => {
-                setError(err.response.data.message);
+                setError(err.response.data);
             });
         setLoading(false);
     }
