@@ -1,10 +1,13 @@
 import React from 'react'
-import styles from '../../styles/admin/admin.module.css';
 
-function AdminProduct({ id, name, published, price, material }) {
+function AdminProduct({ id, name, description, published, price, material, images }) {
 
-    return (
-        <tr>
+    debugger;
+
+    return (<>
+        <tr onClick={() => {
+            setShowAddModal(true)
+        }}>
             <td>{id}</td>
             <td>{name}</td>
             <td>
@@ -13,7 +16,7 @@ function AdminProduct({ id, name, published, price, material }) {
             <td>€ {price}</td>
             <td>{material}</td>
         </tr>
-    )
+    </>)
 }
 
 export default AdminProduct;
