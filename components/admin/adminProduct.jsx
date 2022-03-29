@@ -1,13 +1,12 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
 function AdminProduct({ id, name, description, published, price, material, images }) {
 
-    debugger;
+    let router = useRouter();
 
     return (<>
-        <tr onClick={() => {
-            setShowAddModal(true)
-        }}>
+        <tr onClick={() => router.push("/admin/products/" + id)}>
             <td>{id}</td>
             <td>{name}</td>
             <td>

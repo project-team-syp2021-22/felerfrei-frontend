@@ -6,6 +6,7 @@ import { useAuth } from "../authprovider";
 import AdminProduct from "./adminProduct";
 import { Table, Button, Modal, Form, Alert, InputGroup } from "react-bootstrap";
 import UploadService from "./uploadService.js";
+import { useRouter } from "next/router";
 
 let pageIndex = 0;
 function AdminProductList() {
@@ -54,7 +55,7 @@ function AdminProductList() {
           last.current = true;
         }
         if (reload) {
-            console.log("Here reload")
+          console.log("Here reload")
           setProducts([...res.data.content]);
         } else {
           setProducts([...products, ...res.data.content]);
@@ -135,9 +136,9 @@ function AdminProductList() {
                 let value = e.target.value;
 
                 console.log(value.length);
-                if(value.length == 0) {
-                    loadProducts(0, true);
-                    return;
+                if (value.length == 0) {
+                  loadProducts(0, true);
+                  return;
                 }
 
                 let filtered = products.filter((p) => {
