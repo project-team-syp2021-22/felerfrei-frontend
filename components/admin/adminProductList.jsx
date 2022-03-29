@@ -106,6 +106,29 @@ function AdminProductList() {
             });
     }
 
+    function modifyProduct(id, name, description, price, material, images){
+        /*axios.put(`${API_URL}/admin/addProduct`, {
+            name,
+            price,
+            description,
+            material
+        }, {
+            headers: {
+                Authorization: `Bearer ${userToken.token}`
+            }
+        })
+            .then(res => {
+                let id = res.data;
+                uploadService.uploadImages(imageRef.current.files, userToken.token, id);
+
+                setShowAddModal(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setAddError(err.response);
+            });*/
+    }
+
     return (
         <AdminPage>
             <div className="w-100 d-flex justify-content-center mt-3 mb-3">
@@ -136,9 +159,12 @@ function AdminProductList() {
                                 key={product.id}
                                 id={product.id}
                                 material={product.material}
+                                description={product.description}
                                 name={product.name}
                                 price={product.price}
                                 published={product.published}
+                                images={product.images}
+                                onClick={modifyProduct}
                             />
                         </>
                     ))}
