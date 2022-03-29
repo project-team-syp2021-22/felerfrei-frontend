@@ -1,10 +1,9 @@
-/*
-import {Alert, Button, Form, Modal} from "react-bootstrap";
-import React, {useRef, useState} from "react";
+import { Alert, Button, Form, Modal } from "react-bootstrap";
+import React, { useRef, useState } from "react";
 import axios from "axios";
-import {API_URL} from "../constants";
+import { API_URL } from "../constants";
 
-export default function AdminModifyProdukt({id, name, description, price, material, images, published, handleClose}){
+export default function AdminModifyProdukt({ id, name, description, price, material, images, published, handleClose }) {
 
     const [addError, setAddError] = useState();
 
@@ -87,4 +86,4 @@ export default function AdminModifyProdukt({id, name, description, price, materi
             </div>
         </Modal.Footer>
     </Modal>
-}*/
+}

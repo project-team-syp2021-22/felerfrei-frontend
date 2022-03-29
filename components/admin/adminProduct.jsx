@@ -1,15 +1,6 @@
-import React, {useState} from 'react'
-import styles from '../../styles/admin/admin.module.css';
-//import AdminModifyProdukt from "./adminModifyProdukt";
-import {images} from "next/dist/build/webpack/config/blocks/images";
+import React from 'react'
 
-function AdminProduct({id, name, description, published, price, material, images}) {
-
-    const [showAddModal, setShowAddModal] = useState(false);
-
-    function handleClose() {
-        setShowAddModal(false);
-    }
+function AdminProduct({ id, name, description, published, price, material, images }) {
 
     debugger;
 
@@ -25,9 +16,6 @@ function AdminProduct({id, name, description, published, price, material, images
             <td>€ {price}</td>
             <td>{material}</td>
         </tr>
-        {/*{showAddModal &&
-            <AdminModifyProdukt id={id} name={name} price={price} description={description} material={material}
-                                images={images} published={published} handleClose={handleClose}/>}*/}
     </>)
 }
 
