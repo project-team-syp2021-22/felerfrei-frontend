@@ -64,6 +64,7 @@ export default function AdminModifyProdukt({ id, name, description, price, mater
             <Form.Group>
                 <Form.Control className="rounded-0 border-0 border-bottom" ref={nameRef} type="text" placeholder="Name" />
                 <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={descriptionRef} as="textarea" rows={3} placeholder="description" />
+                <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={priceRef} type="radio" placeholder="Price" />
                 <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={priceRef} type="number" placeholder="Price" />
                 <Form.Control className="rounded-0 border-0 border-bottom mt-3" ref={materialRef} type="text" placeholder="Material" />
             </Form.Group>

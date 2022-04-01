@@ -19,6 +19,7 @@ function Product() {
     let priceRef = useRef();
     let descriptionRef = useRef();
     let materialRef = useRef();
+    let publishedRef = useRef();
     let imageRef = useRef([]);
 
 
@@ -33,10 +34,12 @@ function Product() {
                 priceRef.current.value = res.data.price;
                 descriptionRef.current.value = res.data.description;
                 materialRef.current.value = res.data.material;
+                publishedRef.current.checked = res.data.published;
                 setImages(res.data.images);
             })
             .catch(err => {
-                setError(err.response.data);
+                // setError(err.response.data);
+                console.log(err.response)
             });
     }, []);
 
@@ -46,6 +49,7 @@ function Product() {
             price: priceRef.current.value,
             description: descriptionRef.current.value,
             material: materialRef.current.value,
+            published: publishedRef.current.checked,
         }, {
             headers: { Authorization: `Bearer ${userToken.token}` },
         })
@@ -77,6 +81,12 @@ function Product() {
                                 as="textarea"
                                 rows={3}
                                 placeholder="description"
+                            />
+                            <Form.Check
+                                type='checkbox'
+                                id={`default-checkbox`}
+                                label={`veröffentlicht`}
+                                ref={publishedRef}
                             />
                             <Form.Control
                                 className="rounded-0 border-0 border-bottom mt-3"
