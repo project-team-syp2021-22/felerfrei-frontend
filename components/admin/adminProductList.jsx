@@ -16,8 +16,6 @@ function AdminProductList() {
 
   let last = useRef(false);
 
-  // const [last, setLast] = useState(false);
-
   const [showAddModal, setShowAddModal] = useState(false);
   const [addError, setAddError] = useState();
 
@@ -55,7 +53,7 @@ function AdminProductList() {
           last.current = true;
         }
         if (reload) {
-          console.log("Here reload")
+          console.log("Here reload");
           setProducts([...res.data.content]);
         } else {
           setProducts([...products, ...res.data.content]);
@@ -162,16 +160,14 @@ function AdminProductList() {
         </thead>
         <tbody>
           {products.map((product) => (
-            <>
-              <AdminProduct
-                key={product.id}
-                id={product.id}
-                material={product.material}
-                name={product.name}
-                price={product.price}
-                published={product.published}
-              />
-            </>
+            <AdminProduct
+              key={product.id}
+              id={product.id}
+              material={product.material}
+              name={product.name}
+              price={product.price}
+              published={product.published}
+            />
           ))}
         </tbody>
       </Table>
