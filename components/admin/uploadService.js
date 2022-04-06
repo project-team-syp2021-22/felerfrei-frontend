@@ -14,7 +14,7 @@ class UploadService {
         for (let i = 0; i < files.length; i++) {
             formData.append('images', files[i]);
         }
-
+        console.log(formData);
         axios.post(`${API_URL}/admin/uploadImage/${id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
