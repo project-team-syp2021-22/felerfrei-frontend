@@ -194,7 +194,7 @@ export default function Profile() {
                                 size={"md"}
 
                                 style={{ transition: '0.5s' }}>
-                                Account Speichern
+                                Account speichern
                             </Button>
                         </Form>
 
