@@ -80,7 +80,7 @@ export default function Profile() {
 
             router.push("/profile");
         } catch (error) {
-            setUpdateError(error.message);
+            setUpdateError(error.toString());
             return;
         }
     }
