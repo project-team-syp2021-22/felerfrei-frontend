@@ -104,7 +104,7 @@ export default function Profile() {
                 }}>
                     <Container style={{ maxWidth: "500px" }}>
                         <div className="justify-content-center">
-                            <h2 className="fw-bold">Profile</h2>
+                            <h2 className="fw-bold">Profil</h2>
                         </div>
                         <Form>
 
@@ -133,7 +133,7 @@ export default function Profile() {
                             <InputGroup className="mb-4 mt-4">
                                 <PhoneInput
                                     className="rounded-0 border-0 border-bottom border-dark"
-                                    placeholder="Telephonnummer"
+                                    placeholder="Telefonnummer"
                                     aria-label="Telephonnummer"
                                     ref={phoneRef}
                                     value={user.telephone}
@@ -189,17 +189,17 @@ export default function Profile() {
 
 
                             <Button onClick={setNewValues}
-                                className="w-100 rounded-0 mt-4"
+                                className="w-100 rounded-0"
                                 variant="outline-dark"
                                 size={"md"}
 
                                 style={{ transition: '0.5s' }}>
-                                Account Speichern
+                                Account speichern
                             </Button>
                         </Form>
 
                         <div className="mt-4">
-                            <Link href="/reset">Passwort vergessen</Link>
+                            <Link href="/reset">Passwort vergessen?</Link>
                             <br />
                             <div onClick={tryLogout} role="button">Abmelden</div>
                         </div>
