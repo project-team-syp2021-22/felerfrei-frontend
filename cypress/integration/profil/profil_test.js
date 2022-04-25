@@ -6,7 +6,7 @@ describe('Profile', () => {
             cy.get("input").eq(1).type(user.password);
             cy.get("button").contains('Anmelden').click();
             cy.wait(500);
-            cy.getCookie("token").should('exist');
+            cy.getCookie('token').should('exist');
             cy.wait(500);
             cy.visit('http://localhost:3000/profile');
         });
@@ -42,15 +42,16 @@ describe('Profile', () => {
         cy.get('input').eq(3).clear();
         cy.get('input').eq(4).clear();
         cy.fixture('users/testuser.json').then((user) => {
-            cy.get("input").eq(0).type(user.firstName);
+            let newFirstname = "new";
+            cy.get("input").eq(0).type(newFirstname);
             cy.get("input").eq(1).type(user.lastName);
-            cy.get("input").eq(3).type("new@email.com");
+            cy.get("input").eq(3).type(user.email);
             cy.get("input").eq(4).type(user.password);
             cy.get('button').contains('Account speichern').click();
             cy.wait(500);
-            cy.get('input').eq(0).should('have.value', user.firstName);
+            cy.get('input').eq(0).should('have.value', newFirstname);
             cy.get('input').eq(1).should('have.value', user.lastName);
-            cy.get('input').eq(3).should('have.value', "new@email.com");
+            cy.get('input').eq(3).should('have.value', user.email);
 
             cy.get('input').eq(0).clear();
             cy.get('input').eq(1).clear();
@@ -74,7 +75,7 @@ describe('Profile', () => {
 
         cy.reload();
         cy.fixture('users/testuser.json').then((user) => {
-            cy.get('input').eq(3).should('have.value', user);
+            cy.get('input').eq(3).should('have.value', user.email);
         });
     });
     it('profile#6 Klicken auf "Abmelden" funktioniert', () => {
