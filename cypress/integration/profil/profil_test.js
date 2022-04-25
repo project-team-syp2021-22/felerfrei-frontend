@@ -1,16 +1,15 @@
-// es wird ein Datensatz gebraucht:
-// Email: v.koller@htlstp.at
-//Passwort: Abc1234!
-//Vorname: Vitschi
-//der Rest ist beliebig
 describe('Profile', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/login');
-        cy.get('input').eq(0).type('v.koller@htlstp.at');
-        cy.get('input').eq(1).type('Abc1234!');
-        cy.get('button').contains('Anmelden').click();
-        cy.wait(500);
-        cy.visit('http://localhost:3000/profile');
+        cy.fixture('users/testuser.json').then((user) => {
+            cy.visit('http://localhost:3000/login');
+            cy.get("input").eq(0).type(user.email);
+            cy.get("input").eq(1).type(user.password);
+            cy.get("button").contains('Anmelden').click();
+            cy.wait(500);
+            cy.getCookie("token").should('exist');
+            cy.wait(500);
+            cy.visit('http://localhost:3000/profile');
+        });
     });
 
     it('profile#1 Profile-Seite kann aufgerufen werden, wenn angemeldet', () => {
@@ -28,83 +27,78 @@ describe('Profile', () => {
     it('profile#2 Profile-Seite kann NICHT aufgerufen werden, wenn NICHT angemeldet', () => {
         cy.contains('Abmelden').click();
         cy.visit('http://localhost:3000/profile');
+        cy.getCookie("token").should('be.null');
         cy.url().should('include', '/login');
     });
 
     it('profile#3 Profile-Seite kann nicht ohne Daten abgeschickt werden', () => {
-         cy.get('input').eq(0).clear();
-         cy.get('button').contains('Account speichern').click();
-         cy.contains('Bitte füllen Sie alle Pflichtfelder aus.');
+        cy.get('input').eq(0).clear();
+        cy.get('button').contains('Account speichern').click();
+        cy.contains('Bitte füllen Sie alle Pflichtfelder aus.');
     });
-    it('profile#4 Profile-Seite wird mit gültigen Daten abgeschickt - Daten sind geändert (und rückgängig gemacht)', ()=> {
+    it('profile#4 Profile-Seite wird mit gültigen Daten abgeschickt - Daten sind geändert (und rückgängig gemacht)', () => {
         cy.get('input').eq(0).clear();
         cy.get('input').eq(1).clear();
-        cy.get('input').eq(2).clear();
         cy.get('input').eq(3).clear();
         cy.get('input').eq(4).clear();
-        cy.get('input').eq(0).type("Vici");
-        cy.get('input').eq(1).type("Zachhalmel");
-        cy.get('input').eq(2).type("123456");
-        cy.get('input').eq(3).type("v.koller@htlstp.ac.at");
-        cy.get('input').eq(4).type("Abc1234!");
-        cy.get('button').contains('Account speichern').click();
-        cy.wait(500);
-        cy.get('input').eq(0).should('have.value', 'Vici');
-        cy.get('input').eq(1).should('have.value', 'Zachhalmel');
-        cy.get('input').eq(2).should('have.value', '+1 234 56');
-        cy.get('input').eq(3).should('have.value', 'v.koller@htlstp.ac.at');
-        cy.get('input').eq(0).clear();
-        cy.get('input').eq(1).clear();
-        cy.get('input').eq(2).clear();
-        cy.get('input').eq(3).clear();
-        cy.get('input').eq(4).clear();
-        cy.get('input').eq(0).type("Vitschi");
-        cy.get('input').eq(1).type("Koller");
-        cy.get('input').eq(2).type("123567");
-        cy.get('input').eq(3).type("v.koller@htlstp.at");
-        cy.get('input').eq(4).type("Abc1234!");
-        cy.get('button').contains('Account speichern').click();
-        cy.wait(500);
+        cy.fixture('users/testuser.json').then((user) => {
+            cy.get("input").eq(0).type(user.firstName);
+            cy.get("input").eq(1).type(user.lastName);
+            cy.get("input").eq(3).type("new@email.com");
+            cy.get("input").eq(4).type(user.password);
+            cy.get('button').contains('Account speichern').click();
+            cy.wait(500);
+            cy.get('input').eq(0).should('have.value', user.firstName);
+            cy.get('input').eq(1).should('have.value', user.lastName);
+            cy.get('input').eq(3).should('have.value', "new@email.com");
 
+            cy.get('input').eq(0).clear();
+            cy.get('input').eq(1).clear();
+            cy.get('input').eq(2).clear();
+            cy.get('input').eq(3).clear();
+            cy.get('input').eq(4).clear();
+            cy.get('input').eq(0).type(user.firstName);
+            cy.get('input').eq(1).type(user.lastName);
+            cy.get('input').eq(3).type(user.email);
+            cy.get('input').eq(4).type(user.password);
+            cy.get('button').contains('Account speichern').click();
+            cy.wait(500);
+        });
     });
-    it('profile#5 Profile-Seite wird mit ungültigen Daten abgeschickt ', ()=> {
+    it('profile#5 invalid data should not be updated', () => {
 
-        cy.get('input').eq(2).clear();
         cy.get('input').eq(3).clear();
-        cy.get('input').eq(4).clear();
-
-        cy.get('input').eq(2).type("123456sdd asdfssasd");
-        cy.get('input').eq(3).type("v.koller");
-        cy.get('input').eq(4).type("Abc1234!");
+        cy.get('input').eq(3).type("invalid@email");
         cy.get('button').contains('Account speichern').click();
         cy.wait(500);
 
-        cy.get('input').eq(2).clear();
-        cy.get('input').eq(3).clear();
-        cy.get('input').eq(4).clear();
-        cy.get('input').eq(2).type("123456");
-        cy.get('input').eq(3).type("v.koller@htlstp.at");
-        cy.get('input').eq(4).type("Abc1234!");
-        cy.get('button').contains('Account speichern').click();
-        cy.wait(500);
+        cy.reload();
+        cy.fixture('users/testuser.json').then((user) => {
+            cy.get('input').eq(3).should('have.value', user);
+        });
     });
-    it('profile#6 Klicken auf "Abmelden" funktioniert', ()=>{
+    it('profile#6 Klicken auf "Abmelden" funktioniert', () => {
         cy.contains('Abmelden').click();
         cy.url().should('include', '/login');
+        cy.getCookie("token").should('be.null');
+    })
+    it('profile#6 Klicken auf "Abmelden" nach Änderung ohne Speichern ändert nichts', () => {
+        cy.fixture('users/testuser.json').then((user) => {
 
+            cy.get('input').eq(0).clear();
+            cy.contains('Abmelden').click();
+            cy.url().should('include', '/login');
+            cy.getCookie("token").should('be.null');
+
+            cy.get('input').eq(0).type(user.email);
+            cy.get('input').eq(1).type(user.password);
+            cy.get('button').contains('Anmelden').click();
+            cy.wait(500);
+            cy.visit('http://localhost:3000/profile');
+            cy.get('input').eq(0).should('have.value', user.firstName);
+        });
     })
-    it('profile#6 Klicken auf "Abmelden" nach Änderung ohne Speichern ändert nichts', ()=>{
-        cy.get('input').eq(0).clear();
-        cy.contains('Abmelden').click();
-        cy.url().should('include', '/login');
-        cy.get('input').eq(0).type('v.koller@htlstp.at');
-        cy.get('input').eq(1).type('Abc1234!');
-        cy.get('button').contains('Anmelden').click();
-        cy.wait(500);
-        cy.visit('http://localhost:3000/profile');
-        cy.get('input').eq(0).should('have.value', 'Vitschi');
-    })
-    it('profile#07 Klicken auf "Passwort zurücksetzen" klappt', ()=> {
+    it('profile#07 Klicken auf "Passwort zurücksetzen" funktioniert', () => {
         cy.contains('Passwort vergessen?').click();
         cy.url().should('include', '/reset');
     })
