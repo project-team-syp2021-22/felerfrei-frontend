@@ -217,3 +217,21 @@ export default function Profile() {
         </FadeInView>
     );
 }
+
+export async function getServerSideProps(context) {
+    let token = context.req.cookies.token;
+    if (!token) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/login'
+            },
+            props: {
+
+            },
+        };
+    }
+    return {
+        props: {}
+    };
+}
