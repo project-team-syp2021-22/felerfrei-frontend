@@ -7,6 +7,7 @@ import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
 import Link from 'next/link';
 import styles from '../styles/cart/cart.module.css';
+import { redirectIfNotAdmin } from '../components/admin/adminPage';
 
 export default function ShoppingCart() {
 
@@ -125,4 +126,23 @@ export default function ShoppingCart() {
         </>
     );
 
+}
+
+
+export async function getServerSideProps(context) {
+    let token = context.req.cookies.token;
+    if (!token) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/cart'
+            },
+            props: {
+
+            },
+        };
+    }
+    return {
+        props: {}
+    };
 }
