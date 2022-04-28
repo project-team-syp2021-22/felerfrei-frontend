@@ -15,6 +15,7 @@ function AdminOrderList() {
 
   const [loading, setLoading] = useState();
   const [orders, setOrders] = useState([]);
+  const [showModal, setShowModal] = useState({ showing: false });
 
   useEffect(() => {
     loadOrders(0);
@@ -46,6 +47,10 @@ function AdminOrderList() {
     loadOrders(pageIndex.current += 1);
   }
 
+  function handleClose() {
+    setShowModal({ showing: false });
+  }
+
   return (
     <AdminPage>
       <div className="w-100 d-flex justify-content-center mt-3 mb-3">
@@ -66,7 +71,7 @@ function AdminOrderList() {
                 <tr key={order.order.id} style={{ backgroundColor: order.order.payed ? '#aaffaa' : '#ffaaaa' }}>
                   <td>{order.order.id}</td>
                   <td>{new Date(order.order.orderdate).toLocaleDateString()}</td>
-                  <td>{order.user.firstname} {order.user.lastname}</td>
+                  <td onClick={() => setShowModal({ showing: true, user: order.user })}>{order.user.firstname} {order.user.lastname}</td>
                   <td>{order.totalPrice}</td>
                 </tr>
               );
@@ -80,6 +85,23 @@ function AdminOrderList() {
           {loading ? "Lade..." : "Mehr laden"}
         </Button>
       )}
+
+      <Modal
+        show={showModal.showing}
+        onHide={handleClose}
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>User</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Name: {showModal.user?.firstname} {showModal.user?.lastname}
+          <br />
+          Email: {showModal.user?.email}
+          <br />
+          Telephone: {showModal.user?.telephonenumber}
+        </Modal.Body>
+      </Modal>
     </AdminPage>
   );
 }
