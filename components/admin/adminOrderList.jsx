@@ -51,6 +51,10 @@ function AdminOrderList() {
     setShowModal({ showing: false });
   }
 
+  function openPdf(id) {
+    window.open(`${API_URL}/api/orderPdf/${id}?token=${userToken.token}`, "_blank");
+  }
+
   return (
     <AdminPage>
       <div className="w-100 d-flex justify-content-center mt-3 mb-3">
@@ -69,7 +73,7 @@ function AdminOrderList() {
             orders.map((order) => {
               return (
                 <tr key={order.order.id} style={{ backgroundColor: order.order.payed ? '#aaffaa' : '#ffaaaa' }}>
-                  <td>{order.order.id}</td>
+                  <td style={{ cursor: 'pointer' }} onDoubleClick={() => openPdf(order.order.id)}>{order.order.id}</td>
                   <td>{new Date(order.order.orderdate).toLocaleDateString()}</td>
                   <td onClick={() => setShowModal({ showing: true, user: order.user })}>{order.user.firstname} {order.user.lastname}</td>
                   <td>{order.totalPrice}</td>
