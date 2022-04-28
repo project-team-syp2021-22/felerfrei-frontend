@@ -224,7 +224,7 @@ export default function Signup(props) {
                             <Link href="/login">Bereits ein Konto?</Link>
                         </div>
                         {loginError && <Alert variant={"danger"} className="rounded-0 mt-3"
-                            style={{ maxWidth: "500px", width: "500px", height: "9vh" }}>
+                            style={{ maxWidth: "500px", width: "500px", height: "auto" }}>
                             <div className="d-flex justify-content-center align-items-center m-auto h-100"
                                 style={{ textAlign: "center", verticalAlign: "middle" }}>
                                 {loginError}
