@@ -26,9 +26,9 @@ function Admin() {
                         <Tab eventKey="products" title="Manage Products">
                             <AdminProductList />
                         </Tab>
-                        {/* <Tab eventKey="orders" title="Bestellungen">
+                        <Tab eventKey="orders" title="Bestellungen">
                             <AdminOrderList />
-                        </Tab> */}
+                        </Tab>
                     </Tabs>
                 </div>
             </div>
