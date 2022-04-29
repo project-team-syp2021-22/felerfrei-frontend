@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Tab, Tabs } from 'react-bootstrap';
 import AdminPage, { redirectIfNotAdmin } from '../../components/admin/adminPage';
 import AdminProductList from '../../components/admin/adminProductList';
+import AdminOrderList from '../../components/admin/adminOrderList';
 
 function Admin() {
 
