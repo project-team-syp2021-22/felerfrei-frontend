@@ -15,7 +15,7 @@ function AdminOrderList() {
 
   const [loading, setLoading] = useState();
   const [orders, setOrders] = useState([]);
-  const [showModal, setShowModal] = useState({ showing: false });
+  const [showCustomerModal, setShowCustomerModal] = useState({ showing: false });
 
   useEffect(() => {
     loadOrders(0);
@@ -48,7 +48,7 @@ function AdminOrderList() {
   }
 
   function handleClose() {
-    setShowModal({ showing: false });
+    setShowCustomerModal({ showing: false });
   }
 
   function openPdf(id) {
@@ -75,7 +75,9 @@ function AdminOrderList() {
                 <tr key={order.order.id} style={{ backgroundColor: order.order.payed ? '#aaffaa' : '#ffaaaa' }}>
                   <td style={{ cursor: 'pointer' }} onDoubleClick={() => openPdf(order.order.id)}>{order.order.id}</td>
                   <td>{new Date(order.order.orderdate).toLocaleDateString()}</td>
-                  <td onClick={() => setShowModal({ showing: true, user: order.user })}>{order.user.firstname} {order.user.lastname}</td>
+                  <td onClick={() => setShowCustomerModal({ showing: true, user: order.user, payed: order.order.payed, orderId: order.order.id })}>
+                    {order.user.firstname} {order.user.lastname}
+                  </td>
                   <td>{order.totalPrice}</td>
                 </tr>
               );
@@ -91,7 +93,7 @@ function AdminOrderList() {
       )}
 
       <Modal
-        show={showModal.showing}
+        show={showCustomerModal.showing}
         onHide={handleClose}
         keyboard={false}
       >
@@ -99,11 +101,37 @@ function AdminOrderList() {
           <Modal.Title>User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Name: {showModal.user?.firstname} {showModal.user?.lastname}
+          Name: {showCustomerModal.user?.firstname} {showCustomerModal.user?.lastname}
           <br />
-          Email: {showModal.user?.email}
+          Email: {showCustomerModal.user?.email}
           <br />
-          Telephone: {showModal.user?.telephonenumber}
+          Telephone: {showCustomerModal.user?.telephonenumber}
+          <br />
+          <Form.Group>
+            <Form.Check
+              type="checkbox"
+              label="Bezahlt"
+              defaultChecked={showCustomerModal.payed}
+              onChange={() => {
+                // showCustomerModal.payed = !showCustomerModal.payed;
+                axios.post(`${API_URL}/admin/payOrder/${showCustomerModal.orderId}`,
+                  {
+                    payed: !showCustomerModal.payed,
+                  },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${userToken.token}`
+                    }
+                  }
+                ).then((res) => {
+                  showCustomerModal.payed = !showCustomerModal.payed;
+                  let index = orders.findIndex((order) => order.order.id === showCustomerModal.orderId);
+                  orders[index].order.payed = showCustomerModal.payed;
+                  setOrders([...orders]); // just rerender
+                }).catch(err => console.log(err.response))
+              }}
+            />
+          </Form.Group>
         </Modal.Body>
       </Modal>
     </AdminPage>
