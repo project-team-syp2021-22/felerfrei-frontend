@@ -9,7 +9,7 @@ import Link from 'next/link';
 import styles from '../styles/cart/cart.module.css';
 import { redirectIfNotAdmin } from '../components/admin/adminPage';
 import {redirect} from "next/dist/server/api-utils";
-import OrderModalPage from "../components/admin/orderModalpage";
+import OrderModalPage from "../components/orderModalpage";
 
 export default function ShoppingCart() {
 
@@ -95,11 +95,13 @@ export default function ShoppingCart() {
                                     );
                                 })}
 
-                                <OrderModalPage
-                                    show={showModal}
-                                    onHide={handleClose}
-                                    order={order}
+                                {!loading &&
+                                    <OrderModalPage
+                                        show={showModal}
+                                        onHide={handleClose}
+                                        order={order}
                                     />
+                                }
                                 {
                                     order && order.empty &&
                                     <>
