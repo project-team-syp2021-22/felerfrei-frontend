@@ -77,6 +77,7 @@ function Product() {
     function addImages() {
         uploadService.uploadImages(imageRef.current.files, userToken.token, productId);
         setShowAddModal(false);
+        router.reload();
     }
 
     return (
