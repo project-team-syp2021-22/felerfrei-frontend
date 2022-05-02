@@ -98,8 +98,8 @@ export default function ShoppingCart() {
                                 {!loading &&
                                     <OrderModalPage
                                         show={showModal}
+                                        userToken={userToken}
                                         onHide={handleClose}
-                                        order={order}
                                     />
                                 }
                                 {
