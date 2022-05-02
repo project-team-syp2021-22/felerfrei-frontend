@@ -146,7 +146,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                 </Form>
                             </div>
                             :
-                            <div style={{scale: "0.5"}} className="text-center">
+                            <div className="text-center">
                                 <h3 className="mt-0">
                                     Selbstabholung
                                 </h3>
