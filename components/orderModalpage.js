@@ -147,21 +147,20 @@ export default function OrderModalPage({show, onHide, userToken}) {
                             </div>
                             :
                             <div style={{scale: "0.5"}} className="text-center">
-                                <h3>
+                                <h3 className="mt-0">
                                     Selbstabholung
                                 </h3>
                                 <h6>
                                     Bitte vor der Abholung telefonisch einen Termin vereinbaren!
                                 </h6>
-                                <br/>
                                 <div>
                                     <Card>
                                         <h4 className={styles.textCentering}><b>FELERFREI</b></h4>
                                         <h5 className={styles.textCentering}>Unter der Woche täglich,</h5>
                                         <h5 className={styles.textCentering}>von 7-12 und von 13-16 Uhr</h5>
-                                        <br/>
-                                        <h4 className={styles.textCentering}>Unterm Tisch 3</h4>
-                                        <h4 className={styles.textCentering}>1234 Irgendwo</h4>
+                                        <span className="mt-3"/>
+                                        <h5 className={styles.textCentering}>Unterm Tisch 3</h5>
+                                        <h5 className={styles.textCentering}>1234 Irgendwo</h5>
                                         <h5 className={styles.linking}>
                                     <span className={styles.hoverUnderlineAnimation}>
                                         T:
