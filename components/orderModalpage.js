@@ -9,29 +9,30 @@ import {
     OverlayTrigger,
     Popover,
     Row,
-    Tooltip
 } from "react-bootstrap";
 import React, {useEffect} from "react";
 import styles from "../styles/contactPage.module.css";
 import Link from "next/link";
-import * as PropTypes from "prop-types";
-import Image from "next/image";
 import {API_URL} from "./constants";
 import axios from "axios";
 
 export default function OrderModalPage({show, onHide, userToken}) {
 
     const [delivery, setDelivery] = React.useState(true);
-    const [error, setError] = React.useState();
     const ortRef = React.useRef();
     const postleitzahlRef = React.useRef();
     const strasseRef = React.useRef();
     const hausnummerRef = React.useRef();
     const [loading, setLoading] = React.useState();
     const [order, setOrder] = React.useState();
+    const [error, setError] = React.useState();
 
     function orderNow() {
-        alert("Order Placed");
+        if (error) {
+            setError(null);
+        } else {
+            setError("sdfghjklöä")
+        }
     }
 
     async function loadCart() {
@@ -67,7 +68,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="d-flex justify-content-xl-between" style={{height: "450px"}}>
+                <div className="d-flex justify-content-xl-between" style={{height: 480 - (error && 74) + "px"}}>
                     <div className="flex-md-column w-50">
                         <Form>
                             <Form.Group controlID="deliveryOrNot">
@@ -191,54 +192,54 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                         {(order ? order.totalPrice : 0).toFixed(2)} €
                                     </h3>
                                 </Accordion.Header>
-                                    <Accordion.Body eventKey={0} className="p-1 ps-3">
-                                        <ListGroup style={{
-                                            margin: "0",
-                                            padding: "0",
-                                            maxHeight: "200px",
-                                            overflow: "scroll",
-                                            overflowX: "hidden"
-                                        }}>
-                                            {order ? order.order.orderContents.map((product, index) => (
-                                                <OverlayTrigger
-                                                    placement="right"
-                                                    overlay={
-                                                        <Popover>
-                                                            <Popover.Header>
-                                                                <h6>{product.product.name}</h6>
-                                                            </Popover.Header>
-                                                            <Popover.Body>
-                                                                <div>
-                                                                    <img
-                                                                        src={`${API_URL}/api/image/${product.product.images[0].id}`}
-                                                                        width={"120px"}/>
-                                                                    <br/>
-                                                                    {product.product.description}
-                                                                    <br/>
-                                                                </div>
-                                                            </Popover.Body>
-                                                        </Popover>
-                                                    }>
-                                                    <ListGroup.Item key={index}>
-                                                        <Row>
-                                                            <h6 style={{display: "inline"}}>
-                                                                {product.product.name} x {product.amount} = {(product.amount * product.retailPrice).toFixed(2)} €
-                                                            </h6>
-                                                            {product.extrawurscht &&
-                                                                <p style={{
-                                                                    color: "grey",
-                                                                    display: "inline",
-                                                                    marginBottom: "0"
-                                                                }}>
-                                                                    {product.extrawurscht.substring(0, 20)} {product.extrawurscht.length > 20 && "..."}
-                                                                </p>
-                                                            }
-                                                        </Row>
-                                                    </ListGroup.Item>
-                                                </OverlayTrigger>
-                                            )) : "NIx"}
-                                        </ListGroup>
-                                    </Accordion.Body>
+                                <Accordion.Body eventKey={0} className="p-1 ps-3">
+                                    <ListGroup style={{
+                                        margin: "0",
+                                        padding: "0",
+                                        maxHeight: "200px",
+                                        overflow: "scroll",
+                                        overflowX: "hidden"
+                                    }}>
+                                        {order ? order.order.orderContents.map((product, index) => (
+                                            <OverlayTrigger
+                                                placement="right"
+                                                overlay={
+                                                    <Popover>
+                                                        <Popover.Header>
+                                                            <h6>{product.product.name}</h6>
+                                                        </Popover.Header>
+                                                        <Popover.Body>
+                                                            <div>
+                                                                <img
+                                                                    src={`${API_URL}/api/image/${product.product.images[0].id}`}
+                                                                    width={"120px"}/>
+                                                                <br/>
+                                                                {product.product.description}
+                                                                <br/>
+                                                            </div>
+                                                        </Popover.Body>
+                                                    </Popover>
+                                                }>
+                                                <ListGroup.Item key={index}>
+                                                    <Row>
+                                                        <h6 style={{display: "inline"}}>
+                                                            {product.product.name} x {product.amount} = {(product.amount * product.retailPrice).toFixed(2)} €
+                                                        </h6>
+                                                        {product.extrawurscht &&
+                                                            <p style={{
+                                                                color: "grey",
+                                                                display: "inline",
+                                                                marginBottom: "0"
+                                                            }}>
+                                                                {product.extrawurscht.substring(0, 20)} {product.extrawurscht.length > 20 && "..."}
+                                                            </p>
+                                                        }
+                                                    </Row>
+                                                </ListGroup.Item>
+                                            </OverlayTrigger>
+                                        )) : "NIx"}
+                                    </ListGroup>
+                                </Accordion.Body>
                             </Accordion>
                             <h5 className="p-3 pb-0">
                                 MwSt: {((order ? order.totalPrice : 0) * 0.2).toFixed(2)} €
@@ -250,7 +251,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                         }
                     </div>
                 </div>
-                {error && <Alert variant="danger">{error}</Alert>}
+                {error && <Alert variant="danger" style={{maxHeight: "70px"}}>{error}</Alert>}
             </Modal.Body>
             <Modal.Footer>
                 <div className="d-flex flex-column w-100">
