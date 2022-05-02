@@ -186,7 +186,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                     </div>
                     <div className="w-auto p-3">
                         {!loading && <Card>
-                            <Accordion>
+                            <Accordion style={{width: "480px"}}>
                                 <Accordion.Header className="m-0 p-3">
                                     <h3 style={{margin: "0"}}>
                                         {(order ? order.totalPrice : 0).toFixed(2)} €
