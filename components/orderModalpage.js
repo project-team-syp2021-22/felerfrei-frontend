@@ -196,7 +196,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                     <ListGroup style={{
                                         margin: "0",
                                         padding: "0",
-                                        maxHeight: "200px",
+                                        maxHeight: "180px",
                                         overflow: "scroll",
                                         overflowX: "hidden"
                                     }}>
