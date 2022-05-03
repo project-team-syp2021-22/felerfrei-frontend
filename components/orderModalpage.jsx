@@ -15,6 +15,7 @@ import styles from "../styles/contactPage.module.css";
 import Link from "next/link";
 import { API_URL } from "./constants";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function OrderModalPage({ show, onHide, userToken }) {
 
@@ -27,9 +28,14 @@ export default function OrderModalPage({ show, onHide, userToken }) {
     const [order, setOrder] = useState();
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
+    let router = useRouter();
 
     function orderNow() {
+        if (success) {
+            return router.reload();
+        }
         setError(null);
+        setSuccess(null);
         if (delivery) {
             if (ortRef.current.value === "" || postleitzahlRef.current.value === "" || strasseRef.current.value === "" || hausnummerRef.current.value === "") {
                 return setError("Bitte alle Felder ausfüllen!");
@@ -45,7 +51,10 @@ export default function OrderModalPage({ show, onHide, userToken }) {
             headers: {
                 Authorization: `Bearer ${userToken.token}`,
             }
-        }).then((res) => setSuccess("Bestellung erfolgreich abgeschickt!"))
+        }).then((res) => {
+            show = false;
+            setSuccess("Bestellung erfolgreich abgeschickt!");
+        })
             .catch((err) => setError("Bestellung konnte nicht abgeschickt werden!"));
     }
 
