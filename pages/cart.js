@@ -7,8 +7,6 @@ import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
 import Link from 'next/link';
 import styles from '../styles/cart/cart.module.css';
-import { redirectIfNotAdmin } from '../components/admin/adminPage';
-import {redirect} from "next/dist/server/api-utils";
 import OrderModalPage from "../components/orderModalpage";
 
 export default function ShoppingCart() {
@@ -51,8 +49,8 @@ export default function ShoppingCart() {
     }, []);
 
     function orderNow() {
-        if(order){
-           setShowModal(true);
+        if (order) {
+            setShowModal(true);
         }
     }
 
