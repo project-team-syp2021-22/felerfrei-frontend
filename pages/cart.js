@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Spinner, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../components/authprovider'
 import ShoppingCartItem from "../components/shoppingCartItem.jsx";
@@ -7,7 +7,7 @@ import { API_URL } from "../components/constants";
 import FadeInView from '../components/animation/inview';
 import Link from 'next/link';
 import styles from '../styles/cart/cart.module.css';
-import { redirectIfNotAdmin } from '../components/admin/adminPage';
+import OrderModalPage from "../components/orderModalpage";
 
 export default function ShoppingCart() {
 
@@ -15,7 +15,7 @@ export default function ShoppingCart() {
     const { userToken } = useAuth();
     const [error, setError] = useState();
     const [loading, setLoading] = useState();
-
+    const [showModal, setShowModal] = useState(false);
 
     async function deleteAll() {
         axios.put(`${API_URL}/api/clearCart`, {}, {
@@ -47,6 +47,16 @@ export default function ShoppingCart() {
     useEffect(async () => {
         await loadCart();
     }, []);
+
+    function orderNow() {
+        if (order) {
+            setShowModal(true);
+        }
+    }
+
+    function handleClose() {
+        setShowModal(false);
+    }
 
     return (
         <>
@@ -82,6 +92,14 @@ export default function ShoppingCart() {
                                         />
                                     );
                                 })}
+
+                                {!loading &&
+                                    <OrderModalPage
+                                        show={showModal}
+                                        userToken={userToken}
+                                        onHide={handleClose}
+                                    />
+                                }
                                 {
                                     order && order.empty &&
                                     <>
@@ -103,7 +121,7 @@ export default function ShoppingCart() {
                                     <>
                                         <div className="w-100 d-flex justify-content-center">
 
-                                            <Button onClick={alert}
+                                            <Button onClick={orderNow}
                                                 className="w-50 rounded-0 mt-4"
                                                 variant="dark"
                                                 size={"md"}
