@@ -54,6 +54,7 @@ export default function ShoppingCartItem(props) {
             <div className="mt-3 mb-3 w-100 d-flex flex-row">
                 <img
                     height="200px"
+                    width="300px"
                     src={`http://localhost:8080/api/image/${props.image}`}
                     alt={"Mein Bild"}
                 ></img>
