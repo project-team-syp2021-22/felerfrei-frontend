@@ -54,10 +54,6 @@ export default function ShoppingCart() {
         }
     }
 
-    function handleClose() {
-        setShowModal(false);
-    }
-
     return (
         <>
             {loading &&
@@ -97,7 +93,7 @@ export default function ShoppingCart() {
                                     <OrderModalPage
                                         show={showModal}
                                         userToken={userToken}
-                                        onHide={handleClose}
+                                        onHide={() => setShowModal(false)}
                                     />
                                 }
                                 {
