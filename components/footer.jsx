@@ -3,12 +3,12 @@ import styles from '../styles/footer.module.css';
 
 function Footer() {
     return (
-        <div style={{ verticalAlign: "bottom" }}>
+        <div className={`${styles.alignFooter}`}>
             <div style={{ height: "320px" }}>
 
             </div>
-            <div className={`w-100 text-light ${styles.footer}`} style={{ backgroundColor: '#000' }}>
-                <div className="d-flex flex-row justify-content-center pb-5 pt-3">
+            <div className={`w-100 text-light ${styles.footer}`}>
+                <div className={` pb-5 pt-3 ${styles.row}`}>
                     <div className={`${styles.column} ${styles.rightBorder}`} style={{ width: "300px" }}>
                         <span className={styles.heading}>
                             Über uns
