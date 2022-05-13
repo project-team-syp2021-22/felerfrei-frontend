@@ -10,14 +10,14 @@ import {
     Popover,
     Row,
 } from "react-bootstrap";
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/contactPage.module.css";
 import Link from "next/link";
-import {API_URL} from "./constants";
+import { API_URL } from "./constants";
 import axios from "axios";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
-export default function OrderModalPage({show, onHide, userToken}) {
+export default function OrderModalPage({ show, onHide, userToken }) {
 
     const [delivery, setDelivery] = useState(true);
     const ortRef = useRef();
@@ -75,7 +75,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
 
     function handleClose() {
         onHide();
-        if(success) {
+        if (success) {
             return router.push("/");
         }
     }
@@ -97,7 +97,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                     Produkte bestellen
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{height: "max(45vh, 480px)"}}>
+            <Modal.Body style={{ height: "max(45vh, 480px)" }}>
                 <div className="w-100 h-100 justify-content-between">
                     <div className="d-flex justify-content-xl-between">
                         <div className="flex-md-column w-50">
@@ -146,8 +146,8 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                 </Form.Group>
                             </Form>
                             {delivery ?
-                                <div style={{maxHeight: "350px"}}>
-                                    <h3 className="mt-0" className="text-center">
+                                <div style={{ maxHeight: "350px" }}>
+                                    <h3 className="mt-0 text-center">
                                         Lieferung
                                     </h3>
                                     <h6 className="text-center">
@@ -161,24 +161,24 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                                 placeholder={'Ort'}
                                                 required
                                             />
-                                            <br/>
-                                            <br/>
+                                            <br />
+                                            <br />
                                             <FormControl
                                                 className="rounded-0 border-0 border-bottom border-dark"
                                                 ref={postleitzahlRef}
                                                 placeholder={'Postleitzahl'}
                                                 required
                                             />
-                                            <br/>
-                                            <br/>
+                                            <br />
+                                            <br />
                                             <FormControl
                                                 className="rounded-0 border-0 border-bottom border-dark"
                                                 ref={strasseRef}
                                                 placeholder={'Straße'}
                                                 required
                                             />
-                                            <br/>
-                                            <br/>
+                                            <br />
+                                            <br />
                                             <FormControl
                                                 className="rounded-0 border-0 border-bottom border-dark"
                                                 placeholder="Hausnummer, Stiege, Etage, Türnummer"
@@ -189,7 +189,7 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                     </Form>
                                 </div>
                                 :
-                                <div className="text-center" style={{maxHeight: "350px"}}>
+                                <div className="text-center" style={{ maxHeight: "350px" }}>
                                     <h3>
                                         Selbstabholung
                                     </h3>
@@ -201,38 +201,38 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                             <h3 className={styles.textCentering}><b>FELERFREI</b></h3>
                                             <h5 className={styles.textCentering}>Unter der Woche täglich,</h5>
                                             <h5 className={styles.textCentering}>von 7-12 und von 13-16 Uhr</h5>
-                                            <span className="mt-3"/>
+                                            <span className="mt-3" />
                                             <h5 className={styles.textCentering}>Unterm Tisch 3</h5>
                                             <h5 className={styles.textCentering}>1234 Irgendwo</h5>
-                                            <span className="mt-3"/>
+                                            <span className="mt-3" />
                                             <h5 className={styles.linking}>
-                                            <span className={styles.hoverUnderlineAnimation}>
-                                                T:
-                                                <Link href="tel:0664 1234567">
-                                                    0664 1234567
-                                                </Link>
-                                            </span>
+                                                <span className={styles.hoverUnderlineAnimation}>
+                                                    T:
+                                                    <Link href="tel:0664 1234567">
+                                                        0664 1234567
+                                                    </Link>
+                                                </span>
                                             </h5>
                                             <h5 className={styles.linking}>
-                                            <span className={styles.hoverUnderlineAnimation}>
-                                                E:
-                                                <Link href="mailto:office@felerfrei.at">
-                                                    office@felerfrei.at
-                                                </Link>
-                                            </span>
+                                                <span className={styles.hoverUnderlineAnimation}>
+                                                    E:
+                                                    <Link href="mailto:office@felerfrei.at">
+                                                        office@felerfrei.at
+                                                    </Link>
+                                                </span>
                                             </h5>
                                         </Card>
                                     </div>
                                 </div>
                             }
-                            <br/>
+                            <br />
                         </div>
                         <div className="w-auto p-3">
                             {!loading && order && <Card>
-                                <Accordion style={{width: "480px"}}>
+                                <Accordion style={{ width: "480px" }}>
                                     <Accordion.Item eventKey={"0"}>
                                         <Accordion.Header className="m-0 p-3">
-                                            <h3 style={{margin: "0"}}>
+                                            <h3 style={{ margin: "0" }}>
                                                 {(order ? order.totalPrice : 0).toFixed(2)} €
                                             </h3>
                                         </Accordion.Header>
@@ -257,17 +257,17 @@ export default function OrderModalPage({show, onHide, userToken}) {
                                                                     <div>
                                                                         <img
                                                                             src={`${API_URL}/api/image/${product.product.images[0].id}`}
-                                                                            width={"120px"}/>
-                                                                        <br/>
+                                                                            width={"120px"} />
+                                                                        <br />
                                                                         {product.product.extra}
-                                                                        <br/>
+                                                                        <br />
                                                                     </div>
                                                                 </Popover.Body>
                                                             </Popover>
                                                         }>
                                                         <ListGroup.Item key={index}>
                                                             <Row>
-                                                                <h6 style={{display: "inline"}}>
+                                                                <h6 style={{ display: "inline" }}>
                                                                     {product.product.name} x {product.amount} = {(product.amount * product.retailPrice).toFixed(2)} €
                                                                 </h6>
                                                                 {product.extrawurscht &&
@@ -298,9 +298,9 @@ export default function OrderModalPage({show, onHide, userToken}) {
                         </div>
                     </div>
 
-                    <div style={{verticalAlign: "bottom"}} className="mt-4">
-                        {error && <Alert variant="danger" style={{maxHeight: "70px"}}>{error}</Alert>}
-                        {success && <Alert variant="success" style={{maxHeight: "70px"}}>{success}</Alert>}
+                    <div style={{ verticalAlign: "bottom" }} className="mt-4">
+                        {error && <Alert variant="danger" style={{ maxHeight: "70px" }}>{error}</Alert>}
+                        {success && <Alert variant="success" style={{ maxHeight: "70px" }}>{success}</Alert>}
                     </div>
                 </div>
             </Modal.Body>

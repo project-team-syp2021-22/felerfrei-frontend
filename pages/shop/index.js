@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../../components/constants";
 import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
+import Footer from "../../components/footer";
 
 let pageIndex = 1;
 export default function ProductList({ serverProducts }) {
@@ -66,6 +67,7 @@ export default function ProductList({ serverProducts }) {
                     </motion.div>
                 }
             </div>
+            <Footer />
         </>
     );
 }

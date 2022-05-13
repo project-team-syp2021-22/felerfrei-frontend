@@ -4,6 +4,7 @@ import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import FadeInView from '../components/animation/inview';
+import Footer from '../components/footer';
 
 export default function Login(props) {
     const passwordVisibility = useRef();
