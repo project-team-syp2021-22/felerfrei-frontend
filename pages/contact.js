@@ -30,7 +30,7 @@ export default function Contacts() {
         <FadeInView>
             <div className="d-flex justify-content-center align-content-center mt-3 w-100 mb-5">
                 <div className="w-75 d-flex justify-content-evenly mt-5">
-                    <div className="d-flex flex-row justify-content-evenly w-100">
+                    <div className={`${styles.rowContent}`}>
                         <div className="d-flex align-items-center justify-content-evenly h-100 me-5">
                             <div className="ms-5 d-flex align-content-center flex-column">
                                 <h1 className={styles.textCentering}><b>Kontaktieren Sie mich</b></h1>
@@ -58,7 +58,7 @@ export default function Contacts() {
                                 </h3>
                             </div>
                         </div>
-                        <img width={550} alt="Bild"
+                        <img className={styles.image} alt="Bild"
                             src="https://images.unsplash.com/photo-1599651993975-30a482e26467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
                     </div>
                 </div>

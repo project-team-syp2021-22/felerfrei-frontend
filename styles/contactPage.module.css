@@ -1,38 +1,58 @@
 .linking {
-    font-weight: bold;
-    outline-color: black;
-    text-align: center;
+  font-weight: bold;
+  outline-color: black;
+  text-align: center;
 }
 
 .linking a {
-    color: black;
+  color: black;
 }
 
 .textCentering {
-    text-align: center;
+  text-align: center;
 }
 
-
 .hoverUnderlineAnimation {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .hoverUnderlineAnimation:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #999;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #999;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
 }
 
 .hoverUnderlineAnimation:hover:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
+.rowContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.image {
+    width: 550px;
+}
+
+@media screen and (max-width: 768px) {
+  .rowContent {
+    flex-direction: column;
+  }
+
+  .image {
+      width: 100%;
+  }
+}   
