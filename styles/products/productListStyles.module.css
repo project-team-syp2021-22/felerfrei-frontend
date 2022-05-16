@@ -75,6 +75,7 @@ h2, h3, p {
 }
 
 .details {
+    margin-left: 50px;
     display: flex;
     width: 25%;
     flex-direction: column;
