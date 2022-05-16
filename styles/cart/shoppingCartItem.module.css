@@ -58,15 +58,18 @@
     }
 
     .image {
-        width: 100%;
+        width: 90%;
+        height: fit-content;
     }
 
     .listItem {
+        max-width: 100%;
         align-items: center;
         flex-direction: column;
     }
 
     .extra {
+        max-width: 100%;
         margin-bottom: 30px;
     }
 

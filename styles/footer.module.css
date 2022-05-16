@@ -43,7 +43,6 @@
 
 @media screen and (max-width: 768px) {
     .alignFooter {
-        vertical-align: bottom;
         margin: 0 auto;
     }
 

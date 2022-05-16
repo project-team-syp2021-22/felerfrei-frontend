@@ -53,11 +53,10 @@ export default function ShoppingCartItem(props) {
         <>
             <div className={styles.listItem}>
                 <img
-                    height="200px"
-                    width="300px"
+                    className={styles.image}
                     src={`${API_URL}/api/image/${props.image}`}
                     alt={"Mein Bild"}
-                ></img>
+                />
                 <div className={styles.listItemDetails}>
                     <div className={styles.listItemTitle}>
                         <div
@@ -66,15 +65,13 @@ export default function ShoppingCartItem(props) {
                         >
                             <h4>{props.name}</h4>
                         </div>
-                        <div>
-                            <div className={styles.extra}>
-                                {props.extra && (
-                                    <>
-                                        <h5>Personalisierung:</h5>
-                                        {props.extra}
-                                    </>
-                                )}
-                            </div>
+                        <div className={styles.extra}>
+                            {props.extra && (
+                                <>
+                                    <h5>Personalisierung:</h5>
+                                    {props.extra}
+                                </>
+                            )}
                         </div>
                     </div>
                     <div>
