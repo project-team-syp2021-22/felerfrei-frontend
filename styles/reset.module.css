@@ -1,0 +1,22 @@
+.parent {
+    display: flex;
+    display: table;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 500px;
+}
+
+@media screen and (max-width: 768px) {
+    .parent {
+        max-width: 100%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+}
