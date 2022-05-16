@@ -108,7 +108,7 @@ export default function ShoppingCart() {
                                         <>
                                             <div className="w-100 d-flex flex-column justify-content-center">
 
-                                                <Alert variant="warning" className="w-75 rounded-0">
+                                                <Alert variant="warning" className={styles.warning}>
                                                     Dein Warenkorb ist leer.
                                                 </Alert>
                                                 <div>
