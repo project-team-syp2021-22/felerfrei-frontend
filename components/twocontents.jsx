@@ -20,8 +20,8 @@ function TwoContents(props) {
     return (
         <div className="d-flex justify-content-center align-content-center mt-3 w-100 mb-5">
             <div className="w-75 d-flex justify-content-center mt-5">
-                <div className="d-flex flex-row w-100 justify-content-evenly">
-                    <div className="d-flex flex-column">
+                <div className={styles.contentSeparator}>
+                    <div className={styles.content1}>
                         <img width={350} src={props.image1} />
                         <div className="text-break" style={{ width: "350px" }}>
                             <div className={`w-100 ${styles.subheading} mt-1`}>
@@ -32,7 +32,7 @@ function TwoContents(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex flex-column">
+                    <div className={styles.content2}>
                         <img width={350} src={props.image2} />
                         <div className="text-break" style={{ width: "350px" }}>
                             <div className={`w-100 ${styles.subheading} mt-1`}>

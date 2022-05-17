@@ -12,3 +12,71 @@
 .name:hover {
     cursor: pointer;
 }
+
+.image {
+    width: 300px;
+    height: 200px;
+}
+
+.listItem {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.listItemDetails {
+    display: flex;
+    flex-direction: row;
+    margin-left: 40px;
+    margin-right: 150px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.listItemAmountPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.listItemTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .listItemTitle {
+        align-items: center;
+    }
+
+
+    .listItemAmountPrice {
+        align-items: center;
+    }
+
+    .image {
+        width: 90%;
+        height: fit-content;
+    }
+
+    .listItem {
+        max-width: 100%;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .extra {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .listItemDetails {
+        margin: 0;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+}

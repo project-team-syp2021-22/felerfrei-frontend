@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Container, Button, Alert, Spinner, Form, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../../components/constants';
-
+import styles from "../../styles/reset.module.css";
 
 export default function Reset() {
 
@@ -67,12 +67,12 @@ export default function Reset() {
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center mt-5">
-            <div style={{ maxWidth: "500px" }} >
+        <div className={styles.parent}>
+            <div>
                 <Container className="w-100">
                     <h2 className="fw-bold">Neues Passwort</h2>
 
-                    <Form style={{ width: "500px" }}>
+                    <Form className={styles.form}>
 
                         <InputGroup className="mb-4">
                             <FormControl

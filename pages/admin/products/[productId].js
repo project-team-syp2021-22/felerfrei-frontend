@@ -77,6 +77,7 @@ function Product() {
     function addImages() {
         uploadService.uploadImages(imageRef.current.files, userToken.token, productId);
         setShowAddModal(false);
+        router.reload();
     }
 
     return (
@@ -128,7 +129,7 @@ function Product() {
                             </Form.Group>
                             <div className="d-flex justify-content-center">
                                 <Button variant='dark' className="mt-3 rounded-0 w-50" onClick={handleChange}>
-                                    Ändern
+                                    Speichern
                                 </Button>
                             </div>
                             <div className="d-flex justify-content-center">

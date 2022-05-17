@@ -14,6 +14,10 @@
     padding: 10px;
 }
 
+.footer {
+    background-color: #000;
+}
+
 .column {
     float: left;
     width: "200px";
@@ -25,4 +29,55 @@
 
 .rightBorder {
     border-right: #fff solid 1px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.alignFooter {
+    vertical-align: bottom;
+}
+
+@media screen and (max-width: 768px) {
+    .alignFooter {
+        margin: 0 auto;
+    }
+
+    .footer {
+        width: 164vw;
+        background-color: #000;
+    }
+
+    .row {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
+
+    .rightBorder {
+        border-right: none;
+        border-bottom: #fff solid 1px;
+    }
+
+    .text {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .heading {
+        width: 100%;
+        text-align: center;
+    }
 }

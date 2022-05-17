@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Container, Form, InputGroup, Button, Alert, Spinner } from 'react-bootstrap'
 import axios from 'axios';
-import API_URL from '../../components/constants';
+import { API_URL } from '../../components/constants';
+import styles from "../../styles/reset.module.css";
 
 export default function ResetRequest() {
 
@@ -18,7 +19,7 @@ export default function ResetRequest() {
         setError(null);
         setSuccess(null);
         setLoading(true);
-        await axios.post(`http://localhost:8080/auth/requestResetPassword`, { email })
+        await axios.post(`${API_URL}/auth/requestResetPassword`, { email })
             .then(res => {
                 setSuccess('Wir haben eine E-Mail mit einem Link zum Zurücksetzen deines Passworts an ' + email + ' gesendet.');
             })
@@ -29,11 +30,11 @@ export default function ResetRequest() {
     }
 
     return (
-        <div className="d-flex d-table mt-5 justify-content-center align-items-center">
+        <div className={styles.parent}>
             <div className="d-table-cell align-middle" style={{ maxWidth: "500px" }}>
                 <Container className="w-100">
                     <h2 className="fw-bold">Passwort zurücksetzen</h2>
-                    <Form style={{ width: "500px" }}>
+                    <Form className={styles.form}>
                         <InputGroup className="mb-4 mt-4">
                             <Form.Label>
                                 Bitte geben Sie Ihre E-Mail ein um einen Link zum Zurücksetzen Ihres Passworts zu

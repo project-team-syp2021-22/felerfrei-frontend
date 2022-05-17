@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
         as="font"
         crossOrigin="*"
       />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <AuthProvider>

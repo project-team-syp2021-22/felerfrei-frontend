@@ -7,6 +7,7 @@ import TwoContents from "../components/twocontents";
 import HeadingAndContent from "../components/headingAndContent";
 import { motion } from "framer-motion";
 import FadeInView from "../components/animation/inview";
+import styles from "../styles/index.module.css";
 
 export default function Index() {
 
@@ -39,9 +40,9 @@ export default function Index() {
         <Divider />
       </FadeInView>
       <FadeInView>
-        <div className="d-flex justify-content-center align-content-center mt-3 w-100 mb-5">
-          <div className="w-75 d-flex justify-content-center mt-5">
-            <div className="d-flex flex-row">
+        <div className={styles.quote}>
+          <div className={styles.imageQuoteAlignment}>
+            <div className={styles.imageQuoteFlex}>
               <div className="d-flex align-items-center h-100 me-5">
                 <div>
                   <Quote quote="Horvath Anton, 32 Jahre und jo – gschiedn bin i"
@@ -49,7 +50,7 @@ export default function Index() {
                   />
                 </div>
               </div>
-              <img width={550} src="https://images.unsplash.com/photo-1599651993975-30a482e26467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+              <img className={styles.quoteImage} src="https://images.unsplash.com/photo-1599651993975-30a482e26467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../../components/constants";
 import { Button } from "react-bootstrap";
 import { motion } from "framer-motion";
+import Footer from "../../components/footer";
 
 let pageIndex = 1;
 export default function ProductList({ serverProducts }) {
@@ -17,13 +18,12 @@ export default function ProductList({ serverProducts }) {
             return;
         }
         setLoading(true);
-        await axios.get(API_URL + '/api/products?size=10&page=' + index)
+        await axios.get(API_URL + '/api/products?size=1&page=' + index)
             .then(res => {
                 if (res.data.last) {
                     setLast(true);
                 }
-                //todo
-                //console.log(res.data.content, pageIndex);
+                console.log(res.data);
                 setProducts([...products, ...res.data.content]);
             })
             .catch(err => {
@@ -33,7 +33,8 @@ export default function ProductList({ serverProducts }) {
     }
 
     function showMore() {
-        loadProducts(pageIndex += 1);
+        loadProducts(pageIndex);
+        pageIndex++;
     }
 
     return (
@@ -51,10 +52,23 @@ export default function ProductList({ serverProducts }) {
                         <ProductItem key={product.id} product={product} />
                     )
                     )}
+                    <br />
                 {!last &&
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, transition: { duration: 1 } }}
+                        initial={{
+                            y: 300,
+                            scale: 0.7,
+                            opacity: 0.0,
+                        }}
+                        animate={{
+                            x: 0,
+                            y: 0,
+                            opacity: 1,
+                            scale: 1,
+                            transition: {
+                                duration: 1,
+                            }
+                        }}
                     >
                         <Button
                             disabled={loading}
@@ -66,6 +80,7 @@ export default function ProductList({ serverProducts }) {
                     </motion.div>
                 }
             </div>
+            <Footer />
         </>
     );
 }

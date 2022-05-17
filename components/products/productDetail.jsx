@@ -52,7 +52,7 @@ export default function ProductDetail({ product }) {
         style={{ height: "90vh" }}
       >
         <div className="m-5 w-100">
-          <div className="d-flex justify-content-center">
+          <div className={styles.parent}>
             <motion.div
               initial={{
                 opacity: 0,
@@ -66,7 +66,7 @@ export default function ProductDetail({ product }) {
                   delay: 0.5,
                 },
               }}
-              className="w-50"
+              className={styles.animationDiv}
             >
               <ImageSlider
                 images={product.images}
@@ -74,7 +74,7 @@ export default function ProductDetail({ product }) {
               />
             </motion.div>
 
-            <div className="ms-4 d-flex w-25 flex-column justify-content-between">
+            <div className={styles.details}>
               <motion.div
                 initial={{
                   opacity: 0,

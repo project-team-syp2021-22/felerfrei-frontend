@@ -36,3 +36,37 @@ function AdminPage({ t, children }) {
 }
 
 export default AdminPage;
+
+export async function redirectIfNotAdmin(token) {
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      },
+      props: {
+
+      },
+    };
+  }
+  return await axios.get(`${API_URL}/auth/isAdmin`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then(_ => {
+      return {
+        props: {
+        },
+      };
+    })
+    .catch(_ => {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/'
+        },
+        props: {
+
+        },
+      };
+    });
+}

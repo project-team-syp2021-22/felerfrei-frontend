@@ -1,0 +1,48 @@
+.textCentering {
+    text-align: center;
+}
+
+.parent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalBody {
+    height: max(45vh, 480px);
+}
+
+.deliveryParent {
+    max-height: 350px;
+}
+
+.column {
+    width: 50%;
+    flex: 1;
+}
+
+.accordion {
+    width: 480px;
+}
+
+@media screen and (max-width: 768px) {
+    .accordion {
+        width: auto;
+    }
+
+    .parent {
+        flex-direction: column;
+    }
+
+    .modalBody {
+        height: auto;
+    }
+
+    .deliveryParent {
+        max-height: none;
+        width: 100%;
+    }
+
+    .column {
+        width: 100%;
+    }
+}

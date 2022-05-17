@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link'
 import PasswordStrengthBar from 'react-password-strength-bar';
 import FadeInView from '../components/animation/inview';
-
+import styles from "../styles/signup.module.css";
 
 export default function Signup(props) {
     const passwordVisibility = useRef();
@@ -84,19 +84,15 @@ export default function Signup(props) {
         setShowModal(false);
     }
 
-    return (<>
-        <FadeInView>
-            <div className="d-flex justify-content-center align-items-center h-100 d-table mt-5">
-                <div className="d-table-cell align-middle" style={{
-                    display: "table-cell",
-                    verticalAlign: "middle",
-                    marginBottom: loginError ? "0" : "calc(6vh + 40px)"
-                }}>
-                    <Container className="w-100">
+    return (
+        <>
+            <FadeInView>
+                <div className={styles.parent}>
+                    <Container className={styles.container}>
                         <div className="justify-content-center">
                             <h2 className="fw-bold">Signup</h2>
                         </div>
-                        <Form style={{ width: "500px" }}>
+                        <Form className={styles.form}>
                             <InputGroup className="mb-4 mt-4">
                                 <Form.Control
                                     className="rounded-0 border-0 border-bottom border-dark"
@@ -223,8 +219,7 @@ export default function Signup(props) {
                         <div className="mt-4">
                             <Link href="/login">Bereits ein Konto?</Link>
                         </div>
-                        {loginError && <Alert variant={"danger"} className="rounded-0 mt-3"
-                            style={{ maxWidth: "500px", width: "500px", height: "9vh" }}>
+                        {loginError && <Alert variant={"danger"} className={`rounded-0 mt-3 ${styles.error}`}>
                             <div className="d-flex justify-content-center align-items-center m-auto h-100"
                                 style={{ textAlign: "center", verticalAlign: "middle" }}>
                                 {loginError}
@@ -232,29 +227,29 @@ export default function Signup(props) {
                         </Alert>}
                     </Container>
                 </div>
-            </div>
-            <Modal
-                show={showModal}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Erfolgreich registriert!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Sie haben sich erfolgreich registriert. Bitte überprüfen Sie Ihre E-Mails und bestätigen Sie Ihr
-                    Konto.
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="dark" onClick={() => {
-                        handleClose();
-                        router.push("/")
-                    }}>
-                        Ok
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </FadeInView>
-    </>)
+                <Modal
+                    show={showModal}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Erfolgreich registriert!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Sie haben sich erfolgreich registriert. Bitte überprüfen Sie Ihre E-Mails und bestätigen Sie Ihr
+                        Konto.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="dark" onClick={() => {
+                            handleClose();
+                            router.push("/")
+                        }}>
+                            Ok
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </FadeInView>
+        </>
+    );
 }
