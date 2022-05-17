@@ -113,6 +113,10 @@ h2, h3, p {
     .productDetailImages {
         width: 100%;
     }
+
+    .details {
+        margin-left: 0;
+    }
 }
 
 .productDetailImages {

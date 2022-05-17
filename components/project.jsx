@@ -1,11 +1,12 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import { API_URL } from './constants'
+import styles from "../styles/project.module.css";
 
 function Project(props) {
 
     return (
-        <div className="w-50">
+        <div className={styles.parent}>
             <div>
                 <h3>{props.project.title}</h3>
             </div>
@@ -27,7 +28,7 @@ function Project(props) {
                 <div>
                     {new Date(props.project.date).toLocaleDateString()}
                 </div>
-                <div className="mt-3" style={{ fontSize: "15pt" }}>
+                <div className={styles.description}>
                     <p>{props.project.description}</p>
                 </div>
             </div>

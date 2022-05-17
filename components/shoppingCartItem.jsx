@@ -13,7 +13,7 @@ export default function ShoppingCartItem(props) {
     const [quantity, setQuantity] = useState(props.quantity);
 
     async function changeQuantity(newQuantity) {
-        axios.put(`http://localhost:8080/api/setProductInCart`, {
+        axios.put(`${API_URL}/api/setProductInCart`, {
             orderContentId: props.id,
             amount: newQuantity,
         }, {
