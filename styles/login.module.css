@@ -1,0 +1,46 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 100px;
+    width: 100%;
+}
+
+.inputDialog {
+    max-width: 500px;
+    width: 500px;
+    margin-top: 3px;
+}
+
+.form {
+    width: 500px;
+}
+
+.error {
+    max-width: 500px;
+    width: 500px;
+    height: 9vh;
+}
+
+@media screen and (max-width: 768px) {
+    .parent {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .inputDialog {
+        max-width: 100%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .error {
+        max-width: 100%;
+        width: 100%;
+        height: 14vh;
+    }
+}

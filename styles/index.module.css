@@ -22,3 +22,51 @@
     width: "350px";
     max-width: "350px";
 }
+
+.quote {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.quoteImage {
+    width: 550px;
+}
+
+.imageQuoteFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+.imageQuoteAlignment {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .quoteImage {
+        width: 100%;
+    }
+
+    .quote {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imageQuoteFlex {
+        flex-direction: column-reverse;
+    }
+
+    .imageQuoteAlignment {
+        width: 90%;
+        margin-top: 0;
+    }
+}

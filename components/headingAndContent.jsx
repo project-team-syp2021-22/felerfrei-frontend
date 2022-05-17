@@ -5,9 +5,9 @@ import styles from '../styles/headingAndContent.module.css';
 function HeadingAndContent(props) {
 
     return (
-        <div className="d-flex justify-content-center align-content-center w-100 mb-5">
-            <div className="w-75 d-flex justify-content-center mt-5">
-                <div className="d-flex flex-column align-items-center h-100 me-5 w-50">
+        <div className={`${styles.parent} mb-5`}>
+            <div className="w-75 d-flex justify-content-center align-items-center mt-5 w-100">
+                <div className={`${styles.child}`}>
                     <div className={styles.heading}>
                         {props.heading}
                     </div>

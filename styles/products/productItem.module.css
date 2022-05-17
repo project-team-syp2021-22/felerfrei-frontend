@@ -26,3 +26,12 @@
     background-color: #ffffff;
     padding: 1px 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .item {
+        width: 90%;
+        max-width: 90%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+}

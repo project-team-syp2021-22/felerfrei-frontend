@@ -4,7 +4,7 @@ import { useAuth } from '../components/authprovider'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import FadeInView from '../components/animation/inview';
-import Footer from '../components/footer';
+import styles from "../styles/login.module.css";
 
 export default function Login(props) {
     const passwordVisibility = useRef();
@@ -59,11 +59,11 @@ export default function Login(props) {
 
     return (
         <FadeInView>
-            <div className="d-flex d-table justify-content-center align-items-center h-100 mt-5">
-                <div style={{ maxWidth: "500px" }} className="mt-3 align-middle d-table-cell">
+            <div className={styles.parent}>
+                <div className={styles.inputDialog}>
                     <Container className="w-100">
                         <h2 className="fw-bold">Login</h2>
-                        <Form style={{ width: "500px" }}>
+                        <Form className={styles.form}>
                             <InputGroup className="mb-4 mt-4">
                                 <Form.Control
                                     className="rounded-0 border-0 border-bottom border-dark"
@@ -121,8 +121,7 @@ export default function Login(props) {
                             <Link href="/reset">Passwort vergessen?</Link>
                         </div>
                         {loginError &&
-                            <Alert variant={"danger"} className="rounded-0 mt-3"
-                                style={{ maxWidth: "500px", width: "500px", height: "9vh" }}>
+                            <Alert variant={"danger"} className={`rounded-0 mt-3 ${styles.error}`}>
                                 <div className="d-flex justify-content-center align-items-center m-auto h-100"
                                     style={{ textAlign: "center", verticalAlign: "middle" }}>
                                     {loginError}

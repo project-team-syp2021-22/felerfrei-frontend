@@ -25,7 +25,7 @@ function NavigationBar() {
                     }
                 }}
 
-                className="" style={{ position: "fixed", width: "100vw", zIndex: "10" }}
+                className="navbarAll" style={{ position: "fixed", width: "100vw", zIndex: "10" }}
             >
                 <Navbar
                     collapseOnSelect
@@ -55,17 +55,17 @@ function NavigationBar() {
                                         Was?
                                     </span>
                                 </Nav.Link>
-                                <Nav.Link href="/" className="ms-5" style={{fontSize: "15pt"}}>
+                                <Nav.Link href="/" className="ms-5" style={{ fontSize: "15pt" }}>
                                     <span className={styles.hoverUnderlineAnimation}>
                                         Wer?
                                     </span>
                                 </Nav.Link>
-                                <Nav.Link href="/contact" className="ms-5" style={{fontSize: "15pt"}}>
+                                <Nav.Link href="/contact" className="ms-5" style={{ fontSize: "15pt" }}>
                                     <span className={styles.hoverUnderlineAnimation}>
                                         Impressum
                                     </span>
                                 </Nav.Link>
-                                <Nav.Link href="/projects" className="ms-5" style={{fontSize: "15pt"}}>
+                                <Nav.Link href="/projects" className="ms-5" style={{ fontSize: "15pt" }}>
                                     <span className={styles.hoverUnderlineAnimation}>
                                         Referenzen
                                     </span>

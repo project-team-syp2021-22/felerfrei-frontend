@@ -206,7 +206,7 @@ export default function Profile() {
                         {
                             loginError &&
                             <Alert variant={"danger"} className="rounded-0 d-flex justify-content-center md-4 mt-4"
-                                style={{ height: "8vh" }}>
+                                style={{ height: "12vh" }}>
                                 {loginError}
                             </Alert>
                         }

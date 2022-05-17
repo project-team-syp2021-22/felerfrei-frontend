@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "constants";
+import { API_URL } from "./constants.js";
 import Divider from "./divider";
 import styles from "../styles/cart/shoppingCartItem.module.css";
 import axios from "axios";
@@ -13,7 +13,7 @@ export default function ShoppingCartItem(props) {
     const [quantity, setQuantity] = useState(props.quantity);
 
     async function changeQuantity(newQuantity) {
-        axios.put(`http://localhost:8080/api/setProductInCart`, {
+        axios.put(`${API_URL}/api/setProductInCart`, {
             orderContentId: props.id,
             amount: newQuantity,
         }, {
@@ -31,7 +31,7 @@ export default function ShoppingCartItem(props) {
     async function handleDelete() {
         axios
             .put(
-                `http://localhost:8080/api/deleteFromCart`,
+                `${API_URL}/api/deleteFromCart`,
                 {
                     orderContentId: props.id,
                     amount: quantity,
@@ -51,34 +51,31 @@ export default function ShoppingCartItem(props) {
     console.log(props);
     return (
         <>
-            <div className="mt-3 mb-3 w-100 d-flex flex-row">
+            <div className={styles.listItem}>
                 <img
-                    height="200px"
-                    width="300px"
-                    src={`http://localhost:8080/api/image/${props.image}`}
+                    className={styles.image}
+                    src={`${API_URL}/api/image/${props.image}`}
                     alt={"Mein Bild"}
-                ></img>
-                <div className="ms-3 d-flex flex-row">
-                    <div className="d-flex flex-column">
+                />
+                <div className={styles.listItemDetails}>
+                    <div className={styles.listItemTitle}>
                         <div
                             className={styles.name}
                             onClick={() => router.push(`/shop/${props.productId}`)}
                         >
                             <h4>{props.name}</h4>
                         </div>
-                        <div>
-                            <div className={styles.extra}>
-                                {props.extra && (
-                                    <>
-                                        <h5>Personalisierung:</h5>
-                                        {props.extra}
-                                    </>
-                                )}
-                            </div>
+                        <div className={styles.extra}>
+                            {props.extra && (
+                                <>
+                                    <h5>Personalisierung:</h5>
+                                    {props.extra}
+                                </>
+                            )}
                         </div>
                     </div>
                     <div>
-                        <div className="d-flex flex-column justify-content-between h-100">
+                        <div className={styles.listItemAmountPrice}>
                             <div className="me-3 ms-3">
                                 <h5>{Number(props.price).toFixed(2)} € </h5>
                             </div>
