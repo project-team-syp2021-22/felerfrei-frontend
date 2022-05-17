@@ -11,7 +11,7 @@ import {
     Row,
 } from "react-bootstrap";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "../styles/contactPage.module.css";
+import styles from "../styles/cart/orderpage.module.css";
 import Link from "next/link";
 import { API_URL } from "./constants";
 import axios from "axios";
@@ -97,10 +97,11 @@ export default function OrderModalPage({ show, onHide, userToken }) {
                     Produkte bestellen
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ height: "max(45vh, 480px)" }}>
+            <Modal.Body className={styles.modalBody}>
                 <div className="w-100 h-100 justify-content-between">
-                    <div className="d-flex justify-content-xl-between">
-                        <div className="flex-md-column w-50">
+                    {/* <div className="d-flex justify-content-xl-between"> */}
+                    <div className={styles.parent}>
+                        <div className={styles.column}>
                             <Form>
                                 <Form.Group controlID="deliveryOrNot">
                                     <Form.Label>
@@ -146,7 +147,7 @@ export default function OrderModalPage({ show, onHide, userToken }) {
                                 </Form.Group>
                             </Form>
                             {delivery ?
-                                <div style={{ maxHeight: "350px" }}>
+                                <div className={styles.deliveryParent}>
                                     <h3 className="mt-0 text-center">
                                         Lieferung
                                     </h3>
@@ -229,7 +230,7 @@ export default function OrderModalPage({ show, onHide, userToken }) {
                         </div>
                         <div className="w-auto p-3">
                             {!loading && order && <Card>
-                                <Accordion style={{ width: "480px" }}>
+                                <Accordion className={styles.accordion}>
                                     <Accordion.Item eventKey={"0"}>
                                         <Accordion.Header className="m-0 p-3">
                                             <h3 style={{ margin: "0" }}>
