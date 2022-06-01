@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Spinner, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../components/authprovider'
+import React, {useEffect, useState} from 'react'
+import {Container, Spinner, Button, Alert} from 'react-bootstrap'
+import {useAuth} from '../components/authprovider'
 import ShoppingCartItem from "../components/shoppingCartItem.jsx";
 import axios from 'axios';
-import { API_URL } from "../components/constants";
+import {API_URL} from "../components/constants";
 import FadeInView from '../components/animation/inview';
 import Link from 'next/link';
 import styles from '../styles/cart/cart.module.css';
@@ -13,7 +13,7 @@ import Footer from "../components/footer";
 export default function ShoppingCart() {
 
     const [order, setOrder] = useState();
-    const { userToken } = useAuth();
+    const {userToken} = useAuth();
     const [error, setError] = useState();
     const [loading, setLoading] = useState();
     const [showModal, setShowModal] = useState(false);
@@ -56,13 +56,13 @@ export default function ShoppingCart() {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ height: "auto", alignContent: "space-evenly", width: "100%" }}>
-                <div style={{ height: "calc(100% - 290px)" }}>
+        <div style={{display: "flex", flexDirection: "column"}}>
+            <div style={{height: "auto", alignContent: "space-evenly", width: "100%"}}>
+                <div style={{height: "calc(100% - 290px)"}}>
                     {loading &&
                         <div className="d-flex w-100 h-100 justify-content-center align-items-center">
                             <div>
-                                <Spinner />
+                                <Spinner/>
                             </div>
                         </div>
                     }
@@ -126,11 +126,11 @@ export default function ShoppingCart() {
                                                 <div className="w-100 d-flex justify-content-center">
 
                                                     <Button onClick={orderNow}
-                                                        className="w-50 rounded-0 mt-4 mb-4"
-                                                        variant="dark"
-                                                        size={"md"}
+                                                            className="w-50 rounded-0 mt-4 mb-4"
+                                                            variant="dark"
+                                                            size={"md"}
 
-                                                        style={{ transition: '0.5s' }}>
+                                                            style={{transition: '0.5s'}}>
                                                         Bestellen
                                                     </Button>
                                                 </div>
@@ -143,7 +143,7 @@ export default function ShoppingCart() {
                     }
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 
