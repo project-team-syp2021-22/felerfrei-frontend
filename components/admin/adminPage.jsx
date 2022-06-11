@@ -11,11 +11,6 @@ function AdminPage({ t, children }) {
   const [loading, setLoading] = useState(true);
 
   let router = useRouter();
-
-  if (!userToken) {
-    return <div>You are not logged in</div>;
-  }
-
   useEffect(async () => {
     await axios
       .get(`${API_URL}/auth/isAdmin`, {
@@ -26,6 +21,11 @@ function AdminPage({ t, children }) {
       });
     setLoading(false);
   }, []);
+  if (!userToken) {
+    return <div>You are not logged in</div>;
+  }
+
+
 
   return (
     <div>
