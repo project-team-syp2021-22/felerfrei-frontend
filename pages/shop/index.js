@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ProductItem from "../../components/products/productItem";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from "axios";
-import { API_URL } from "../../components/constants";
-import { Button } from "react-bootstrap";
-import { motion } from "framer-motion";
+import {API_URL} from "../../components/constants";
+import {Button} from "react-bootstrap";
+import {motion} from "framer-motion";
 import Footer from "../../components/footer";
 
 let pageIndex = 1;
-export default function ProductList({ serverProducts }) {
+export default function ProductList({serverProducts}) {
     const [loading, setLoading] = useState(false);
     const [last, setLast] = useState(serverProducts.last);
     const [products, setProducts] = useState(serverProducts.products);
@@ -38,21 +38,22 @@ export default function ProductList({ serverProducts }) {
     }
 
     return (
-        <>
+        <div className="d-flex flex-column h-100">
             <div style={{
                 margin: "min(30px, 5vw)",
                 justifyContent: "center",
                 padding: "10px",
                 display: "flex",
                 flexWrap: "wrap",
-                zIndex: "1"
+                zIndex: "1",
+                flexGrow: "1",
             }}>
                 {products
                     .map((product) => (
-                        <ProductItem key={product.id} product={product} />
-                    )
+                            <ProductItem key={product.id} product={product}/>
+                        )
                     )}
-                    <br />
+                <br/>
                 {!last &&
                     <motion.div
                         initial={{
@@ -75,13 +76,13 @@ export default function ProductList({ serverProducts }) {
                             variant="outline-dark"
                             className="w-100 rounded-0"
                             size={"md"}
-                            style={{ transition: '0.5s' }}
+                            style={{transition: '0.5s'}}
                             onClick={showMore}>Mehr Anzeigen</Button>
                     </motion.div>
                 }
             </div>
-            <Footer />
-        </>
+            <Footer/>
+        </div>
     );
 }
 

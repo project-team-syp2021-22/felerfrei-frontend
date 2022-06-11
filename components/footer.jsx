@@ -4,9 +4,7 @@ import styles from '../styles/footer.module.css';
 function Footer() {
     return (
         <div className={`${styles.alignFooter}`}>
-            <div style={{ height: "320px" }}>
 
-            </div>
             <div className={`w-100 text-light ${styles.footer}`}>
                 <div className={` pb-5 pt-3 ${styles.row}`}>
                     <div className={`${styles.column} ${styles.rightBorder}`} style={{ width: "300px" }}>
