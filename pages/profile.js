@@ -8,14 +8,6 @@ import FadeInView from "../components/animation/inview";
 
 
 export default function Profile() {
-
-    let { user, changeCredentials, logout } = useAuth();
-    let router = useRouter();
-    if (!user) {
-        router.push("/login");
-        return <></>;
-    }
-
     const passwordVisibility = useRef();
 
     const [passwordIsHidden, setPasswordIsHidden] = useState(true);
@@ -27,6 +19,14 @@ export default function Profile() {
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const phoneRef = useRef();
+
+    let { user, changeCredentials, logout } = useAuth();
+    let router = useRouter();
+    if (!user) {
+        router.push("/login");
+        return <></>;
+    }
+
 
     function isInputPresent() {
         return (checkForRequiredInput(firstNameRef)
