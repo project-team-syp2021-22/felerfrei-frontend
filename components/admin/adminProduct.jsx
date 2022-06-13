@@ -20,7 +20,14 @@ function AdminProduct({
         <td>
           {published ? "Ja" : "Nein"} {/* add a checkbox here */}
         </td>
-        <td>€ {price}</td>
+        <td className="d-flex justify-content-between">
+          <span>
+          € 
+          </span>
+          <span>
+          {price.toFixed(2)}
+          </span>
+          </td>
         <td>{material}</td>
       </tr>
     </>
