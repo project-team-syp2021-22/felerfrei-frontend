@@ -44,6 +44,7 @@
 @media screen and (max-width: 768px) {
     .alignFooter {
         margin: 0 auto;
+        margin-top: 300px;
     }
 
     .footer {
