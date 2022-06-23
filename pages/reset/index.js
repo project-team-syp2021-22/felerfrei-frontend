@@ -31,7 +31,7 @@ export default function ResetRequest() {
 
     return (
         <div className={styles.parent}>
-            <div className="d-table-cell align-middle" style={{ maxWidth: "500px" }}>
+            <div style={{ maxWidth: "500px" }}>
                 <Container className="w-100">
                     <h2 className="fw-bold">Passwort zurücksetzen</h2>
                     <Form className={styles.form}>

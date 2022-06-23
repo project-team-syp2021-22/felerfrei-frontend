@@ -1,6 +1,5 @@
 .parent {
     display: flex;
-    display: table;
     margin-top: 5px;
     justify-content: center;
     align-items: center;
